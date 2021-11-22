@@ -65,3 +65,47 @@ None
 - <i class="far fa-exclamation"></i> [Agile Project Management](project/curriculum/materials/pages/methodology/agile-project-management.md)
 - [Quickstart on GitHub Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/quickstart)
 - [Creating a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+
+
+
+
+# FitMan
+---
+
+## Description
+A manager app for all fitness activities that makes it easier for users to subscribe to a gym membership, select the type of training that they want to follow, create reservations and set fitness goals.
+
+##  Product backlog
+### Project structure
+- Create a working version of the main project structure that will be improved in future sprints.
+- Create a landing page.
+---
+### Workout products list
+- Create a page where the user can see all the products. 
+---
+### User registration
+- Create a sign up page so the user can make a personal account and store details of his bought products on his personal account. 
+- The user has to able to log in, so that he can access his personal data and he also has to be able to log out.
+---
+### Workout program enrollment procedure 
+- Create an workout program enrollment procedure where the user can make reservations of one or multiple programs for different days or different time slots.
+---
+### Payment
+- The user is able to pay for his chosen programs using different services options like PayPal, credit card etc.
+---
+### Staff page
+- The user can access a page where all the coaches and their details are displayed.
+---
+### Application design
+- Create a fancy design using an unusual library to make your app stand out.  
+- Make a card design for the workout products.
+---
+### News and promos carousel
+- The user can see the latest news and promotions on the app. 
+---
+### Find the closest gyms 
+- The user is able to search for the closet gyms in his area.
+--- 
+### Reviews
+-  The user can see other clients reviews on different programs.
+---
