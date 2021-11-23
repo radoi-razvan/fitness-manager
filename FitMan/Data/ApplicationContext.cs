@@ -22,11 +22,14 @@ namespace FitMan.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
+
             modelBuilder.Entity<Course>().ToTable("Course");
             modelBuilder.Entity<Exercise>().ToTable("Exercise");
             modelBuilder.Entity<Gym>().ToTable("Gym");
             modelBuilder.Entity<Trainer>().ToTable("Trainer");
             modelBuilder.Entity<Review>().ToTable("Review");
         }
+
     }
 }
