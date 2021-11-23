@@ -1,4 +1,5 @@
 using FitMan.Data;
+using FitMan.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +39,9 @@ namespace FitMan
                        builder
                        .AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowAnyHeader();
+                       .AllowAnyHeader()
+                       .AllowCredentials();
+                       //.WithOrigins("http://localhost:3000");
 
                    });
             });
@@ -50,6 +53,10 @@ namespace FitMan
             = new DefaultContractResolver());
 
             services.AddControllers();
+
+            // intilialize service values for controller
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<JwtService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
