@@ -14,6 +14,7 @@ namespace FitMan.Models
         public string Password { get; set; }
         public UserRole Role { get; set; }
         public List<Course> Courses{ get; set; }
+        public List<Gym> Gyms { get; set; }
 
     }
 }
