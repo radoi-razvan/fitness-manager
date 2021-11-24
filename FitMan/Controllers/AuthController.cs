@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FitMan.Data;
-using FitMan.DTO;
+using FitMan.DTOs;
 using FitMan.Models;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +22,7 @@ namespace FitMan.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterDto dto)
+        public IActionResult Register(RegisterDTO dto)
         {
             var user = new User() {
                 Username = dto.Name,
@@ -34,7 +34,7 @@ namespace FitMan.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginDto dto)
+        public IActionResult Login(LoginDTO dto)
         {
             var user = _repository.GetByEmail(dto.Email);
 
