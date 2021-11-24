@@ -12,6 +12,7 @@ namespace FitMan.Models
         public string Description { get; set; }
         public List<Course> Courses { get; set; }
         public List<Review> Reviews { get; set; }
+        public List<User> User{ get; set; }
 
     }
 }
