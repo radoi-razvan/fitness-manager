@@ -1,4 +1,5 @@
 using FitMan.Data;
+using FitMan.Models;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,9 +55,10 @@ namespace FitMan
 
             services.AddControllers();
 
-            // intilialize service values for controller
+            // intilialize repositories for controllers
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<JwtService>();
+            services.AddScoped<IGymRepository, GymRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
