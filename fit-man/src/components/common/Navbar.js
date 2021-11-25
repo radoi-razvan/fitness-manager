@@ -1,25 +1,46 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route, NavLink, Link } from "react-router-dom";
+import { GymList } from "../GymList";
 
 export const Navbar = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="container d-flex align-items-center">
-        <Route to="/" exact className="logo me-auto">
-          <span>FitMan</span>
-        </Route>
-
+        <NavLink exact to="/">FitMan</NavLink >
         <nav id="navbar">
           <ul>
             <li>
-              <Route to="/register">Register</Route>
+              <NavLink exact to="/api/gyms">Gyms</NavLink >             
             </li>
             <li>
-              <Route to="/login">Login</Route>
+              <NavLink  to="/api/register">Register</NavLink>
+            </li>
+            <li>
+              <NavLink  to="/api/login">Login</NavLink>
             </li>
           </ul>
         </nav>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
+
+// <Route
+//           path="/"
+//           exact
+//           render={(props) => (
+//             <>
+//               {showAddTask && <AddTask onAdd={addTask} />}
+//               {tasks.length > 0 ? (
+//                 <Tasks
+//                   tasks={tasks}
+//                   onDelete={deleteTask}
+//                   onToggle={toggleReminder}
+//                 />
+//               ) : (
+//                 "No Tasks To Show"
+//               )}
+//             </>
+//           )}
+//         />
+//         <Route path="/about" component={About} />
