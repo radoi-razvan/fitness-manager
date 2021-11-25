@@ -29,7 +29,7 @@ function App() {
             </Route>
           </Switch>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );
