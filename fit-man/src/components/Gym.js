@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Gym = ({ name, address, description }) => {
+export const Gym = ({ name, address, description, gymId }) => {
   return (
     <div>
       <p>{name}</p>
