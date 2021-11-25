@@ -21,7 +21,6 @@ export const GymList = () => {
 
   const getGyms = async () => {
     const response = await axios.get("http://localhost:5000/api/gyms");
-    console.log(response.data);
     setGyms(response.data);
   };
 
