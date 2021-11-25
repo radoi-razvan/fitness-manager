@@ -1,24 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route, NavLink, Link } from "react-router-dom";
-import { GymList } from "../GymList";
+import React from "react";
+import { NavLink } from "react-router-dom";
+
 
 export const Navbar = () => {
   return (
-      <div className="container d-flex align-items-center">
-        <NavLink exact to="/">FitMan</NavLink >
-        <nav id="navbar">
-          <ul>
-            <li>
+           
+        <nav id="navbar" className="mynavbar">
+          <div className="nav-ulist">
+            <div className="mynavtitle">
+              <NavLink exact to="/">FitMan</NavLink >
+            </div>
+            <div className="mynavitem">
               <NavLink exact to="/api/gyms">Gyms</NavLink >             
-            </li>
-            <li>
+            </div>
+            <div className="mynavitem myaccountitem">
               <NavLink  to="/api/register">Register</NavLink>
-            </li>
-            <li>
+            </div>
+            <div className="mynavitem">
               <NavLink  to="/api/login">Login</NavLink>
-            </li>
-          </ul>
+            </div>
+          </div>
         </nav>
-      </div>
-  );
+          );
 };
