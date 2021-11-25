@@ -4,7 +4,6 @@ import { GymList } from "../GymList";
 
 export const Navbar = () => {
   return (
-    <BrowserRouter>
       <div className="container d-flex align-items-center">
         <NavLink exact to="/">FitMan</NavLink >
         <nav id="navbar">
@@ -21,26 +20,5 @@ export const Navbar = () => {
           </ul>
         </nav>
       </div>
-    </BrowserRouter>
   );
 };
-
-// <Route
-//           path="/"
-//           exact
-//           render={(props) => (
-//             <>
-//               {showAddTask && <AddTask onAdd={addTask} />}
-//               {tasks.length > 0 ? (
-//                 <Tasks
-//                   tasks={tasks}
-//                   onDelete={deleteTask}
-//                   onToggle={toggleReminder}
-//                 />
-//               ) : (
-//                 "No Tasks To Show"
-//               )}
-//             </>
-//           )}
-//         />
-//         <Route path="/about" component={About} />
