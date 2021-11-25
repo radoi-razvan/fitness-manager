@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <footer class="footer">
+    <footer className="footer">
       <div>
         &copy; {new Date().getFullYear()} - <span>FitMan</span>
       </div>
