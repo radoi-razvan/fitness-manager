@@ -34,17 +34,11 @@ namespace FitMan
             // Enable Cors
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
-                   builder =>
-                   {
-                       builder
-                       .AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .AllowCredentials();
-                       //.WithOrigins("http://localhost:3000");
-
-                   });
+                options.AddPolicy("ReactApp",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000");
+                    });
             });
 
             //JSON Serializer
@@ -70,6 +64,12 @@ namespace FitMan
             }
 
             app.UseRouting();
+
+            app.UseCors(builder => builder
+              .WithOrigins("http://localhost:3000")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials());
 
             app.UseAuthorization();
 
