@@ -17,16 +17,20 @@ function App() {
 
   return (
     <div className="container">
-      <Navbar />
-      <main id="main">
-        <BrowserRouter>
+      <BrowserRouter>
+        <Navbar />
+        <main id="main">
           <Switch>
-            <Route exact path="/" component={WelcomePage} />
-            <Route exact path="/api/gyms" component={GymList} />
+            <Route path="/api/gyms">
+              <GymList />
+            </Route>
+            <Route exact path="/">
+              <WelcomePage />
+            </Route>
           </Switch>
-        </BrowserRouter>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
