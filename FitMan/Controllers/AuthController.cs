@@ -5,6 +5,7 @@ using FitMan.Models;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 
 namespace FitMan.Controllers
 {
@@ -24,13 +25,30 @@ namespace FitMan.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterDTO dto)
         {
-            var user = new User() {
-                Username = dto.Name,
-                Email = dto.Email,
-                Password = PasswordEncrypter.HashPassword(dto.Password)
-            };
+            if (dto.UserRole == "Owner")
+            {
+                var user = new Owner()
+                {
+                    Username = dto.Name,
+                    Email = dto.Email,
+                    Password = PasswordEncrypter.HashPassword(dto.Password),
+                    Gyms = new List<Gym>() { }
+                };
 
-            return Created("success", _repository.Create(user));
+                return Created("Gym owner registration successfull", _repository.Create(user));
+            }
+            else 
+            {
+                var user = new Participant()
+                {
+                    Username = dto.Name,
+                    Email = dto.Email,
+                    Password = PasswordEncrypter.HashPassword(dto.Password),
+                    Courses = new List<Course>() { }
+                };
+
+                return Created("Participant registration successfull", _repository.Create(user));
+            }
         }
 
         [HttpPost("login")]
