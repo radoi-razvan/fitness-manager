@@ -1,4 +1,6 @@
-﻿using FitMan.Models;
+﻿using AutoMapper;
+using FitMan.DTOs;
+using FitMan.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,15 +12,18 @@ namespace FitMan.Data
     public class GymRepository : IGymRepository
     {
         private readonly ApplicationContext _context;
+        private readonly IMapper _mapper;
 
-        public GymRepository(ApplicationContext context)
+        public GymRepository(ApplicationContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public void Add(Gym item)
+        public void Add(GymDTO item)
         {
-            _context.Gyms.Add(item);
+            var model = _mapper.Map<Gym>(item);
+            _context.Gyms.Add(model);
             _context.SaveChanges();
         }
 
@@ -27,28 +32,31 @@ namespace FitMan.Data
             return _context.Gyms.Any(e => e.GymId == id);
         }
 
-        public Gym Get(long id)
+        public GymDTO Get(long id)
         {
-            return _context.Gyms.Find(id);
+            var model = _context.Gyms.Find(id);
+            var dto = _mapper.Map<GymDTO>(model);
+            return dto;
         }
 
-        public IEnumerable<Gym> GetAll()
+        public IEnumerable<GymDTO> GetAll()
         {
-            return _context.Gyms;
+            return _mapper.Map<IEnumerable<GymDTO>>(_context.Gyms);  
         }
 
-        public void Remove(Gym item)
+        public void Remove(GymDTO item)
         {
-            _context.Gyms.Remove(item);
+            var gym = _context.Gyms.Find(item.GymId);
+            _context.Gyms.Remove(gym);
             _context.SaveChanges();
         }
 
-        public bool Update(long id, Gym item)
+        public bool Update(long id, GymDTO item)
         {
 
             try
             {
-                Gym gym = Get(id);
+                Gym gym = _context.Gyms.Find(id);
                 gym.Name = item.Name;
                 gym.Address = item.Address;
                 gym.Description = item.Description;
