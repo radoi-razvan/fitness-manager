@@ -1,5 +1,7 @@
+using AutoMapper;
 using FitMan.Data;
 using FitMan.Models;
+using FitMan.Services;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -53,6 +55,18 @@ namespace FitMan
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<JwtService>();
             services.AddScoped<IGymRepository, GymRepository>();
+            services.AddScoped<IGymService, GymService>();
+
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
