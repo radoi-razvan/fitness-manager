@@ -1,5 +1,6 @@
-﻿using FitMan.Data;
+﻿using FitMan.DTOs;
 using FitMan.Models;
+using FitMan.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,23 +15,23 @@ namespace FitMan.Controllers
     [ApiController]
     public class GymsController : ControllerBase
     {
-        private readonly IGymRepository _gymRepository;
-        public GymsController(IGymRepository gymRepository)
+        private readonly IGymService _gymService;
+        public GymsController(IGymService gymService)
         {
-            _gymRepository = gymRepository;
+            _gymService = gymService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Gym>> GetGyms()
+        public ActionResult<IEnumerable<GymDTO>> GetGyms()
         {
-            return Ok(_gymRepository.GetAll());
+            return Ok(_gymService.GetAll());
         }
 
         // GET: api/Gyms/5
         [HttpGet("{id}")]
-        public ActionResult<Gym> GetGym(long id)
+        public ActionResult<GymDTO> GetGym(long id)
         {
-            var gym = _gymRepository.Get(id);
+            var gym = _gymService.Get(id);
 
             if (gym == null)
             {
@@ -42,21 +43,21 @@ namespace FitMan.Controllers
 
         // PUT: api/Gyms/5
         [HttpPut("{id}")]
-        public IActionResult PutGym(long id, [FromBody] Gym gym)
+        public IActionResult PutGym(long id, [FromBody] GymDTO gym)
         {
             //if (!ModelState.IsValid)
             //{
             //    return BadRequest(ModelState);
             //}
 
-            Gym currentGym = new Gym()
+            GymDTO currentGym = new GymDTO()
             {
                 Name = gym.Name,
                 Address = gym.Address,
                 Description = gym.Description
             };
 
-            if (!_gymRepository.Update(id, currentGym))
+            if (!_gymService.Update(id, currentGym))
             {
                 return NotFound();
             } 
@@ -66,21 +67,21 @@ namespace FitMan.Controllers
 
         // POST: api/Gyms
         [HttpPost]
-        public ActionResult<Gym> PostGym([FromBody] Gym gym)
+        public ActionResult<GymDTO> PostGym([FromBody] GymDTO gym)
         {
             //if (!ModelState.IsValid)
             //{
             //    return BadRequest(ModelState);
             //}
 
-            Gym currentGym = new Gym()
+            GymDTO currentGym = new GymDTO()
             {
                 Name = gym.Name,
                 Address = gym.Address,
                 Description = gym.Description
             };
 
-            _gymRepository.Add(currentGym);
+            _gymService.Add(currentGym);
 
             return CreatedAtAction("GetGym", new { id = currentGym.GymId }, currentGym);
         }
@@ -89,13 +90,13 @@ namespace FitMan.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteGym(long id)
         {
-            var gym = _gymRepository.Get(id);
+            var gym = _gymService.Get(id);
             if (gym == null)
             {
                 return NotFound();
             }
 
-            _gymRepository.Remove(gym);
+            _gymService.Remove(gym);
 
             return NoContent();
         }
