@@ -10,9 +10,10 @@ namespace FitMan.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
+        public long OwnerId { get; set; }
+        public User Owner { get; set; }
         public List<Course> Courses { get; set; }
         public List<Review> Reviews { get; set; }
-        public List<User> User{ get; set; }
 
     }
 }
