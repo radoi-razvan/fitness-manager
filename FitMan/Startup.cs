@@ -1,6 +1,7 @@
 using AutoMapper;
 using FitMan.Data;
 using FitMan.Models;
+using FitMan.Repositories;
 using FitMan.Services;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Builder;
