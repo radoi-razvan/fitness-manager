@@ -1,4 +1,4 @@
-# El Proyecte Grande - Sprint 2
+# El Proyecte Grande - Sprint 3
 
 ## Story
 
