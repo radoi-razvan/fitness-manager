@@ -1,6 +1,7 @@
 ﻿using FitMan.Data;
 using FitMan.DTOs;
 using FitMan.Models;
+using FitMan.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
