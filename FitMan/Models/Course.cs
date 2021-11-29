@@ -14,7 +14,7 @@ namespace FitMan.Models
         public long GymId { get; set; }
         public Gym Gym { get; set; }
         public List<Review> Reviews { get; set; }
-        public List<User> Participants { get; set; }
+        public List<Participant> Participants { get; set; }
         public List<Trainer> Trainers { get; set; }
         public List<Exercise> Exercises{ get; set; }
         
