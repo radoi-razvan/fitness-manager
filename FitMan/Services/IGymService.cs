@@ -9,5 +9,6 @@ namespace FitMan.Services
 {
     public interface IGymService : IService<GymDTO>
     {
+        IEnumerable<GymDTO> GetAll();
     }
 }

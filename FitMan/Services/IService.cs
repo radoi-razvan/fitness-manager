@@ -10,7 +10,6 @@ namespace FitMan.Services
         void Add(T item);
         void Remove(T item);
         T Get(long id);
-        IEnumerable<T> GetAll();
         bool CheckIfExists(long id);
         bool Update(long id, T item);
     }
