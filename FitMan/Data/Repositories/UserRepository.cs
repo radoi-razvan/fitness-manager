@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace FitMan.Repositories
+namespace FitMan.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
