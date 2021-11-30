@@ -1,7 +1,7 @@
 using AutoMapper;
 using FitMan.Data;
 using FitMan.Models;
-using FitMan.Repositories;
+using FitMan.Data.Repositories;
 using FitMan.Services;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Builder;
@@ -52,11 +52,13 @@ namespace FitMan
 
             services.AddControllers();
 
-            // intilialize repositories for controllers
+            // Intilialize repositories and services
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<JwtService>();
             services.AddScoped<IGymRepository, GymRepository>();
             services.AddScoped<IGymService, GymService>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ICourseService, CourseService>();
 
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
