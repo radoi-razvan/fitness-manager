@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace FitMan.DTOs
 {
-    public class GymDTO
+    public class ExerciseDTO
     {
-        public long GymId { get; set; }
+        public long ExerciseId { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
         public string Description { get; set; }
-        public long? OwnerId { get; set; }
-        public Owner GymOwner { get; set; }
         public List<Course> Courses { get; set; }
-        public List<Review> Reviews { get; set; }
     }
 }
