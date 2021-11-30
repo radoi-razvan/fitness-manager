@@ -1,24 +1,29 @@
 ﻿using FitMan.DTOs;
 using FitMan.Models;
 using FitMan.Services;
+using FitMan.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace FitMan.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class GymsController : ControllerBase
     {
         private readonly IGymService _gymService;
-        public GymsController(IGymService gymService)
+        private readonly JwtService _jwtService;
+        public GymsController(IGymService gymService, JwtService jwtService)
         {
             _gymService = gymService;
+            _jwtService = jwtService;
         }
 
         [HttpGet]
@@ -27,7 +32,7 @@ namespace FitMan.Controllers
             return Ok(_gymService.GetAll());
         }
 
-        // GET: api/Gyms/5
+        // GET: gyms/5
         [HttpGet("{id}")]
         public ActionResult<GymDTO> GetGym(long id)
         {
@@ -41,7 +46,7 @@ namespace FitMan.Controllers
             return Ok(gym);
         }
 
-        // PUT: api/Gyms/5
+        // PUT: gyms/5
         [HttpPut("{id}")]
         public IActionResult PutGym(long id, [FromBody] GymDTO gym)
         {
@@ -50,11 +55,16 @@ namespace FitMan.Controllers
             //    return BadRequest(ModelState);
             //}
 
+            var jwt = Request.Cookies["jwt"];
+            var token = _jwtService.Verify(jwt);
+            int userId = int.Parse(token.Issuer);
+
             GymDTO currentGym = new GymDTO()
             {
                 Name = gym.Name,
                 Address = gym.Address,
-                Description = gym.Description
+                Description = gym.Description,
+                OwnerId = userId
             };
 
             if (!_gymService.Update(id, currentGym))
@@ -65,7 +75,7 @@ namespace FitMan.Controllers
             return NoContent();
         }
 
-        // POST: api/Gyms
+        // POST: gyms
         [HttpPost]
         public ActionResult<GymDTO> PostGym([FromBody] GymDTO gym)
         {
@@ -74,19 +84,24 @@ namespace FitMan.Controllers
             //    return BadRequest(ModelState);
             //}
 
+            var jwt = Request.Cookies["jwt"];
+            var token = _jwtService.Verify(jwt);
+            int userId = int.Parse(token.Issuer);
+
             GymDTO currentGym = new GymDTO()
             {
                 Name = gym.Name,
                 Address = gym.Address,
-                Description = gym.Description
+                Description = gym.Description,
+                OwnerId = userId
             };
 
             _gymService.Add(currentGym);
 
-            return CreatedAtAction("GetGym", new { id = currentGym.GymId }, currentGym);
+            return CreatedAtAction("PostGym", new { id = currentGym.GymId }, currentGym);
         }
 
-        // DELETE: api/Gyms/5
+        // DELETE: gyms/5
         [HttpDelete("{id}")]
         public IActionResult DeleteGym(long id)
         {

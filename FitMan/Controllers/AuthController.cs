@@ -6,11 +6,10 @@ using FitMan.Utils;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using FitMan.Repositories;
+using FitMan.Data.Repositories;
 
 namespace FitMan.Controllers
 {
-    [Route("api")]
     [ApiController]
     public class AuthController : Controller
     {
@@ -36,7 +35,7 @@ namespace FitMan.Controllers
                     Gyms = new List<Gym>() { }
                 };
 
-                return Created("Gym owner registration successfull", _repository.Create(user));
+                return Created("Gym owner registration successful", _repository.Create(user));
             }
             else 
             {
@@ -48,7 +47,7 @@ namespace FitMan.Controllers
                     Courses = new List<Course>() { }
                 };
 
-                return Created("Participant registration successfull", _repository.Create(user));
+                return Created("Participant registration successful", _repository.Create(user));
             }
         }
 
