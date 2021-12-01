@@ -44,7 +44,7 @@ namespace FitMan.Controllers
                     Username = dto.Name,
                     Email = dto.Email,
                     Password = PasswordEncrypter.HashPassword(dto.Password),
-                    Courses = new List<Course>() { }
+                    CourseParticipants = new List<CourseParticipant>() { }
                 };
 
                 return Created("Participant registration successful", _repository.Create(user));

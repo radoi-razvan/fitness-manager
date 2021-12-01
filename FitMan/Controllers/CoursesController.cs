@@ -88,7 +88,7 @@ namespace FitMan.Controllers
                 return NotFound();
             }
 
-            _courseService.Remove(course);
+            _courseService.Remove(courseId);
 
             return NoContent();
         }

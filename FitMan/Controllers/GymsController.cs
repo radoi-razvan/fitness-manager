@@ -111,7 +111,7 @@ namespace FitMan.Controllers
                 return NotFound();
             }
 
-            _gymService.Remove(gym);
+            _gymService.Remove(id);
 
             return NoContent();
         }

@@ -37,9 +37,9 @@ namespace FitMan.Services
             return _gymRepository.GetAll();
         }
 
-        public void Remove(GymDTO item)
+        public void Remove(long id)
         {
-            _gymRepository.Remove(item);
+            _gymRepository.Remove(id);
         }
 
         public bool Update(long id, GymDTO item)

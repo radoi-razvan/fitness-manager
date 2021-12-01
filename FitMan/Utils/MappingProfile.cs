@@ -14,8 +14,12 @@ namespace FitMan.Utils
         {
             CreateMap<Gym, GymDTO>();
             CreateMap<GymDTO, Gym>();
+
             CreateMap<Course, CourseDTO>();
             CreateMap<CourseDTO, Course>();
+
+            CreateMap<Exercise, ExerciseDTO>();
+            CreateMap<ExerciseDTO, Exercise>();
         }
     }
 }

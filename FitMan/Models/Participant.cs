@@ -4,6 +4,6 @@ namespace FitMan.Models
 {
     public class Participant : User
     {
-        public List<Course> Courses{ get; set; }
+        public List<CourseParticipant> CourseParticipants { get; set; }
     }
 }

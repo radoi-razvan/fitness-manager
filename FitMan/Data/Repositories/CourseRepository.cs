@@ -44,9 +44,9 @@ namespace FitMan.Data.Repositories
             return _mapper.Map<IEnumerable<CourseDTO>>(_context.Courses.Where(c => c.GymId == gymId));
         }
 
-        public void Remove(CourseDTO item)
+        public void Remove(long courseId)
         {
-            var course = _context.Courses.Find(item.CourseId);
+            var course = _context.Courses.Find(courseId);
             _context.Courses.Remove(course);
             _context.SaveChanges();
         }
