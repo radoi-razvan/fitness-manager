@@ -83,48 +83,52 @@ namespace FitMan.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseExercise",
+                name: "CourseExercises",
                 columns: table => new
                 {
-                    CoursesCourseId = table.Column<long>(type: "bigint", nullable: false),
-                    ExercisesExerciseId = table.Column<long>(type: "bigint", nullable: false)
+                    CourseExerciseId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseId = table.Column<long>(type: "bigint", nullable: false),
+                    ExerciseId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseExercise", x => new { x.CoursesCourseId, x.ExercisesExerciseId });
+                    table.PrimaryKey("PK_CourseExercises", x => x.CourseExerciseId);
                     table.ForeignKey(
-                        name: "FK_CourseExercise_Course_CoursesCourseId",
-                        column: x => x.CoursesCourseId,
+                        name: "FK_CourseExercises_Course_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseExercise_Exercise_ExercisesExerciseId",
-                        column: x => x.ExercisesExerciseId,
+                        name: "FK_CourseExercises_Exercise_ExerciseId",
+                        column: x => x.ExerciseId,
                         principalTable: "Exercise",
                         principalColumn: "ExerciseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseParticipant",
+                name: "CourseParticipants",
                 columns: table => new
                 {
-                    CoursesCourseId = table.Column<long>(type: "bigint", nullable: false),
-                    ParticipantsUserId = table.Column<long>(type: "bigint", nullable: false)
+                    CourseParticipantId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseId = table.Column<long>(type: "bigint", nullable: false),
+                    PartcipantId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseParticipant", x => new { x.CoursesCourseId, x.ParticipantsUserId });
+                    table.PrimaryKey("PK_CourseParticipants", x => x.CourseParticipantId);
                     table.ForeignKey(
-                        name: "FK_CourseParticipant_Course_CoursesCourseId",
-                        column: x => x.CoursesCourseId,
+                        name: "FK_CourseParticipants_Course_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseParticipant_Users_ParticipantsUserId",
-                        column: x => x.ParticipantsUserId,
+                        name: "FK_CourseParticipants_Users_PartcipantId",
+                        column: x => x.PartcipantId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -193,14 +197,24 @@ namespace FitMan.Migrations
                 column: "GymId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseExercise_ExercisesExerciseId",
-                table: "CourseExercise",
-                column: "ExercisesExerciseId");
+                name: "IX_CourseExercises_CourseId",
+                table: "CourseExercises",
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseParticipant_ParticipantsUserId",
-                table: "CourseParticipant",
-                column: "ParticipantsUserId");
+                name: "IX_CourseExercises_ExerciseId",
+                table: "CourseExercises",
+                column: "ExerciseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseParticipants_CourseId",
+                table: "CourseParticipants",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseParticipants_PartcipantId",
+                table: "CourseParticipants",
+                column: "PartcipantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gym_OwnerId",
@@ -238,10 +252,10 @@ namespace FitMan.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CourseExercise");
+                name: "CourseExercises");
 
             migrationBuilder.DropTable(
-                name: "CourseParticipant");
+                name: "CourseParticipants");
 
             migrationBuilder.DropTable(
                 name: "Review");

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitMan.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211129181234_initial")]
+    [Migration("20211130204409_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,36 +20,6 @@ namespace FitMan.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CourseExercise", b =>
-                {
-                    b.Property<long>("CoursesCourseId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ExercisesExerciseId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("CoursesCourseId", "ExercisesExerciseId");
-
-                    b.HasIndex("ExercisesExerciseId");
-
-                    b.ToTable("CourseExercise");
-                });
-
-            modelBuilder.Entity("CourseParticipant", b =>
-                {
-                    b.Property<long>("CoursesCourseId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ParticipantsUserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("CoursesCourseId", "ParticipantsUserId");
-
-                    b.HasIndex("ParticipantsUserId");
-
-                    b.ToTable("CourseParticipant");
-                });
 
             modelBuilder.Entity("FitMan.Models.Course", b =>
                 {
@@ -78,6 +48,50 @@ namespace FitMan.Migrations
                     b.HasIndex("GymId");
 
                     b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("FitMan.Models.CourseExercise", b =>
+                {
+                    b.Property<long>("CourseExerciseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ExerciseId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CourseExerciseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.ToTable("CourseExercises");
+                });
+
+            modelBuilder.Entity("FitMan.Models.CourseParticipant", b =>
+                {
+                    b.Property<long>("CourseParticipantId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PartcipantId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CourseParticipantId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("PartcipantId");
+
+                    b.ToTable("CourseParticipants");
                 });
 
             modelBuilder.Entity("FitMan.Models.Exercise", b =>
@@ -228,36 +242,6 @@ namespace FitMan.Migrations
                     b.HasDiscriminator().HasValue("Participant");
                 });
 
-            modelBuilder.Entity("CourseExercise", b =>
-                {
-                    b.HasOne("FitMan.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FitMan.Models.Exercise", null)
-                        .WithMany()
-                        .HasForeignKey("ExercisesExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CourseParticipant", b =>
-                {
-                    b.HasOne("FitMan.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FitMan.Models.Participant", null)
-                        .WithMany()
-                        .HasForeignKey("ParticipantsUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FitMan.Models.Course", b =>
                 {
                     b.HasOne("FitMan.Models.Gym", "Gym")
@@ -267,6 +251,44 @@ namespace FitMan.Migrations
                         .IsRequired();
 
                     b.Navigation("Gym");
+                });
+
+            modelBuilder.Entity("FitMan.Models.CourseExercise", b =>
+                {
+                    b.HasOne("FitMan.Models.Course", "Course")
+                        .WithMany("CourseExercises")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitMan.Models.Exercise", "Exercise")
+                        .WithMany("CourseExercises")
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Exercise");
+                });
+
+            modelBuilder.Entity("FitMan.Models.CourseParticipant", b =>
+                {
+                    b.HasOne("FitMan.Models.Course", "Course")
+                        .WithMany("CourseParticipants")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitMan.Models.Participant", "Participant")
+                        .WithMany("CourseParticipants")
+                        .HasForeignKey("PartcipantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Participant");
                 });
 
             modelBuilder.Entity("FitMan.Models.Gym", b =>
@@ -312,9 +334,18 @@ namespace FitMan.Migrations
 
             modelBuilder.Entity("FitMan.Models.Course", b =>
                 {
+                    b.Navigation("CourseExercises");
+
+                    b.Navigation("CourseParticipants");
+
                     b.Navigation("Reviews");
 
                     b.Navigation("Trainers");
+                });
+
+            modelBuilder.Entity("FitMan.Models.Exercise", b =>
+                {
+                    b.Navigation("CourseExercises");
                 });
 
             modelBuilder.Entity("FitMan.Models.Gym", b =>
@@ -332,6 +363,11 @@ namespace FitMan.Migrations
             modelBuilder.Entity("FitMan.Models.Owner", b =>
                 {
                     b.Navigation("Gyms");
+                });
+
+            modelBuilder.Entity("FitMan.Models.Participant", b =>
+                {
+                    b.Navigation("CourseParticipants");
                 });
 #pragma warning restore 612, 618
         }
