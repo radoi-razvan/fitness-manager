@@ -63,6 +63,8 @@ namespace FitMan
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
             services.AddScoped<IExerciseService, ExerciseService>();
+            services.AddScoped<IParticipantRepository, ParticipantRepository>();
+            services.AddScoped<IParticipantService, ParticipantService>();
 
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
