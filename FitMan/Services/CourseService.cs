@@ -1,5 +1,7 @@
 ﻿using FitMan.Data.Repositories;
+using FitMan.Data.Repositories.RepositoriesInterfaces;
 using FitMan.DTOs;
+using FitMan.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

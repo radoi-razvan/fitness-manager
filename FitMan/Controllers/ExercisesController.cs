@@ -1,5 +1,5 @@
 ﻿using FitMan.DTOs;
-using FitMan.Services;
+using FitMan.Services.ServiceInterfaces;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System;

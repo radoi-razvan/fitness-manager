@@ -1,4 +1,5 @@
 ﻿using FitMan.Data;
+using FitMan.Data.Repositories.RepositoriesInterfaces;
 using FitMan.Models;
 using System;
 using System.Collections.Generic;

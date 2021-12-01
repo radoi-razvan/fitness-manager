@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FitMan.DTOs;
 using FitMan.Models;
 
-namespace FitMan.Services
+namespace FitMan.Services.ServiceInterfaces
 {
     public interface IGymService : IService<GymDTO>
     {

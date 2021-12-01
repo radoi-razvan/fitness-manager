@@ -1,6 +1,6 @@
 ﻿using FitMan.DTOs;
 using FitMan.Models;
-using FitMan.Services;
+using FitMan.Services.ServiceInterfaces;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

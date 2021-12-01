@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FitMan.Data.Repositories.RepositoriesInterfaces;
 using FitMan.DTOs;
 using FitMan.Models;
 using Microsoft.EntityFrameworkCore;

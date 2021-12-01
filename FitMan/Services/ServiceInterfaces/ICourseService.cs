@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FitMan.Services
+namespace FitMan.Services.ServiceInterfaces
 {
     public interface ICourseService : IService<CourseDTO>
     {

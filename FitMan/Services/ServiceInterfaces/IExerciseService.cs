@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FitMan.Data.Repositories
+namespace FitMan.Services.ServiceInterfaces
 {
-    public interface IExerciseRepository : ICourseManyToManyRepository<ExerciseDTO>
+    public interface IExerciseService : ICourseManyToManyService<ExerciseDTO>
     {
     }
 }
