@@ -20,6 +20,9 @@ namespace FitMan.Utils
 
             CreateMap<Exercise, ExerciseDTO>();
             CreateMap<ExerciseDTO, Exercise>();
+
+            CreateMap<Trainer, TrainerDTO>();
+            CreateMap<TrainerDTO, Trainer>();
         }
     }
 }
