@@ -9,6 +9,6 @@ namespace FitMan.Models
         public long ExerciseId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Course> Courses { get; set; }
+        public List<CourseExercise> CourseExercises { get; set; }
     }
 }
