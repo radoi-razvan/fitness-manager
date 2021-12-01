@@ -23,6 +23,9 @@ namespace FitMan.Utils
 
             CreateMap<Trainer, TrainerDTO>();
             CreateMap<TrainerDTO, Trainer>();
+
+            CreateMap<Review, ReviewDTO>();
+            CreateMap<ReviewDTO, Review>();
         }
     }
 }
