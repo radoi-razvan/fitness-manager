@@ -48,6 +48,14 @@ namespace FitMan.Data.Repositories
         public void Remove(long trainerId)
         {
             var trainer = _context.Trainers.Find(trainerId);
+            var reviews = _context.Reviews.Where(r => r.TrainerId == trainerId);
+
+            foreach (var review in reviews)
+            {
+                _context.Reviews.Remove(review);
+            }
+            _context.SaveChanges();
+
             _context.Trainers.Remove(trainer);
             _context.SaveChanges();
         }

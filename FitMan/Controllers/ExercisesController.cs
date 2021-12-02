@@ -57,9 +57,9 @@ namespace FitMan.Controllers
             return NoContent();
         }
 
-        // POST: gyms/5/courses/5/exercises/5
-        [HttpPost("{exerciseId}")]
-        public ActionResult<ExerciseDTO> PostExercise(long exerciseId, [FromBody] ExerciseDTO exercise)
+        // POST: gyms/5/courses/5/exercises
+        [HttpPost]
+        public ActionResult<ExerciseDTO> PostExercise(long courseId, [FromBody] ExerciseDTO exercise)
         {
             ExerciseDTO currentExercise = new ExerciseDTO()
             {
@@ -67,7 +67,7 @@ namespace FitMan.Controllers
                 Description = exercise.Description
             };
 
-            _exerciseService.Add(exerciseId, currentExercise);
+            _exerciseService.Add(courseId, currentExercise);
 
             return CreatedAtAction("PostExercise", new { id = currentExercise.ExerciseId }, currentExercise);
         }
