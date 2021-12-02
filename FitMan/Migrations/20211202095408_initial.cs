@@ -22,7 +22,7 @@ namespace FitMan.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     UserId = table.Column<long>(type: "bigint", nullable: false)
@@ -34,7 +34,7 @@ namespace FitMan.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_User", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,9 +52,9 @@ namespace FitMan.Migrations
                 {
                     table.PrimaryKey("PK_Gym", x => x.GymId);
                     table.ForeignKey(
-                        name: "FK_Gym_Users_OwnerId",
+                        name: "FK_Gym_User_OwnerId",
                         column: x => x.OwnerId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -83,7 +83,7 @@ namespace FitMan.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseExercises",
+                name: "CourseExercise",
                 columns: table => new
                 {
                     CourseExerciseId = table.Column<long>(type: "bigint", nullable: false)
@@ -93,15 +93,15 @@ namespace FitMan.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseExercises", x => x.CourseExerciseId);
+                    table.PrimaryKey("PK_CourseExercise", x => x.CourseExerciseId);
                     table.ForeignKey(
-                        name: "FK_CourseExercises_Course_CourseId",
+                        name: "FK_CourseExercise_Course_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseExercises_Exercise_ExerciseId",
+                        name: "FK_CourseExercise_Exercise_ExerciseId",
                         column: x => x.ExerciseId,
                         principalTable: "Exercise",
                         principalColumn: "ExerciseId",
@@ -109,27 +109,27 @@ namespace FitMan.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseParticipants",
+                name: "CourseParticipant",
                 columns: table => new
                 {
                     CourseParticipantId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CourseId = table.Column<long>(type: "bigint", nullable: false),
-                    PartcipantId = table.Column<long>(type: "bigint", nullable: false)
+                    ParticipantId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseParticipants", x => x.CourseParticipantId);
+                    table.PrimaryKey("PK_CourseParticipant", x => x.CourseParticipantId);
                     table.ForeignKey(
-                        name: "FK_CourseParticipants_Course_CourseId",
+                        name: "FK_CourseParticipant_Course_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseParticipants_Users_PartcipantId",
-                        column: x => x.PartcipantId,
-                        principalTable: "Users",
+                        name: "FK_CourseParticipant_User_ParticipantId",
+                        column: x => x.ParticipantId,
+                        principalTable: "User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -197,24 +197,24 @@ namespace FitMan.Migrations
                 column: "GymId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseExercises_CourseId",
-                table: "CourseExercises",
+                name: "IX_CourseExercise_CourseId",
+                table: "CourseExercise",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseExercises_ExerciseId",
-                table: "CourseExercises",
+                name: "IX_CourseExercise_ExerciseId",
+                table: "CourseExercise",
                 column: "ExerciseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseParticipants_CourseId",
-                table: "CourseParticipants",
+                name: "IX_CourseParticipant_CourseId",
+                table: "CourseParticipant",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseParticipants_PartcipantId",
-                table: "CourseParticipants",
-                column: "PartcipantId");
+                name: "IX_CourseParticipant_ParticipantId",
+                table: "CourseParticipant",
+                column: "ParticipantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gym_OwnerId",
@@ -242,8 +242,8 @@ namespace FitMan.Migrations
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Email",
-                table: "Users",
+                name: "IX_User_Email",
+                table: "User",
                 column: "Email",
                 unique: true,
                 filter: "[Email] IS NOT NULL");
@@ -252,10 +252,10 @@ namespace FitMan.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CourseExercises");
+                name: "CourseExercise");
 
             migrationBuilder.DropTable(
-                name: "CourseParticipants");
+                name: "CourseParticipant");
 
             migrationBuilder.DropTable(
                 name: "Review");
@@ -273,7 +273,7 @@ namespace FitMan.Migrations
                 name: "Gym");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

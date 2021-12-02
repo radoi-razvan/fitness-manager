@@ -1,6 +1,6 @@
-﻿using FitMan.Data.Repositories.RepositoriesInterfaces;
+﻿using FitMan.Data.Repositories.Interfaces;
 using FitMan.DTOs;
-using FitMan.Services.ServiceInterfaces;
+using FitMan.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

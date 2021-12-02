@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FitMan.Data.Repositories.RepositoriesInterfaces
+namespace FitMan.Data.Repositories.Interfaces
 {
     public interface IReviewRepository : IRepository<ReviewDTO>
     {

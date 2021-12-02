@@ -11,7 +11,7 @@ namespace FitMan.DTOs
         public long CourseParticipantId { get; set; }
         public long CourseId { get; set; }
         public Course Course { get; set; }
-        public long PartcipantId { get; set; }
+        public long ParticipantId { get; set; }
         public Participant Participant { get; set; }
     }
 }

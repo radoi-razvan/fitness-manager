@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FitMan.Services.ServiceInterfaces
+namespace FitMan.Data.Repositories.Interfaces
 {
-    public interface IExerciseService 
+    public interface IExerciseRepository
     {
         public void Add(long id, ExerciseDTO item);
         public bool CheckIfExists(long id);

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FitMan.Data.Repositories.RepositoriesInterfaces;
+using FitMan.Data.Repositories.Interfaces;
 using FitMan.DTOs;
 using FitMan.Models;
 using System;
@@ -23,7 +23,7 @@ namespace FitMan.Data.Repositories
             var courseParticipant = new CourseParticipant()
             {
                 CourseId = courseId,
-                PartcipantId = userId
+                ParticipantId = userId
             };
             _context.CourseParticipants.Add(courseParticipant);
             _context.SaveChanges();
@@ -40,7 +40,7 @@ namespace FitMan.Data.Repositories
                                                 .Select(c => c.CourseId);
             var courseParticipants = _context.CourseParticipants.Where(cp => gymCoursesIds
                                                                 .Contains(cp.CourseId));
-            return courseParticipants.Select(cp => cp.PartcipantId)
+            return courseParticipants.Select(cp => cp.ParticipantId)
                                      .Distinct()
                                      .Count();
         }

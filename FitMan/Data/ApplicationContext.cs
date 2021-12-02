@@ -24,7 +24,8 @@ namespace FitMan.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
-            modelBuilder.Entity<User>().HasDiscriminator<string>("UserRole")
+            modelBuilder.Entity<User>().ToTable("User")
+                                       .HasDiscriminator<string>("UserRole")
                                        .HasValue<Owner>("Owner")
                                        .HasValue<Participant>("Participant");
             modelBuilder.Entity<Owner>().HasBaseType<User>();
@@ -34,18 +35,22 @@ namespace FitMan.Data
             modelBuilder.Entity<Gym>().ToTable("Gym");
             modelBuilder.Entity<Trainer>().ToTable("Trainer");
             modelBuilder.Entity<Review>().ToTable("Review");
-            modelBuilder.Entity<CourseExercise>().HasOne(c => c.Course)
+            modelBuilder.Entity<CourseExercise>().ToTable("CourseExercise")
+                                                 .HasOne(c => c.Course)
                                                  .WithMany(ce => ce.CourseExercises)
                                                  .HasForeignKey(ci =>ci.CourseId);
-            modelBuilder.Entity<CourseExercise>().HasOne(c => c.Exercise)
+            modelBuilder.Entity<CourseExercise>().ToTable("CourseExercise")
+                                                 .HasOne(c => c.Exercise)
                                                  .WithMany(ce => ce.CourseExercises)
                                                  .HasForeignKey(ci => ci.ExerciseId);
-            modelBuilder.Entity<CourseParticipant>().HasOne(c => c.Course)
-                                                .WithMany(ce => ce.CourseParticipants)
-                                                .HasForeignKey(ci => ci.CourseId);
-            modelBuilder.Entity<CourseParticipant>().HasOne(c => c.Participant)
-                                                 .WithMany(ce => ce.CourseParticipants)
-                                                 .HasForeignKey(ci => ci.PartcipantId);
+            modelBuilder.Entity<CourseParticipant>().ToTable("CourseParticipant")
+                                                    .HasOne(c => c.Course)
+                                                    .WithMany(ce => ce.CourseParticipants)
+                                                    .HasForeignKey(ci => ci.CourseId);
+            modelBuilder.Entity<CourseParticipant>().ToTable("CourseParticipant")
+                                                    .HasOne(c => c.Participant)
+                                                    .WithMany(ce => ce.CourseParticipants)
+                                                    .HasForeignKey(ci => ci.ParticipantId);
         }
 
     }

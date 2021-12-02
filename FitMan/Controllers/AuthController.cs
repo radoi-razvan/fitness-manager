@@ -6,7 +6,7 @@ using FitMan.Utils;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using FitMan.Data.Repositories.RepositoriesInterfaces;
+using FitMan.Data.Repositories.Interfaces;
 
 namespace FitMan.Controllers
 {

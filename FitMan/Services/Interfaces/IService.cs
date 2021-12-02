@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FitMan.Data.Repositories.RepositoriesInterfaces
+namespace FitMan.Services.Interfaces
 {
-    public interface IRepository<T>
+    public interface IService<T>
     {
         void Add(T item);
         void Remove(long id);

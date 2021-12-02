@@ -67,7 +67,7 @@ namespace FitMan.Migrations
 
                     b.HasIndex("ExerciseId");
 
-                    b.ToTable("CourseExercises");
+                    b.ToTable("CourseExercise");
                 });
 
             modelBuilder.Entity("FitMan.Models.CourseParticipant", b =>
@@ -80,16 +80,16 @@ namespace FitMan.Migrations
                     b.Property<long>("CourseId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PartcipantId")
+                    b.Property<long>("ParticipantId")
                         .HasColumnType("bigint");
 
                     b.HasKey("CourseParticipantId");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("PartcipantId");
+                    b.HasIndex("ParticipantId");
 
-                    b.ToTable("CourseParticipants");
+                    b.ToTable("CourseParticipant");
                 });
 
             modelBuilder.Entity("FitMan.Models.Exercise", b =>
@@ -221,7 +221,7 @@ namespace FitMan.Migrations
                         .IsUnique()
                         .HasFilter("[Email] IS NOT NULL");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
 
                     b.HasDiscriminator<string>("UserRole").HasValue("User");
                 });
@@ -280,7 +280,7 @@ namespace FitMan.Migrations
 
                     b.HasOne("FitMan.Models.Participant", "Participant")
                         .WithMany("CourseParticipants")
-                        .HasForeignKey("PartcipantId")
+                        .HasForeignKey("ParticipantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
