@@ -3,9 +3,7 @@ import { Gym } from "./Gym";
 import { STATE } from "./State";
 import { useAtom } from "jotai";
 import axios from "axios";
-import { apiRoute } from "../DataManager/ApiRoute";
-import { useState, useEffect } from "react";
-import { dataHandler } from "../DataManager/DataHandler";
+import { useEffect } from "react";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
@@ -18,24 +16,16 @@ export const GymList = () => {
     //     setGyms(response.data);
     //   })
     //   .catch((e) => console.error(e));
+    getGyms();
+  });
 
-    //getGyms();
-    getGymsFromDataHandler();
-
-  }, []);
-
-  // const getGyms = async () => {
-  //   const response = await axios.get(`${apiRoute}/api/gyms`);
-  //   setGyms(response.data);
-  // };
-
-  const getGymsFromDataHandler = async () => {
-    const data = await dataHandler.getGyms();
-    setGyms(data);
+  const getGyms = async () => {
+    const response = await axios.get("http://localhost:5000/gyms");
+    setGyms(response.data);
   };
 
   return (
-    <div>
+    <div id="trainers">
       {gyms.map((gym, index) => (
         <Gym
           name={gym.Name}
