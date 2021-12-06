@@ -1,16 +1,10 @@
-import "./App.css";
-import { Footer } from "./components/common/Footer";
+import React from 'react';
+import "./css/App.css";
 import { Navbar } from "./components/common/Navbar";
-import { GymList } from "./components/GymList";
-import { WelcomePage } from "./components/WelcomePage";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  NavLink,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Footer } from "./components/common/Footer";
+import { GymList } from './components/GymList';
+import { WelcomePage } from './components/WelcomePage';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
   // const location = useLocation();
@@ -22,15 +16,15 @@ function App() {
         <Navbar />
         <main id="main">
           <Switch>
-            <Route path="/api/gyms">
-              <GymList />
-            </Route>
-            <Route exact path="/">
+          <Route exact path="/">
               <WelcomePage />
-            </Route>
+          </Route>
+          <Route path="/gyms">
+            <GymList />
+          </Route>
           </Switch>
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </div>
   );
