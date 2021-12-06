@@ -1,11 +1,11 @@
 import React from "react";
 
-export const Gym = ({ name, address, description, gymId }) => {
+export const Gym = ({ name, address, description }) => {
   return (
-    <div className="mycard">
-      <p className="mytitle">{name}</p>
-      <p className="myinfo">{address}</p>
-      <p className="mydescription">{description}</p>
+    <div className="trainer-item backdrop-item">
+      <span className="">{name}</span>
+      <p className="">{address}</p>
+      <h4 className="">{description}</h4>
     </div>
   );
 };
