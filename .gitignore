@@ -450,3 +450,4 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio,jetbrains+all,visualstudiocode
+fit-man/README.md
