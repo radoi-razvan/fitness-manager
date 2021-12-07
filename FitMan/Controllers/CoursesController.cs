@@ -1,11 +1,7 @@
 ﻿using FitMan.DTOs;
 using FitMan.Services.Interfaces;
-using FitMan.Utils;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FitMan.Controllers
 {
