@@ -2,7 +2,6 @@ import React from "react";
 import { Gym } from "./Gym";
 import { STATE } from "./State";
 import { useAtom } from "jotai";
-import axios from "axios";
 import { useEffect } from "react";
 import { dataHandler } from "../DataManager/DataHandler";
 
