@@ -4,6 +4,7 @@ import { STATE } from "./State";
 import { useAtom } from "jotai";
 import axios from "axios";
 import { useEffect } from "react";
+import { dataHandler } from "../DataManager/DataHandler";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
@@ -17,10 +18,10 @@ export const GymList = () => {
     //   })
     //   .catch((e) => console.error(e));
     getGyms();
-  });
+  }, []);
 
   const getGyms = async () => {
-    const response = await axios.get("http://localhost:5000/gyms");
+    const response = await dataHandler.getGyms();
     setGyms(response.data);
   };
 
