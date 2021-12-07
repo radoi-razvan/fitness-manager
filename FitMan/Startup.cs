@@ -1,23 +1,15 @@
 using AutoMapper;
 using FitMan.Data;
-using FitMan.Models;
 using FitMan.Data.Repositories;
 using FitMan.Services;
 using FitMan.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FitMan.Data.Repositories.Interfaces;
 using FitMan.Services.Interfaces;
 
