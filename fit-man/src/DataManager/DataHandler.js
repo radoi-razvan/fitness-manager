@@ -44,4 +44,9 @@ export const dataHandler = {
     );
     return response;
   },
+
+  getAllReviews: async function () {
+    const response = await axios.get(`${apiRoute}/gyms/reviews`);
+    return response;
+  },
 };

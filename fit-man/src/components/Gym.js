@@ -10,7 +10,7 @@ export const Gym = ({ gymId, name, address, description }) => {
       </span>
       <p className="">{address}</p>
       <h4 className="">{description}</h4>
-      <GymReviewList gymId={gymId} />
+      {/* <GymReviewList gymId={gymId} /> */}
     </div>
   );
 };
