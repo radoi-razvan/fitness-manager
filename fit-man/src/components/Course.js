@@ -14,7 +14,7 @@ export const Course = ({
   return (
     <div className="trainer-item backdrop-item">
       <span className="">{name}</span>
-      {/* <img src={`${process.env.REACT_APP_IMG}/${name}.jpg`} alt="test" /> */}
+      {/* <img src={`${process.env.REACT_APP_IMG}/${name}.jpg`} alt={name} /> */}
       <p className="">$ {defaultPrice}</p>
       <h4 className="">{description}</h4>
       <p>{schedule}</p>
