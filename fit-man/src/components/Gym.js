@@ -8,6 +8,7 @@ export const Gym = ({ gymId, name, address, description }) => {
       <span className="">
         <NavLink to={`/gyms/${gymId}/courses`}>{name}</NavLink>
       </span>
+      {/* <img src={`${process.env.REACT_APP_IMG}/${name}.jpg`} alt="test" /> */}
       <p className="">{address}</p>
       <h4 className="">{description}</h4>
       {/* <GymReviewList gymId={gymId} /> */}
