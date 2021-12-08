@@ -52,6 +52,11 @@ namespace FitMan.Data.Repositories
             return _mapper.Map<IEnumerable<ReviewDTO>>(_context.Reviews.Where(r => r.TrainerId == id));
         }
 
+        public IEnumerable<ReviewDTO> GetAllReviews()
+        {
+            return _mapper.Map<IEnumerable<ReviewDTO>>(_context.Reviews);
+        }
+
         public void Remove(long id)
         {
             var review = _context.Reviews.Find(id);

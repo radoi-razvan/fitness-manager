@@ -19,6 +19,13 @@ namespace FitMan.Controllers
             _reviewService = reviewService;
         }
 
+        // GET: gyms/reviews
+        [HttpGet("reviews")]
+        public ActionResult<IEnumerable<ReviewDTO>> GetAllReviews()
+        {
+            return Ok(_reviewService.GetAllReviews());
+        }
+
         // GET: gyms/5/reviews
         [HttpGet("{gymId}/reviews")]
         public ActionResult<IEnumerable<ReviewDTO>> GetGymReviews(long gymId)

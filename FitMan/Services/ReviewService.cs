@@ -36,6 +36,11 @@ namespace FitMan.Services
             return _reviewRepository.GetAll(id, idType);
         }
 
+        public IEnumerable<ReviewDTO> GetAllReviews()
+        {
+            return _reviewRepository.GetAllReviews();
+        }
+
         public void Remove(long id)
         {
             _reviewRepository.Remove(id);

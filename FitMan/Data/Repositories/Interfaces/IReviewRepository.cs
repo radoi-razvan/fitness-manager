@@ -9,5 +9,6 @@ namespace FitMan.Data.Repositories.Interfaces
     public interface IReviewRepository : IRepository<ReviewDTO>
     {
         IEnumerable<ReviewDTO> GetAll(long id, string idType);
+        IEnumerable<ReviewDTO> GetAllReviews();
     }
 }
