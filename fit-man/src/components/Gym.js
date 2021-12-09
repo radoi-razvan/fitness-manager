@@ -6,7 +6,7 @@ export const Gym = ({ gymId, name, address, description }) => {
   return (
     <div className="trainer-item backdrop-item">
       <div className="image-thumb">
-        <img className="gym-logo" src={`${process.env.REACT_APP_GYM_IMG}/${name}.png`} alt={name}/>
+        <img className="gym-logo" src={`${process.env.REACT_APP_GYMIMG}/${name}.png`} alt={name}/>
       </div>
       <div className="down-content">
         <span className="">
