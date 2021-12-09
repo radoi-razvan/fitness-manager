@@ -996,59 +996,71 @@ trainers
   margin-top: 7em;
 }
 
-#trainers .trainer-item {
+.card-item {
+  display: flex;
   background-color: #fff;
   border-radius: 5px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
   padding: 40px;
   margin: 0px 5em 5em 5em;
 }
 
-/* #trainers :hover {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-} */
-
-#trainers .trainer-item img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-#trainers .trainer-item span {
+.card-item span {
   font-size: 20px;
   font-weight: 500;
   color: #ed563b;
   display: inline-block;
-  margin-top: 25px;
+  margin-top: 10px;
   margin-bottom: 10px;
+  align-content: center;
 }
 
-#trainers .trainer-item h4 {
-  font-size: 19px;
-  font-weight: 600;
+.card-item h4 {
+  font-size: 15px;
+  font-weight: 500;
   color: #232d39;
   letter-spacing: 0.5px;
-  margin-bottom: 18px;
-}
-
-#trainers .trainer-item p {
   margin-bottom: 20px;
+  margin-top: 20px;
+  align-content: center;
 }
 
-#trainers .trainer-item ul.social-icons li {
+.card-item img {
+  display: flex;
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-items: space-around;
+  align-content: center; 
+  flex-basis: 33%;
+  margin-right: 20px;
+}
+
+.card-item ul.social-icons {
+  margin-top: 10px;
+}
+
+.card-item ul.social-icons li {
   display: inline-block;
   margin-right: 12px;
 }
 
-#trainers .trainer-item ul.social-icons li:last-child {
+.card-item ul.social-icons li:last-child {
   margin-right: 0px;
 }
 
-#trainers .trainer-item ul.social-icons li a {
+.card-item ul.social-icons li a {
   color: #232d39;
   transition: all .3s;
 }
 
-#trainers .trainer-item ul.social-icons li a:hover {
+.card-item ul.social-icons li a:hover {
   color: #ed563b;
+}
+
+.card-text {
+  align-content: center; 
 }
 
 
