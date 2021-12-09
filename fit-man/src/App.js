@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { CourseList } from "./components/CourseList";
 import { ExerciseList } from "./components/ExerciseList";
 import { TrainerList } from "./components/TrainerList";
+import { RegistrationForm } from "./components/RegistrationForm";
 
 function App() {
   // const location = useLocation();
@@ -33,6 +34,9 @@ function App() {
               </Route>
               <Route path="/gyms">
                 <GymList />
+              </Route>
+              <Route path="/register">
+                <RegistrationForm/>
               </Route>
             </Switch>
           </main>
