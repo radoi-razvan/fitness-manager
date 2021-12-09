@@ -121,7 +121,7 @@ body {
 }
 
 main {
-  margin-top: 100px;
+  
 
 }
 
@@ -650,7 +650,8 @@ banner
 
 .video-overlay {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-size: cover;
+    background-image: url("/src/img/welcome-background.jpeg");
     top: 0;
     left: 0;
     bottom: 7px;
@@ -991,6 +992,10 @@ trainers
   height: auto;
 }
 
+#trainers {
+  margin-top: 7em;
+}
+
 #trainers .trainer-item {
   background-color: #fff;
   border-radius: 5px;
@@ -1137,9 +1142,13 @@ footer
 */
 footer {
   top: 100vh;
+  height: 30px;
   position: sticky;
   text-align: center;
-  padding: 30px 0px;
+  width: 100%;
+  background-color: rgba(250,250,250,1);
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
+  z-index: 100;
 }
 
 footer p {
