@@ -14,16 +14,16 @@ export const Course = ({
   return (
     <div className="trainer-item backdrop-item">
       <span className="">{name}</span>
-      {/* <img src={`${process.env.REACT_APP_IMG}/${name}.jpg`} alt={name} /> */}
+      <img src={`${process.env.REACT_APP_COURSEIMG}/${name}.jpg`} alt={name} />
       <p className="">$ {defaultPrice}</p>
       <h4 className="">{description}</h4>
       <p>{schedule}</p>
-      <NavLink to={`/gyms/${params.gymId}/courses/${courseId}/exercises`}>
+      <p><NavLink to={`/gyms/${params.gymId}/courses/${courseId}/exercises`}>
         Exercises
-      </NavLink>
-      <NavLink to={`/gyms/${params.gymId}/courses/${courseId}/trainers`}>
+      </NavLink></p>
+      <p><NavLink to={`/gyms/${params.gymId}/courses/${courseId}/trainers`}>
         Trainers
-      </NavLink>
+      </NavLink></p>
     </div>
   );
 };
