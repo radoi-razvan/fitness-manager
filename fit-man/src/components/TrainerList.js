@@ -23,7 +23,7 @@ export const TrainerList = () => {
   };
 
   return (
-    <div>
+    <div id="trainers">
       {trainers.map((trainer, index) => (
         <Trainer
           name={trainer.Name}
