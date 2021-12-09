@@ -977,6 +977,20 @@ trainers
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
+.image-thumb {
+  display: inline;
+}
+
+.down-content {
+  display: inline;
+}
+
+.gym-logo {
+  max-width:230px;
+  width: auto;
+  height: auto;
+}
+
 #trainers .trainer-item {
   background-color: #fff;
   border-radius: 5px;
