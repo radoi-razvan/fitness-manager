@@ -20,7 +20,7 @@ export const CourseList = () => {
   };
 
   return (
-    <div>
+    <div id="trainers">
       {courses.map((course, index) => (
         <Course
           name={course.Name}
