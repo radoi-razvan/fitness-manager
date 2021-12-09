@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using FitMan.Data.Repositories.Interfaces;
 using FitMan.Services.Interfaces;
+using Microsoft.OpenApi.Models;
 
 namespace FitMan
 {
@@ -39,12 +40,15 @@ namespace FitMan
             });
 
             //JSON Serializer
-            services.AddControllersWithViews().AddNewtonsoftJson(options => 
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft
             .Json.ReferenceLoopHandling.Ignore).AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
             = new DefaultContractResolver());
 
             services.AddControllers();
+
+            // Swagger configuration
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitMan", Version = "v1" }); });
 
             // Intilialize repositories and services
             services.AddScoped<IUserRepository, UserRepository>();
@@ -80,6 +84,9 @@ namespace FitMan
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //Swagger configuration
+                app.UseSwagger(); 
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FitMan v1"));
             }
 
             app.UseRouting();
