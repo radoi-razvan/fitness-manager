@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { GymReviewList } from "./GymReviewList";
+// import { GymReviewList } from "./GymReviewList";
 
 export const Gym = ({ gymId, name, address, description }) => {
   return (
@@ -23,13 +23,3 @@ export const Gym = ({ gymId, name, address, description }) => {
 
   );
 };
-{/* <div className="card">
-<div className="card-image">
-  <img className="gym-logo" src={`${process.env.REACT_APP_BASEIMGURL}${process.env.REACT_APP_GYMIMG}/${name}.png`} alt={name} />
-  <NavLink to={`/gyms/${gymId}/courses`}>{name} </NavLink>
-</div>
-<div className="card-text">
-     <p className="">{address}</p>
-    <h4 className="">{description}</h4>
-</div>
-</div> */}
