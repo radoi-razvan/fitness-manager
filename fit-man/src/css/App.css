@@ -1059,10 +1059,12 @@ trainers
   display: inline;
 }
 
-.gym-logo {
-  max-width: 230px;
+.app-logo {
+  max-height: 75px;
   width: auto;
   height: auto;
+  margin-right: 20px;
+  margin-bottom: 5px;
 }
 
 #trainers {
@@ -1416,6 +1418,10 @@ Forms design
 */
 
 #register-body {
+  margin-top: 6em;
+}
+
+#login-body {
   margin-top: 6em;
 }
 
