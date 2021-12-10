@@ -10,7 +10,7 @@ export const LoginForm = () => {
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 txt-main-color">
                       Login
                     </p>
 
@@ -46,7 +46,7 @@ export const LoginForm = () => {
                         </div>
                       </div>
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="button" className="btn btn-primary btn-lg">
+                        <button type="submit" className="btn btn-main-color btn-lg">
                           Sign In
                         </button>
                       </div>
