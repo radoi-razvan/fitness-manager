@@ -1152,14 +1152,11 @@ trainers
   color: #ed563b;
 }
 
-<<<<<<< Updated upstream
 .card-text {
   align-content: center; 
 }
 
 
-=======
->>>>>>> Stashed changes
 /* 
 ---------------------------------------------
 contact
@@ -1420,4 +1417,13 @@ Forms design
 
 #register-body {
   margin-top: 6em;
+}
+
+.btn-main-color {
+  color: #fff;
+  background-color: #ed563b;
+}
+
+.txt-main-color {
+  color: #ed563b;
 }
