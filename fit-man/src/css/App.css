@@ -1015,6 +1015,15 @@ trainers
   align-content: center;
 }
 
+.card-item span a {
+  color: #ed563b;
+}
+
+.card-item span a:hover {
+  color: #ed563bb2;
+  cursor: pointer;
+}
+
 .card-item h4 {
   font-size: 15px;
   font-weight: 500;
