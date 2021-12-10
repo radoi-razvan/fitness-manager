@@ -18,7 +18,7 @@ export const LoginForm = () => {
                       className="mx-1 mx-md-4"
                       method="POST"
                       action={`${process.env.REACT_APP_BACKEND}/login`}
-                      autocomplete="off"
+                      autoComplete="off"
                     >
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-envelope-fill fa-lg me-3 fa-fw label-icons-signin"></i>

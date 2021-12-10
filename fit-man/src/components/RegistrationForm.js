@@ -18,7 +18,7 @@ export const RegistrationForm = () => {
                       className="mx-1 mx-md-4"
                       method="POST"
                       action={`${process.env.REACT_APP_BACKEND}/register`}
-                      autocomplete="off"
+                      autoComplete="off"
                     >
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-person-fill fa-lg me-3 fa-fw label-icons-signin"></i>
