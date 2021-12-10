@@ -4,7 +4,7 @@ import { STATE } from "./State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../DataManager/DataHandler";
-import { splitAtom } from "jotai/utils";
+// import { splitAtom } from "jotai/utils";
 
 export const GymReviewList = ({ gymId }) => {
   const [gymReviews, setGymReviews] = useAtom(STATE.GYM_REVIEWS);

@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { dataHandler } from "../DataManager/DataHandler";
+// import { dataHandler } from "../DataManager/DataHandler";
 
 export const STATE = {
   GYMS: atom([]),
