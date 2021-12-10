@@ -12,7 +12,7 @@ export const Course = ({
   let params = useParams();
 
   return (
-    <div className="card-item">
+    <div className="card-item course">
         <img src={`${process.env.REACT_APP_BASEIMGURL}${process.env.REACT_APP_COURSEIMG}/${name}.png`} alt={name}/>
       <div className="card-text">
         <span >{name}</span>
