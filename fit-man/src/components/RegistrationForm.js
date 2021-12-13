@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { dataHandler } from "../DataManager/DataHandler";
+import { useHistory } from "react-router-dom";
 
 export const RegistrationForm = () => {
   const [regData, setRegData] = useState({
@@ -9,17 +10,21 @@ export const RegistrationForm = () => {
     password: "",
   });
 
+  const history = useHistory();
+
   const handle = (e) => {
     const newData = { ...regData };
     newData[e.target.id] = e.target.value;
     setRegData(newData);
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    dataHandler.postRegister(regData);
+    const response = await dataHandler.postRegister(regData);
+    typeof response !== "undefined" && response.status === 201
+      ? history.push("/login")
+      : history.go(0);
   };
-
 
   return (
     <section className="vh-90">
