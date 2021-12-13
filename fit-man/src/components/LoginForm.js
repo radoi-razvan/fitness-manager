@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { dataHandler } from "../DataManager/DataHandler";
 
 export const LoginForm = () => {
+  const [logData, setLogData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handle = (e) => {
+    const newData = { ...logData };
+    newData[e.target.id] = e.target.value;
+    setLogData(newData);
+    console.log(newData);
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    dataHandler.postLogin(logData);
+  };
+
   return (
     <section className="vh-90">
       <div className="container h-100">
@@ -17,18 +35,21 @@ export const LoginForm = () => {
                     <form
                       className="mx-1 mx-md-4"
                       method="POST"
-                      action={`${process.env.REACT_APP_BACKEND}/login`}
                       autoComplete="off"
+                      onSubmit={(e) => submit(e)}
                     >
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-envelope-fill fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
+                            onChange={(e) => handle(e)}
+                            value={logData.email}
                             type="email"
-                            id="form3Example3c"
+                            id="email"
                             className="form-control"
                             placeholder="your_email@gmail.com"
                             name="name"
+                            required
                           />
                         </div>
                       </div>
@@ -37,11 +58,14 @@ export const LoginForm = () => {
                         <i className="bi bi-lock-fill fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
+                            onChange={(e) => handle(e)}
+                            value={logData.password}
                             type="password"
-                            id="form3Example4c"
+                            id="password"
                             className="form-control"
                             placeholder="password"
                             name="password"
+                            required
                           />
                         </div>
                       </div>
