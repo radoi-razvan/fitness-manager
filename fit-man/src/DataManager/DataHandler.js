@@ -65,8 +65,8 @@ export const dataHandler = {
     return response;
   },
 
-  postRegister: function (regData) {
-    axios
+  postRegister: async function (regData) {
+    const response = await axios
       .post(`${process.env.REACT_APP_BACKEND}/register`, {
         name: regData.name,
         userRole: regData.userRole,
@@ -74,13 +74,23 @@ export const dataHandler = {
         password: regData.password,
       })
       .catch((e) => console.error(e));
+    return response;
   },
-  postLogin: function (logData) {
-    axios
+
+  postLogin: async function (logData) {
+    const response = await axios
       .post(`${process.env.REACT_APP_BACKEND}/login`, {
         email: logData.email,
         password: logData.password,
       })
       .catch((e) => console.error(e));
+    return response;
+  },
+
+  postLogout: async function () {
+    const response = await axios
+      .post(`${process.env.REACT_APP_BACKEND}/logout`)
+      .catch((e) => console.error(e));
+    return response;
   },
 };
