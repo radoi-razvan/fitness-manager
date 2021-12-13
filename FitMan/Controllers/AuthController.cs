@@ -25,6 +25,7 @@ namespace FitMan.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterDTO dto)
         {
+
             if (dto.UserRole == "Owner")
             {
                 var user = new Owner()
@@ -54,6 +55,8 @@ namespace FitMan.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginDTO dto)
         {
+            var a = dto;
+
             var user = _repository.GetByEmail(dto.Email);
 
             if (user == null) return BadRequest(new { message = "Invalid Credentials"});
@@ -70,6 +73,7 @@ namespace FitMan.Controllers
                 HttpOnly = true
             });
 
+            var b = dto;
             return Ok(new { 
                 message = "success"
             });
