@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { dataHandler } from "../DataManager/DataHandler";
+import { useHistory } from "react-router-dom";
 
 export const LoginForm = () => {
   const [logData, setLogData] = useState({
@@ -7,16 +8,20 @@ export const LoginForm = () => {
     password: "",
   });
 
+  const history = useHistory();
+
   const handle = (e) => {
     const newData = { ...logData };
     newData[e.target.id] = e.target.value;
     setLogData(newData);
-    console.log(newData);
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    dataHandler.postLogin(logData);
+    const response = await dataHandler.postLogin(logData);
+    typeof response !== "undefined" && response.status === 200
+      ? history.push("/")
+      : history.go(0);
   };
 
   return (
@@ -25,7 +30,7 @@ export const LoginForm = () => {
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
             <div className="trainer-item backdrop-item text-black">
-              <div className="card-body p-md-5" id="login-body">  
+              <div className="card-body p-md-5" id="login-body">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                     <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 txt-main-color">
@@ -70,7 +75,10 @@ export const LoginForm = () => {
                         </div>
                       </div>
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" className="btn btn-main-color btn-lg">
+                        <button
+                          type="submit"
+                          className="btn btn-main-color btn-lg"
+                        >
                           Sign In
                         </button>
                       </div>
