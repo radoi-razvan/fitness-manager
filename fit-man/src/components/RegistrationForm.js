@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { dataHandler } from "../DataManager/DataHandler";
 
 export const RegistrationForm = () => {
+  const [regData, setRegData] = useState({
+    name: "",
+    userRole: "Owner",
+    email: "",
+    password: "",
+  });
+
+  const handle = (e) => {
+    const newData = { ...regData };
+    newData[e.target.id] = e.target.value;
+    setRegData(newData);
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    dataHandler.postRegister(regData);
+  };
+
+
   return (
     <section className="vh-90">
       <div className="container h-100">
@@ -17,18 +37,21 @@ export const RegistrationForm = () => {
                     <form
                       className="mx-1 mx-md-4"
                       method="POST"
-                      action={`${process.env.REACT_APP_BACKEND}/register`}
+                      onSubmit={(e) => submit(e)}
                       autoComplete="off"
                     >
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-person-fill fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
+                            onChange={(e) => handle(e)}
+                            value={regData.name}
                             type="text"
-                            id="form3Example1c"
+                            id="name"
                             className="form-control"
                             placeholder="Your Name"
                             name="name"
+                            required
                           />
                         </div>
                       </div>
@@ -37,9 +60,12 @@ export const RegistrationForm = () => {
                         <i className="bi bi-person-badge fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <select
+                            onChange={(e) => handle(e)}
+                            value={regData.userRole}
                             name="userRole"
                             id="userRole"
                             className="form-control"
+                            required
                           >
                             <option value="Owner"> Gym Owner </option>
                             <option value="Participant"> Gym Member </option>
@@ -51,11 +77,14 @@ export const RegistrationForm = () => {
                         <i className="bi bi-envelope-fill fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
+                            onChange={(e) => handle(e)}
+                            value={regData.email}
                             type="email"
-                            id="form3Example3c"
+                            id="email"
                             className="form-control"
                             placeholder="your_email@gmail.com"
                             name="email"
+                            required
                           />
                         </div>
                       </div>
@@ -64,11 +93,14 @@ export const RegistrationForm = () => {
                         <i className="bi bi-lock-fill fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
+                            onChange={(e) => handle(e)}
+                            value={regData.password}
                             type="password"
-                            id="form3Example4c"
+                            id="password"
                             className="form-control"
                             placeholder="password"
                             name="password"
+                            required
                           />
                         </div>
                       </div>
@@ -78,14 +110,18 @@ export const RegistrationForm = () => {
                         <div className="form-outline flex-fill mb-0">
                           <input
                             type="password"
-                            id="form3Example4cd"
+                            id="repeatPassword"
                             className="form-control"
                             placeholder="Repeat your password"
+                            required
                           />
                         </div>
                       </div> */}
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" className="btn btn-main-color btn-lg">
+                        <button
+                          type="submit"
+                          className="btn btn-main-color btn-lg"
+                        >
                           Sign Up
                         </button>
                       </div>
