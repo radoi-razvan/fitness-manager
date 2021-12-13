@@ -14,9 +14,9 @@ export const Gym = ({ gymId, name, address, description }) => {
         <h4>{description}</h4>
         {/* <GymReviewList gymId={gymId} /> */}
         <ul className="social-icons">
-          <li><a href="#"><i className="bi bi-facebook"></i></a></li>
-          <li><a href="#"><i className="bi bi-instagram"></i></a></li>
-          <li><a href="#"><i className="bi bi-twitter"></i></a></li>
+          <li><a href={`${process.env.REACT_APP_FRONTEND}`}><i className="bi bi-facebook"></i></a></li>
+          <li><a href={`${process.env.REACT_APP_FRONTEND}`}><i className="bi bi-instagram"></i></a></li>
+          <li><a href={`${process.env.REACT_APP_FRONTEND}`}><i className="bi bi-twitter"></i></a></li>
         </ul>
       </div>
     </div>
