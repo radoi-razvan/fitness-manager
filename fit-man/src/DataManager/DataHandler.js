@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const dataHandler = {
+  //Gyms
   getGyms: async function () {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/gyms`)
@@ -8,6 +9,35 @@ export const dataHandler = {
     return response;
   },
 
+  getGym: async function (gymId) {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  postGym: async function () {
+    const response = await axios
+      .post(`${process.env.REACT_APP_BACKEND}/gyms`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  putGym: async function (gymId) {
+    const response = await axios
+      .put(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  deleteGym: async function (gymId) {
+    const response = await axios
+      .delete(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  // Courses
   getCourses: async function (gymId) {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses`)
@@ -15,6 +45,7 @@ export const dataHandler = {
     return response;
   },
 
+  // Exercises
   getExercises: async function (gymId, courseId) {
     const response = await axios
       .get(
@@ -24,6 +55,7 @@ export const dataHandler = {
     return response;
   },
 
+  // Trainers
   getTrainers: async function (gymId, courseId) {
     const response = await axios
       .get(
@@ -33,6 +65,7 @@ export const dataHandler = {
     return response;
   },
 
+  // Reviews
   getGymReviews: async function (gymId) {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/reviews`)
@@ -65,6 +98,7 @@ export const dataHandler = {
     return response;
   },
 
+  //  Authentication
   postRegister: async function (regData) {
     const response = await axios
       .post(`${process.env.REACT_APP_BACKEND}/register`, {
