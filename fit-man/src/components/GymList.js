@@ -4,6 +4,7 @@ import { STATE } from "./State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../DataManager/DataHandler";
+import { NavLink } from "react-router-dom";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
@@ -26,6 +27,9 @@ export const GymList = () => {
 
   return (
     <div id="trainers">
+      <NavLink exact to="/gyms/add">
+        Add Gym
+      </NavLink>
       {gyms.map((gym, index) => (
         <Gym
           name={gym.Name}

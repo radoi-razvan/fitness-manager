@@ -10,6 +10,7 @@ import { ExerciseList } from "./components/ExerciseList";
 import { TrainerList } from "./components/TrainerList";
 import { RegistrationForm } from "./components/RegistrationForm";
 import { LoginForm } from "./components/LoginForm";
+import { AddGymForm } from "./components/Forms/AddGymForm";
 
 function App() {
   // const location = useLocation();
@@ -33,14 +34,17 @@ function App() {
               <Route path="/gyms/:gymId/courses">
                 <CourseList />
               </Route>
+              <Route path="/gyms/add">
+                <AddGymForm />
+              </Route>
               <Route path="/gyms">
                 <GymList />
               </Route>
               <Route path="/register">
-                <RegistrationForm/>
+                <RegistrationForm />
               </Route>
               <Route path="/login">
-                <LoginForm/>
+                <LoginForm />
               </Route>
             </Switch>
           </main>
