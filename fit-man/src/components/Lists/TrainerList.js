@@ -25,10 +25,7 @@ export const TrainerList = () => {
 
   return (
     <div id="trainers">
-      <NavLink
-        exact
-        to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/add`}
-      >
+      <NavLink className="btn-1 btn-fixed-left" exact to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/add`}>
         Add Trainer
       </NavLink>
       {trainers.map((trainer, index) => (
