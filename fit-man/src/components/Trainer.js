@@ -31,8 +31,7 @@ export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth }) => {
           <i className="delete-icon bi bi-trash-fill ms-3 btn-icon" onClick={(e) => deleteEvent(e)}/>
         </span>
         <p>Experience: {experienceYears} years</p>
-        {/* <p>{dateOfBirth}</p> */}
-        
+        <p>Age: {new Date().getFullYear()-parseInt(dateOfBirth.split("-")[0])}</p>
       </div>
     </div>
   );
