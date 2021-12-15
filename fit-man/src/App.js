@@ -8,9 +8,12 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { CourseList } from "./components/CourseList";
 import { ExerciseList } from "./components/ExerciseList";
 import { TrainerList } from "./components/TrainerList";
-import { RegistrationForm } from "./components/RegistrationForm";
-import { LoginForm } from "./components/LoginForm";
-import { AddGymForm } from "./components/Forms/AddGymForm";
+import { RegistrationForm } from "./components/Forms/RegistrationForm";
+import { LoginForm } from "./components/Forms/LoginForm";
+import { GymForm } from "./components/Forms/GymForm";
+import { CourseForm } from "./components/Forms/CourseForm";
+import { ExerciseForm } from "./components/Forms/ExerciseForm";
+import { TrainerForm } from "./components/Forms/TrainerForm";
 
 function App() {
   // const location = useLocation();
@@ -25,17 +28,38 @@ function App() {
               <Route exact path="/">
                 <WelcomePage />
               </Route>
+              <Route path="/gyms/:gymId/courses/:courseId/trainers/:trainerId/edit">
+                <TrainerForm />
+              </Route>
+              <Route path="/gyms/:gymId/courses/:courseId/trainers/add">
+                <TrainerForm />
+              </Route>
               <Route path="/gyms/:gymId/courses/:courseId/trainers">
                 <TrainerList />
+              </Route>
+              <Route path="/gyms/:gymId/courses/:courseId/exercises/:exerciseId/edit">
+                <ExerciseForm />
+              </Route>
+              <Route path="/gyms/:gymId/courses/:courseId/exercises/add">
+                <ExerciseForm />
               </Route>
               <Route path="/gyms/:gymId/courses/:courseId/exercises">
                 <ExerciseList />
               </Route>
+              <Route path="/gyms/:gymId/courses/:courseId/edit">
+                <CourseForm />
+              </Route>
+              <Route path="/gyms/:gymId/courses/add">
+                <CourseForm />
+              </Route>
               <Route path="/gyms/:gymId/courses">
                 <CourseList />
               </Route>
+              <Route path="/gyms/:gymId/edit">
+                <GymForm />
+              </Route>
               <Route path="/gyms/add">
-                <AddGymForm />
+                <GymForm />
               </Route>
               <Route path="/gyms">
                 <GymList />
