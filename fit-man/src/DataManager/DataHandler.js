@@ -16,16 +16,24 @@ export const dataHandler = {
     return response;
   },
 
-  postGym: async function () {
+  postGym: async function (formData) {
     const response = await axios
-      .post(`${process.env.REACT_APP_BACKEND}/gyms`)
+      .post(`${process.env.REACT_APP_BACKEND}/gyms`, {
+        name: formData.name,
+        address: formData.address,
+        description: formData.description,
+      })
       .catch((e) => console.error(e));
     return response;
   },
 
-  putGym: async function (gymId) {
+  putGym: async function (gymId, formData) {
     const response = await axios
-      .put(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`)
+      .put(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`, {
+        name: formData.name,
+        address: formData.address,
+        description: formData.description,
+      })
       .catch((e) => console.error(e));
     return response;
   },
@@ -45,6 +53,49 @@ export const dataHandler = {
     return response;
   },
 
+  getCourse: async function (gymId, courseId) {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  postCourse: async function (gymId, formData) {
+    const response = await axios
+      .post(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses`, {
+        name: formData.name,
+        defaultPrice: formData.defaultPrice,
+        description: formData.description,
+        schedule: formData.schedule,
+      })
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  putCourse: async function (gymId, courseId, formData) {
+    const response = await axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`,
+        {
+          name: formData.name,
+          defaultPrice: formData.defaultPrice,
+          description: formData.description,
+          schedule: formData.schedule,
+        }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  deleteCourse: async function (gymId, courseId) {
+    const response = await axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
   // Exercises
   getExercises: async function (gymId, courseId) {
     const response = await axios
@@ -55,11 +106,101 @@ export const dataHandler = {
     return response;
   },
 
+  getExercise: async function (gymId, courseId, exerciseId) {
+    const response = await axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  postExercise: async function (gymId, courseId, formData) {
+    const response = await axios
+      .post(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises`,
+        {
+          name: formData.name,
+          description: formData.description,
+        }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  putExercise: async function (gymId, courseId, exerciseId, formData) {
+    const response = await axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`,
+        {
+          name: formData.name,
+          description: formData.description,
+        }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  deleteExercise: async function (gymId, courseId, exerciseId) {
+    const response = await axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
   // Trainers
   getTrainers: async function (gymId, courseId) {
     const response = await axios
       .get(
         `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers`
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getTrainer: async function (gymId, courseId, trainerId) {
+    const response = await axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  postTrainer: async function (gymId, courseId, formData) {
+    const response = await axios
+      .post(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers`,
+        {
+          name: formData.name,
+          experienceYears: formData.experienceYears,
+          dateOfBirth: formData.dateOfBirth,
+        }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  putTrainer: async function (gymId, courseId, trainerId, formData) {
+    const response = await axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`,
+        {
+          name: formData.name,
+          experienceYears: formData.experienceYears,
+          dateOfBirth: formData.dateOfBirth,
+        }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  deleteTrainer: async function (gymId, courseId, trainerId) {
+    const response = await axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`
       )
       .catch((e) => console.error(e));
     return response;
