@@ -1155,6 +1155,7 @@ trainers
   cursor: pointer;
 }
 
+
 .card-text {
   align-content: center; 
 }
@@ -1433,12 +1434,30 @@ Forms design
   text-align: center;
   padding: 1em;
   border-radius: 1.5em;
-  position: fixed;
-  left: 2em;
 }
 
 .btn-1:hover {
   background-color: #f9735b;
+}
+
+.btn-fixed-left {
+  position: fixed;
+  left: 2em;
+}
+
+.btn-absolute-left {
+  position: absolute;
+  left: 2em;
+}
+
+.btn-fixed-right {
+  position: fixed;
+  right: 2em;
+}
+
+.btn-absolute-right {
+  position: absolute;
+  right: 2em;
 }
 
 .btn-main-color {
@@ -1448,4 +1467,14 @@ Forms design
 
 .txt-main-color {
   color: #ed563b;
+}
+
+.btn-icon {
+  color: #232d39!important;
+  transition: all 0.3s;
+}
+
+.btn-icon:hover {
+  color: #ed563b!important;
+  cursor: pointer;
 }
