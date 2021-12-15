@@ -23,10 +23,9 @@ export const Course = ({
     const response = await dataHandler.deleteCourse(params.gymId, courseId);
 
     typeof response !== "undefined" && response.status === 204
-      ? history.push(`/gyms/${params.gymId}/courses`)
+      ? history.go(0)
       : history.push(location);
   };
-
 
   return (
     <div className="card-item course">
@@ -35,7 +34,11 @@ export const Course = ({
         alt={name}
       />
       <div className="card-text">
-        <span>{name}</span>
+        <span>
+          {name}
+        <NavLink className="bi bi-pencil-square ms-3 btn-icon" exact to={`/gyms/${params.gymId}/courses/${courseId}/edit`}/>
+        <i className="delete-icon bi bi-trash-fill ms-3 btn-icon" onClick={(e) => deleteEvent(e)}/>
+        </span>
         <p>$ {defaultPrice}/month</p>
         <h4>{description}</h4>
         <p>Monday to Sunday: {schedule}</p>
@@ -49,10 +52,6 @@ export const Course = ({
             Trainers
           </NavLink>
         </p>
-        <NavLink exact to={`/gyms/${params.gymId}/courses/${courseId}/edit`}>
-          Edit Course
-        </NavLink>
-        <button onClick={(e) => deleteEvent(e)}>Delete Course</button>
       </div>
     </div>
   );
