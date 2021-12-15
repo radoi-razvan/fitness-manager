@@ -13,6 +13,8 @@ using Newtonsoft.Json.Serialization;
 using FitMan.Data.Repositories.Interfaces;
 using FitMan.Services.Interfaces;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace FitMan
 {
@@ -24,6 +26,7 @@ namespace FitMan
         }
 
         public IConfiguration Configuration { get; }
+        public object JwtBearerDefaults { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -75,7 +78,24 @@ namespace FitMan
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            //services.AddAuthentication()
+            //        .AddCookie(options =>
+            //        {
+            //            //options.LoginPath = "/Account/Unauthorized/";
+            //            //options.AccessDeniedPath = "/Account/Forbidden/";
+            //        })
+            //        .AddJwtBearer(options =>
+            //        {
+            //            //options.Audience = "http://localhost:5001/";
+            //            //options.Authority = "http://localhost:5000/";
+            //        });
+                        
+
+            services.AddAuthorization();
+
             services.AddMvc();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,6 +117,7 @@ namespace FitMan
               .AllowAnyHeader()
               .AllowCredentials());
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

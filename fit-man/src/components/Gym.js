@@ -35,22 +35,25 @@ export const Gym = ({ gymId, name, address, description }) => {
         <NavLink exact to={`/gyms/${gymId}/edit`}>
           Edit Gym
         </NavLink>
-        <button onClick={(e) => deleteEvent(e)}>Delete Gym</button>
+        
         <ul className="social-icons">
           <li>
-            <a href={`${process.env.REACT_APP_FRONTEND}`}>
+            <a className="icon" href={`${process.env.REACT_APP_FRONTEND}`}>
               <i className="bi bi-facebook"></i>
             </a>
           </li>
           <li>
-            <a href={`${process.env.REACT_APP_FRONTEND}`}>
+            <a className="icon" href={`${process.env.REACT_APP_FRONTEND}`}>
               <i className="bi bi-instagram"></i>
             </a>
           </li>
           <li>
-            <a href={`${process.env.REACT_APP_FRONTEND}`}>
+            <a className="icon" href={`${process.env.REACT_APP_FRONTEND}`}>
               <i className="bi bi-twitter"></i>
             </a>
+          </li>
+          <li>
+            <i className="icon bi bi-trash-fill ms-5" onClick={(e) => deleteEvent(e)}/>
           </li>
         </ul>
       </div>

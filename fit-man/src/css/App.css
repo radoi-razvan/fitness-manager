@@ -1145,13 +1145,14 @@ trainers
   margin-right: 0px;
 }
 
-.card-item ul.social-icons li a {
+.card-item ul.social-icons li .icon {
   color: #232d39;
   transition: all 0.3s;
 }
 
-.card-item ul.social-icons li a:hover {
+.card-item ul.social-icons li .icon:hover {
   color: #ed563b;
+  cursor: pointer;
 }
 
 .card-text {
@@ -1423,6 +1424,21 @@ Forms design
 
 #login-body {
   margin-top: 6em;
+}
+
+.btn-1 {
+  background-color: #ed563b;
+  color: #fff!important;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1.5em;
+  position: fixed;
+  left: 2em;
+}
+
+.btn-1:hover {
+  background-color: #f9735b;
 }
 
 .btn-main-color {
