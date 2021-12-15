@@ -16,7 +16,6 @@ import { ExerciseForm } from "./components/Forms/ExerciseForm";
 import { TrainerForm } from "./components/Forms/TrainerForm";
 
 function App() {
-  // const location = useLocation();
 
   return (
     <>
