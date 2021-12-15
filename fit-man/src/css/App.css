@@ -945,7 +945,7 @@ schedule
 --------------------------------------------- 
 */
 
-#schedule {
+/* #schedule {
   padding: 0px 0px 140px 0px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1039,7 +1039,7 @@ schedule
   opacity: 0;
   visibility: hidden;
   transition: all 350ms;
-}
+} */
 
 /* 
 ---------------------------------------------
