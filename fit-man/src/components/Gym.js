@@ -15,7 +15,7 @@ export const Gym = ({ gymId, name, address, description }) => {
     const response = await dataHandler.deleteGym(gymId);
 
     typeof response !== "undefined" && response.status === 204
-      ? history.push("/gyms")
+      ? history.go(0)
       : history.push(location);
   };
 
@@ -28,13 +28,12 @@ export const Gym = ({ gymId, name, address, description }) => {
       <div className="card-text">
         <span>
           <NavLink to={`/gyms/${gymId}/courses`}>{name}</NavLink>
+          <NavLink className="bi bi-pencil-square ms-3 btn-icon" exact to={`/gyms/${gymId}/edit`}><i /></NavLink>
+          <i className="delete-icon bi bi-trash-fill ms-3 btn-icon" onClick={(e) => deleteEvent(e)}/>
         </span>
         <p>{address}</p>
         <h4>{description}</h4>
         {/* <GymReviewList gymId={gymId} /> */}
-        <NavLink exact to={`/gyms/${gymId}/edit`}>
-          Edit Gym
-        </NavLink>
         
         <ul className="social-icons">
           <li>
@@ -51,9 +50,6 @@ export const Gym = ({ gymId, name, address, description }) => {
             <a className="icon" href={`${process.env.REACT_APP_FRONTEND}`}>
               <i className="bi bi-twitter"></i>
             </a>
-          </li>
-          <li>
-            <i className="icon bi bi-trash-fill ms-5" onClick={(e) => deleteEvent(e)}/>
           </li>
         </ul>
       </div>
