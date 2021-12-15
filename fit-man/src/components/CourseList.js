@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useParams } from "react-router";
+import { NavLink } from "react-router-dom";
 
 export const CourseList = () => {
   const [courses, setCourses] = useAtom(STATE.COURSES);
@@ -21,6 +22,9 @@ export const CourseList = () => {
 
   return (
     <div id="trainers">
+      <NavLink exact to={`/gyms/${params.gymId}/courses/add`}>
+        Add Course
+      </NavLink>
       {courses.map((course, index) => (
         <Course
           name={course.Name}
