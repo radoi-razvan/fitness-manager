@@ -1,6 +1,6 @@
 import React from "react";
 import { Review } from "./Review";
-import { STATE } from "./State";
+import { STATE } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../DataManager/DataHandler";

@@ -1,8 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 // import { GymReviewList } from "./GymReviewList";
+import { dataHandler } from "../DataManager/DataHandler";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Gym = ({ gymId, name, address, description }) => {
+  const history = useHistory();
+
+  const location = useLocation();
+
+  const deleteEvent = async (e) => {
+    e.preventDefault();
+    const response = await dataHandler.deleteGym(gymId);
+
+    typeof response !== "undefined" && response.status === 204
+      ? history.push("/gyms")
+      : history.push(location);
+  };
+
   return (
     <div className="card-item">
       <img
@@ -19,6 +35,7 @@ export const Gym = ({ gymId, name, address, description }) => {
         <NavLink exact to={`/gyms/${gymId}/edit`}>
           Edit Gym
         </NavLink>
+        <button onClick={(e) => deleteEvent(e)}>Delete Gym</button>
         <ul className="social-icons">
           <li>
             <a href={`${process.env.REACT_APP_FRONTEND}`}>

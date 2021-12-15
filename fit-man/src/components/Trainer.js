@@ -1,9 +1,25 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { dataHandler } from "../DataManager/DataHandler";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth }) => {
   let params = useParams();
+
+  const history = useHistory();
+
+  const location = useLocation();
+
+  const deleteEvent = async (e) => {
+    e.preventDefault();
+    const response = await dataHandler.deleteTrainer(params.gymId, params.courseId, trainerId);
+
+    typeof response !== "undefined" && response.status === 204
+      ? history.push(`/gyms/${params.gymId}/courses/${params.courseId}/trainers`)
+      : history.push(location);
+  };
 
   return (
     <div className="card-item">
@@ -18,6 +34,7 @@ export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth }) => {
         >
           Edit Trainer
         </NavLink>
+        <button onClick={(e) => deleteEvent(e)}>Delete Trainer</button>
       </div>
     </div>
   );

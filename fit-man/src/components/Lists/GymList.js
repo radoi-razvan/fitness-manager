@@ -1,9 +1,9 @@
 import React from "react";
-import { Gym } from "./Gym";
-import { STATE } from "./State";
+import { Gym } from "../Gym";
+import { STATE } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { dataHandler } from "../DataManager/DataHandler";
+import { dataHandler } from "../../DataManager/DataHandler";
 import { NavLink } from "react-router-dom";
 
 export const GymList = () => {

@@ -1,9 +1,9 @@
 import React from "react";
-import { Course } from "./Course";
-import { STATE } from "./State";
+import { Course } from "../Course";
+import { STATE } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { dataHandler } from "../DataManager/DataHandler";
+import { dataHandler } from "../../DataManager/DataHandler";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 
