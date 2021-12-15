@@ -17,7 +17,7 @@ export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth }) => {
     const response = await dataHandler.deleteTrainer(params.gymId, params.courseId, trainerId);
 
     typeof response !== "undefined" && response.status === 204
-      ? history.push(`/gyms/${params.gymId}/courses/${params.courseId}/trainers`)
+      ? history.go(0)
       : history.push(location);
   };
 
@@ -25,16 +25,14 @@ export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth }) => {
     <div className="card-item">
       <img src={`${process.env.REACT_APP_BASEIMGURL}${process.env.REACT_APP_TRAINERIMG}/${name}.png`} alt={name} />
       <div className="card-text">
-        <span>{name}</span>
+        <span>
+          {name}
+          <NavLink className="bi bi-pencil-square ms-3 btn-icon" exact to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/${trainerId}/edit`}/>
+          <i className="delete-icon bi bi-trash-fill ms-3 btn-icon" onClick={(e) => deleteEvent(e)}/>
+        </span>
         <p>Experience: {experienceYears} years</p>
         {/* <p>{dateOfBirth}</p> */}
-        <NavLink
-          exact
-          to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/${trainerId}/edit`}
-        >
-          Edit Trainer
-        </NavLink>
-        <button onClick={(e) => deleteEvent(e)}>Delete Trainer</button>
+        
       </div>
     </div>
   );
