@@ -254,17 +254,37 @@ export const dataHandler = {
 
   postLogin: async function (logData) {
     const response = await axios
-      .post(`${process.env.REACT_APP_BACKEND}/login`, {
-        email: logData.email,
-        password: logData.password,
-      })
+      .post(
+        `${process.env.REACT_APP_BACKEND}/login`,
+        {
+          email: logData.email,
+          password: logData.password,
+        },
+        { withCredentials: true }
+      )
       .catch((e) => console.error(e));
     return response;
   },
 
   postLogout: async function () {
     const response = await axios
-      .post(`${process.env.REACT_APP_BACKEND}/logout`)
+      .post(`${process.env.REACT_APP_BACKEND}/logout`, "", {
+        withCredentials: true
+      })
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getUser: async function () {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/user`, { withCredentials: true })
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  checkIfLoggedIn: async function () {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/user/check`, { withCredentials: true })
       .catch((e) => console.error(e));
     return response;
   },
