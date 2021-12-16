@@ -78,19 +78,7 @@ namespace FitMan
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            //services.AddAuthentication()
-            //        .AddCookie(options =>
-            //        {
-            //            //options.LoginPath = "/Account/Unauthorized/";
-            //            //options.AccessDeniedPath = "/Account/Forbidden/";
-            //        })
-            //        .AddJwtBearer(options =>
-            //        {
-            //            //options.Audience = "http://localhost:5001/";
-            //            //options.Authority = "http://localhost:5000/";
-            //        });
-                        
-
+            services.AddAuthentication();
             services.AddAuthorization();
 
             services.AddMvc();
@@ -111,11 +99,13 @@ namespace FitMan
 
             app.UseRouting();
 
+            // Client configuration
             app.UseCors(builder => builder
               .WithOrigins("http://localhost:3000")
               .AllowAnyMethod()
               .AllowAnyHeader()
-              .AllowCredentials());
+              .AllowCredentials()
+              .SetIsOriginAllowed(host => true));
 
             app.UseAuthentication();
             app.UseAuthorization();
