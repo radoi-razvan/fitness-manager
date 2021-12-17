@@ -22,7 +22,7 @@ export const dataHandler = {
         name: formData.name,
         address: formData.address,
         description: formData.description,
-      })
+      }, {withCredentials: true})
       .catch((e) => console.error(e));
     return response;
   },
@@ -33,14 +33,14 @@ export const dataHandler = {
         name: formData.name,
         address: formData.address,
         description: formData.description,
-      })
+      }, {withCredentials: true})
       .catch((e) => console.error(e));
     return response;
   },
 
   deleteGym: async function (gymId) {
     const response = await axios
-      .delete(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`, {withCredentials: true})
       .catch((e) => console.error(e));
     return response;
   },
@@ -67,7 +67,7 @@ export const dataHandler = {
         defaultPrice: formData.defaultPrice,
         description: formData.description,
         schedule: formData.schedule,
-      })
+      }, {withCredentials: true})
       .catch((e) => console.error(e));
     return response;
   },
@@ -81,7 +81,7 @@ export const dataHandler = {
           defaultPrice: formData.defaultPrice,
           description: formData.description,
           schedule: formData.schedule,
-        }
+        }, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -90,7 +90,7 @@ export const dataHandler = {
   deleteCourse: async function (gymId, courseId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -122,7 +122,7 @@ export const dataHandler = {
         {
           name: formData.name,
           description: formData.description,
-        }
+        }, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -135,7 +135,7 @@ export const dataHandler = {
         {
           name: formData.name,
           description: formData.description,
-        }
+        }, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -144,7 +144,7 @@ export const dataHandler = {
   deleteExercise: async function (gymId, courseId, exerciseId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -177,7 +177,7 @@ export const dataHandler = {
           name: formData.name,
           experienceYears: formData.experienceYears,
           dateOfBirth: formData.dateOfBirth,
-        }
+        }, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -191,7 +191,7 @@ export const dataHandler = {
           name: formData.name,
           experienceYears: formData.experienceYears,
           dateOfBirth: formData.dateOfBirth,
-        }
+        }, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
@@ -200,7 +200,7 @@ export const dataHandler = {
   deleteTrainer: async function (gymId, courseId, trainerId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`, {withCredentials: true}
       )
       .catch((e) => console.error(e));
     return response;
