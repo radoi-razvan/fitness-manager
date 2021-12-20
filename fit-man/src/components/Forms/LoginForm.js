@@ -18,10 +18,19 @@ export const LoginForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    const warningIcon = document.getElementById("warningIcon");
+    const warningText = document.getElementById("warningText");
+
     const response = await dataHandler.postLogin(logData);
-    typeof response !== "undefined" && response.status === 200
-      ? history.push("/")
-      : history.go(0);
+    if (typeof response !== "undefined" && response.status === 200)
+    {
+      history.push("/")
+    }
+    else 
+    {
+      warningIcon.classList.remove("forms-warnings-hide");
+      warningText.classList.remove("forms-warnings-hide");
+    }
   };
 
   return (
@@ -74,6 +83,14 @@ export const LoginForm = () => {
                           />
                         </div>
                       </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="bi bi-exclamation-triangle-fill fa-lg me-3 fa-fw label-icons-signin text-danger forms-warnings-hide" id="warningIcon"></i>
+                        <div className="form-outline flex-fill mb-0 forms-warnings-hide" id="warningText">
+                          <span className="form-control text-danger">Invalid credentials!</span>
+                        </div>
+                      </div>
+
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
                           type="submit"
