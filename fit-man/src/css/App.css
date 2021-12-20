@@ -1478,3 +1478,7 @@ Forms design
   color: #ed563b!important;
   cursor: pointer;
 }
+
+.forms-warnings-hide {
+  display: none;
+}

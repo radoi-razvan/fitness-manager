@@ -8,6 +8,7 @@ export const RegistrationForm = () => {
     userRole: "Owner",
     email: "",
     password: "",
+    repeatedPassword: "",
   });
 
   const history = useHistory();
@@ -20,10 +21,20 @@ export const RegistrationForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const response = await dataHandler.postRegister(regData);
-    typeof response !== "undefined" && response.status === 201
+    const warningIcon = document.getElementById("warningIcon");
+    const warningText = document.getElementById("warningText");
+
+    if (regData.password === regData.repeatedPassword)
+    {
+      const response = await dataHandler.postRegister(regData);
+      typeof response !== "undefined" && response.status === 201 
       ? history.push("/login")
       : history.go(0);
+    } 
+    else {
+      warningIcon.classList.remove("forms-warnings-hide");
+      warningText.classList.remove("forms-warnings-hide");
+    }
   };
 
   return (
@@ -110,18 +121,29 @@ export const RegistrationForm = () => {
                         </div>
                       </div>
 
-                      {/* <div className="d-flex flex-row align-items-center mb-4">
+                      <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-key-fill fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
+                            onChange={(e) => handle(e)}
+                            value={regData.repeatedPassword}
                             type="password"
-                            id="repeatPassword"
+                            id="repeatedPassword"
                             className="form-control"
                             placeholder="Repeat your password"
+                            name="repeatedPassword"
                             required
                           />
                         </div>
-                      </div> */}
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="bi bi-exclamation-triangle-fill fa-lg me-3 fa-fw label-icons-signin text-danger forms-warnings-hide" id="warningIcon"></i>
+                        <div className="form-outline flex-fill mb-0 forms-warnings-hide" id="warningText">
+                          <span className="form-control text-danger">Passwords don't match!</span>
+                        </div>
+                      </div>
+
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
                           type="submit"
