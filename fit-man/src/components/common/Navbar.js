@@ -11,27 +11,33 @@ export const Navbar = () => {
   const [user, setUser] = useAtom(STATE.USER);
 
   useEffect(() => {
+    getUser();
     console.log(user);
-    console.log(user.loggedIn);
-    setUser({ loggedIn: isLoggedIn() });
   }, []);
+
+  const getUser = async () => {
+    //const loginResponse = await dataHandler.checkIfLoggedIn().data;
+    const userResponse = await dataHandler.getUser().data;
+    setUser(userResponse);
+    console.log(user);
+  };
 
   const history = useHistory();
 
   const location = useLocation();
 
-  const isLoggedIn = async () => {
-    const loggedIn = await dataHandler.checkIfLoggedIn();
-    console.log(loggedIn.data);
-    return loggedIn.data;
-  };
+  // const isLoggedIn = async () => {
+  //   const loggedIn = await dataHandler.checkIfLoggedIn();
+  //   console.log(loggedIn.data);
+  //   return loggedIn.data;
+  // };
 
-  const getCurrentUser = async () => {
-    const response = await dataHandler.getUser();
-    console.log(response.data);
-    console.log(response.data.Email);
-    return response.data;
-  };
+  // const getCurrentUser = async () => {
+  //   const response = await dataHandler.getUser();
+  //   console.log(response.data);
+  //   console.log(response.data.Email);
+  //   return response.data;
+  // };
 
   const logoutEvent = async (e) => {
     e.preventDefault();
@@ -40,6 +46,11 @@ export const Navbar = () => {
     typeof response !== "undefined" && response.status === 200
       ? history.go(0)
       : history.push(location);
+  };
+
+  const checkEmptyObject = () => {
+    console.log("user object length => ", Object.keys(user).length === 0);
+    return Object.keys(user).length === 0;
   };
 
   return (
@@ -57,8 +68,8 @@ export const Navbar = () => {
                     Gyms
                   </NavLink>
                 </li>
-
-                <button onClick={(e) => getCurrentUser()}>GetUser</button>
+                {/* <ConditionalButtons key={0} isLoggedIn={user.loggedIn} /> */}
+                {/* <button onClick={(e) => getCurrentUser()}>GetUser</button> */}
                 <button onClick={(e) => logoutEvent(e)}>Logout</button>
                 {/* <li>
                   <NavLink to="/register">Register</NavLink>
@@ -66,10 +77,10 @@ export const Navbar = () => {
                 <li>
                   <NavLink to="/login">Login</NavLink>
                 </li> */}
-                {user.loggedIn !== true ? (
+                {checkEmptyObject === true ? (
                   <>
                     <li>
-                      <a href="#">{ getCurrentUser().Email}</a>
+                      <a href="#">{user.userInfo}</a>
                     </li>
                     <li>
                       <button onClick={(e) => logoutEvent(e)}>Logout</button>

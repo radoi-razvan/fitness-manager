@@ -94,7 +94,7 @@ namespace FitMan.Controllers
             }
             catch (Exception)
             {
-                return Unauthorized();
+                return Ok(new { });
             }
         }
 

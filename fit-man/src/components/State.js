@@ -9,7 +9,7 @@ export const STATE = {
   GYM_REVIEWS: atom([]),
   COURSE_REVIEWS: atom([]),
   TRAINER_REVIEWS: atom([]),
-  USER: atom({ loggedIn: false }),
+  USER: atom({}),
 };
 
 // const intializeGyms = async () => {
