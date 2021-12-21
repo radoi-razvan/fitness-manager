@@ -1483,3 +1483,7 @@ Forms design
 .nav-btn {
   cursor: pointer;
 }
+
+.logout-display {
+  display: none;
+}
