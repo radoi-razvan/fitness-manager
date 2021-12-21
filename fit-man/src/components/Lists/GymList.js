@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
+  const [loggedIn] = useAtom(STATE.LOGGED_IN);
+  const [user] = useAtom(STATE.USER);
 
   useEffect(() => {
     // axios
@@ -27,7 +29,13 @@ export const GymList = () => {
 
   return (
     <div id="trainers">
-      <NavLink className="btn-1 btn-fixed-left" exact to="/gyms/add">
+      <NavLink
+        className={`btn-1 btn-fixed-left ${
+          loggedIn === false || "Gyms" in user === false ? "logout-display" : ""
+        }`}
+        exact
+        to="/gyms/add"
+      >
         Add Gym
       </NavLink>
       {gyms.map((gym, index) => (

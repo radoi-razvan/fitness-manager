@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-//import { dataHandler } from "../DataManager/DataHandler";
 
 export const STATE = {
   GYMS: atom([]),
@@ -12,9 +11,3 @@ export const STATE = {
   USER: atom({}),
   LOGGED_IN: atom(false),
 };
-
-// const intializeGyms = async () => {
-//   return await dataHandler.getGyms().data;
-// };
-
-// intializeGyms();

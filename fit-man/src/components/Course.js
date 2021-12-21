@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { STATE } from "./State";
+import { useAtom } from "jotai";
 
 export const Course = ({
   name,
@@ -12,6 +14,9 @@ export const Course = ({
   schedule,
   courseId,
 }) => {
+  const [loggedIn] = useAtom(STATE.LOGGED_IN);
+  const [user] = useAtom(STATE.USER);
+
   let params = useParams();
 
   const history = useHistory();
@@ -36,8 +41,23 @@ export const Course = ({
       <div className="card-text">
         <span>
           {name}
-        <NavLink className="bi bi-pencil-square ms-3 btn-icon" exact to={`/gyms/${params.gymId}/courses/${courseId}/edit`}/>
-        <i className="delete-icon bi bi-trash-fill ms-3 btn-icon" onClick={(e) => deleteEvent(e)}/>
+          <NavLink
+            className={`bi bi-pencil-square ms-3 btn-icon ${
+              loggedIn === false || "Gyms" in user === false
+                ? "logout-display"
+                : ""
+            }`}
+            exact
+            to={`/gyms/${params.gymId}/courses/${courseId}/edit`}
+          />
+          <i
+            className={`delete-icon bi bi-trash-fill ms-3 btn-icon ${
+              loggedIn === false || "Gyms" in user === false
+                ? "logout-display"
+                : ""
+            }`}
+            onClick={(e) => deleteEvent(e)}
+          />
         </span>
         <p>$ {defaultPrice}/month</p>
         <h4>{description}</h4>

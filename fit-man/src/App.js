@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { dataHandler } from "./DataManager/DataHandler";
 import "./css/App.css";
 import { Navbar } from "./components/common/Navbar";
-// import { Footer } from "./components/common/Footer";
 import { GymList } from "./components/Lists/GymList";
 import { WelcomePage } from "./components/WelcomePage";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -11,7 +9,6 @@ import { CourseList } from "./components/Lists/CourseList";
 import { ExerciseList } from "./components/Lists/ExerciseList";
 import { TrainerList } from "./components/Lists/TrainerList";
 import { RegistrationForm } from "./components/Forms/RegistrationForm";
-import { LoginForm } from "./components/Forms/LoginForm";
 import { GymForm } from "./components/Forms/GymForm";
 import { CourseForm } from "./components/Forms/CourseForm";
 import { ExerciseForm } from "./components/Forms/ExerciseForm";
@@ -23,7 +20,6 @@ function App() {
     password: "",
   });
 
-  // const history = useHistory();
 
   const handle = (e) => {
     const newData = { ...logData };
@@ -94,15 +90,12 @@ function App() {
               <Route path="/register">
                 <RegistrationForm />
               </Route>
-              <Route path="/login">
-                <LoginForm />
-              </Route>
             </Switch>
 
             <div
               className="modal fade"
               id="exampleModal"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
@@ -186,7 +179,6 @@ function App() {
           </main>
         </BrowserRouter>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }

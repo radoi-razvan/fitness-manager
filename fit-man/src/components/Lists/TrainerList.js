@@ -9,6 +9,8 @@ import { NavLink } from "react-router-dom";
 
 export const TrainerList = () => {
   const [trainers, setTrainers] = useAtom(STATE.TRAINERS);
+  const [loggedIn] = useAtom(STATE.LOGGED_IN);
+  const [user] = useAtom(STATE.USER);
   let params = useParams();
 
   useEffect(() => {
@@ -25,7 +27,13 @@ export const TrainerList = () => {
 
   return (
     <div id="trainers">
-      <NavLink className="btn-1 btn-fixed-left" exact to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/add`}>
+      <NavLink
+        className={`btn-1 btn-fixed-left ${
+          loggedIn === false || "Gyms" in user === false ? "logout-display" : ""
+        }`}
+        exact
+        to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/add`}
+      >
         Add Trainer
       </NavLink>
       {trainers.map((trainer, index) => (

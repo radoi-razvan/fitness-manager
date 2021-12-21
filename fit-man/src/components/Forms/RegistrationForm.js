@@ -28,7 +28,7 @@ export const RegistrationForm = () => {
     {
       const response = await dataHandler.postRegister(regData);
       typeof response !== "undefined" && response.status === 201 
-      ? history.push("/login")
+      ? history.push("/")
       : history.go(0);
     } 
     else {
