@@ -18,29 +18,39 @@ export const dataHandler = {
 
   postGym: async function (formData) {
     const response = await axios
-      .post(`${process.env.REACT_APP_BACKEND}/gyms`, {
-        name: formData.name,
-        address: formData.address,
-        description: formData.description,
-      }, {withCredentials: true})
+      .post(
+        `${process.env.REACT_APP_BACKEND}/gyms`,
+        {
+          name: formData.name,
+          address: formData.address,
+          description: formData.description,
+        },
+        { withCredentials: true }
+      )
       .catch((e) => console.error(e));
     return response;
   },
 
   putGym: async function (gymId, formData) {
     const response = await axios
-      .put(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`, {
-        name: formData.name,
-        address: formData.address,
-        description: formData.description,
-      }, {withCredentials: true})
+      .put(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}`,
+        {
+          name: formData.name,
+          address: formData.address,
+          description: formData.description,
+        },
+        { withCredentials: true }
+      )
       .catch((e) => console.error(e));
     return response;
   },
 
   deleteGym: async function (gymId) {
     const response = await axios
-      .delete(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`, {withCredentials: true})
+      .delete(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`, {
+        withCredentials: true,
+      })
       .catch((e) => console.error(e));
     return response;
   },
@@ -62,12 +72,16 @@ export const dataHandler = {
 
   postCourse: async function (gymId, formData) {
     const response = await axios
-      .post(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses`, {
-        name: formData.name,
-        defaultPrice: formData.defaultPrice,
-        description: formData.description,
-        schedule: formData.schedule,
-      }, {withCredentials: true})
+      .post(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses`,
+        {
+          name: formData.name,
+          defaultPrice: formData.defaultPrice,
+          description: formData.description,
+          schedule: formData.schedule,
+        },
+        { withCredentials: true }
+      )
       .catch((e) => console.error(e));
     return response;
   },
@@ -81,7 +95,8 @@ export const dataHandler = {
           defaultPrice: formData.defaultPrice,
           description: formData.description,
           schedule: formData.schedule,
-        }, {withCredentials: true}
+        },
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -90,7 +105,8 @@ export const dataHandler = {
   deleteCourse: async function (gymId, courseId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`, {withCredentials: true}
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`,
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -122,7 +138,8 @@ export const dataHandler = {
         {
           name: formData.name,
           description: formData.description,
-        }, {withCredentials: true}
+        },
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -135,7 +152,8 @@ export const dataHandler = {
         {
           name: formData.name,
           description: formData.description,
-        }, {withCredentials: true}
+        },
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -144,7 +162,8 @@ export const dataHandler = {
   deleteExercise: async function (gymId, courseId, exerciseId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`, {withCredentials: true}
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/exercises/${exerciseId}`,
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -177,7 +196,8 @@ export const dataHandler = {
           name: formData.name,
           experienceYears: formData.experienceYears,
           dateOfBirth: formData.dateOfBirth,
-        }, {withCredentials: true}
+        },
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -191,7 +211,8 @@ export const dataHandler = {
           name: formData.name,
           experienceYears: formData.experienceYears,
           dateOfBirth: formData.dateOfBirth,
-        }, {withCredentials: true}
+        },
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -200,7 +221,8 @@ export const dataHandler = {
   deleteTrainer: async function (gymId, courseId, trainerId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`, {withCredentials: true}
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/${trainerId}`,
+        { withCredentials: true }
       )
       .catch((e) => console.error(e));
     return response;
@@ -263,13 +285,14 @@ export const dataHandler = {
         { withCredentials: true }
       )
       .catch((e) => console.error(e));
+    console.log(logData);
     return response;
   },
 
   postLogout: async function () {
     const response = await axios
       .post(`${process.env.REACT_APP_BACKEND}/logout`, "", {
-        withCredentials: true
+        withCredentials: true,
       })
       .catch((e) => console.error(e));
     return response;
@@ -284,7 +307,9 @@ export const dataHandler = {
 
   checkIfLoggedIn: async function () {
     const response = await axios
-      .get(`${process.env.REACT_APP_BACKEND}/user/check`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_BACKEND}/user/check`, {
+        withCredentials: true,
+      })
       .catch((e) => console.error(e));
     return response.data;
   },
