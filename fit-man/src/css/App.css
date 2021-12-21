@@ -287,19 +287,19 @@ header
   color: #232d39 !important;
 }
 
-.background-header .main-nav .nav li:last-child a {
+.background-header .main-nav .nav li:last-child .nav-btn {
   color: #fff !important;
 }
 
-.background-header .main-nav .nav li:last-child a:hover {
+.background-header .main-nav .nav li:last-child .nav-btn:hover {
   color: #fff !important;
 }
 
-.background-header .main-nav .nav li:nth-last-child(2) a {
+.background-header .main-nav .nav li:nth-last-child(2) .nav-btn {
   color: #fff !important;
 }
 
-.background-header .main-nav .nav li:nth-last-child(2) a:hover {
+.background-header .main-nav .nav li:nth-last-child(2) .nav-btn:hover {
   color: #fff !important;
 }
 
@@ -387,7 +387,7 @@ header
   color: #fff;
 }
 
-.header-area .main-nav .nav li:last-child a {
+.header-area .main-nav .nav li:last-child .nav-btn {
   display: inline-block;
   font-size: 13px;
   padding: 11px 17px;
@@ -401,7 +401,7 @@ header
   height: auto;
   line-height: 20px;
 }
-.header-area .main-nav .nav li:nth-last-child(2) a {
+.header-area .main-nav .nav li:nth-last-child(2) .nav-btn {
   display: inline-block;
   font-size: 13px;
   padding: 11px 17px;
@@ -416,12 +416,12 @@ header
   line-height: 20px;
 }
 
-.header-area .main-nav .nav li:last-child a:hover {
+.header-area .main-nav .nav li:last-child .nav-btn:hover {
   background-color: #f9735b;
   opacity: 1;
 }
 
-.header-area .main-nav .nav li:nth-last-child(2) a:hover {
+.header-area .main-nav .nav li:nth-last-child(2) .nav-btn:hover {
   background-color: #f9735b;
   opacity: 1;
 }
@@ -438,18 +438,17 @@ header
   opacity: 1;
 }
 
-.header-area .main-nav .nav li:last-child:hover a,
-.header-area .main-nav .nav li:last-child a.active {
-  color: #fff!important;
+.header-area .main-nav .nav li:last-child:hover .nav-btn,
+.header-area .main-nav .nav li:last-child .nav-btn.active {
+  color: #fff !important;
   opacity: 1;
 }
 
-.background-header .main-nav .nav li:nth-last-child(2):hover a,
-.background-header .main-nav .nav li:nth-last-child(2) a.active {
-  color: #fff!important;
+.background-header .main-nav .nav li:nth-last-child(2):hover .nav-btn,
+.background-header .main-nav .nav li:nth-last-child(2) .nav-btn.active {
+  color: #fff !important;
   opacity: 1;
 }
-
 
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
@@ -630,11 +629,11 @@ header
     background-color: #ed563b;
     color: #fff;
   }
-  .header-area .main-nav .nav li:last-child a {
+  .header-area .main-nav .nav li:last-child .nav-btn {
     background-color: #ed563b !important;
   }
-  .header-area .main-nav .nav li:last-child a:hover,
-  .header-area .main-nav .nav li:last-child:hover a {
+  .header-area .main-nav .nav li:last-child .nav-btn:hover,
+  .header-area .main-nav .nav li:last-child:hover .nav-btn {
     background-color: #ed563b !important;
     color: #fff !important;
   }
@@ -656,7 +655,7 @@ header
     background: #f7f7f7 !important;
     color: #232d39 !important;
   }
-  .header-area .main-nav .nav li:last-child a {
+  .header-area .main-nav .nav li:last-child .nav-btn {
     color: #fff !important;
   }
   .header-area .main-nav .nav li a:hover {
@@ -1116,7 +1115,7 @@ trainers
   height: auto;
   flex-direction: column;
   justify-items: space-around;
-  align-content: center; 
+  align-content: center;
   flex-basis: 33%;
   margin-right: 20px;
 }
@@ -1127,7 +1126,7 @@ trainers
   width: 100%;
   flex-direction: column;
   justify-items: space-around;
-  align-content: center; 
+  align-content: center;
   flex-basis: 33%;
   margin-right: 20px;
 }
@@ -1155,11 +1154,9 @@ trainers
   cursor: pointer;
 }
 
-
 .card-text {
-  align-content: center; 
+  align-content: center;
 }
-
 
 /* 
 ---------------------------------------------
@@ -1429,7 +1426,7 @@ Forms design
 
 .btn-1 {
   background-color: #ed563b;
-  color: #fff!important;
+  color: #fff !important;
   text-transform: uppercase;
   text-align: center;
   padding: 1em;
@@ -1470,15 +1467,19 @@ Forms design
 }
 
 .btn-icon {
-  color: #232d39!important;
+  color: #232d39 !important;
   transition: all 0.3s;
 }
 
 .btn-icon:hover {
-  color: #ed563b!important;
+  color: #ed563b !important;
   cursor: pointer;
 }
 
 .forms-warnings-hide {
   display: none;
+}
+
+.nav-btn {
+  cursor: pointer;
 }

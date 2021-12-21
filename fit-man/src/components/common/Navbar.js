@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { dataHandler } from "../../DataManager/DataHandler";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/";
+import { useLocation } from "react-router-dom";
 import { STATE } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
@@ -58,16 +58,26 @@ export const Navbar = () => {
                       <a href="#">{user.Email}</a>
                     </li>
                     <li>
-                      <button onClick={(e) => logoutEvent(e)}>Logout</button>
+                      <div className="nav-btn" onClick={(e) => logoutEvent(e)}>
+                        Logout
+                      </div>
                     </li>
                   </>
                 ) : (
                   <>
                     <li>
-                      <NavLink to="/register">Register</NavLink>
+                      <NavLink className="nav-btn" to="/register">
+                        Register
+                      </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/login">Login</NavLink>
+                      <div
+                        className="nav-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        Login
+                      </div>
                     </li>
                   </>
                 )}
