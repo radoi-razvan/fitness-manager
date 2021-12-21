@@ -279,17 +279,13 @@ export const dataHandler = {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/user`, { withCredentials: true })
       .catch((e) => console.error(e));
-      console.log(response);
-      console.log(response.data);
-    return response;
+    return response.data;
   },
 
   checkIfLoggedIn: async function () {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/user/check`, { withCredentials: true })
       .catch((e) => console.error(e));
-      console.log(response);
-      console.log(response.data);
-    return response;
+    return response.data;
   },
 };

@@ -10,6 +10,7 @@ export const STATE = {
   COURSE_REVIEWS: atom([]),
   TRAINER_REVIEWS: atom([]),
   USER: atom({}),
+  LOGGED_IN: atom(false),
 };
 
 // const intializeGyms = async () => {

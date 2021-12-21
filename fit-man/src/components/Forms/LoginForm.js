@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 export const LoginForm = () => {
   const [logData, setLogData] = useState({
@@ -24,7 +25,9 @@ export const LoginForm = () => {
     const response = await dataHandler.postLogin(logData);
     if (typeof response !== "undefined" && response.status === 200)
     {
-      history.push("/")
+      //history.go(0);
+      history.push("/");
+      //return <Redirect to="/"/>;
     }
     else 
     {
