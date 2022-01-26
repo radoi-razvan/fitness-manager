@@ -11,5 +11,6 @@ namespace FitMan.Data.Repositories.Interfaces
     public interface IGymRepository : IRepository<GymDTO>
     {
         IEnumerable<GymDTO> GetAll();
+        IEnumerable<GymDTO> GetOwnedGyms(long ownerId);
     }
 }

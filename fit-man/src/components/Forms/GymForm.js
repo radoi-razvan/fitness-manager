@@ -3,6 +3,8 @@ import { dataHandler } from "../../DataManager/DataHandler";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useAtom } from "jotai";
+import { STATE } from "../State";
 
 export const GymForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ export const GymForm = () => {
     address: "",
     description: "",
   });
+  const [ownedGyms, setOwnedGyms] = useAtom(STATE.OWNED_GYMS);
 
   const history = useHistory();
 
@@ -25,24 +28,27 @@ export const GymForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const response =
-      location.pathname === "/gyms/add"
-        ? await dataHandler.postGym(formData)
-        : await dataHandler.putGym(params.gymId, formData);
+    if (location.pathname === "/gyms/add") {
+      console.log(ownedGyms);
+      dataHandler.postGym(formData).then((response) => {
+        console.log(response);
+        setOwnedGyms([...ownedGyms, response.data.GymId]);
+        typeof response !== "undefined" &&
+        (response.status === 201 || response.status === 204)
+          ? history.push("/gyms")
+          : history.push(location);
+      });
 
-    typeof response !== "undefined" &&
-    (response.status === 201 || response.status === 204)
-      ? history.push("/gyms")
-      : history.push(location);
+      console.log(ownedGyms);
+    } else {
+      const response = await dataHandler.putGym(params.gymId, formData);
+      setOwnedGyms([...new Set([...ownedGyms, params.gymId])]);
+      typeof response !== "undefined" &&
+      (response.status === 201 || response.status === 204)
+        ? history.push("/gyms")
+        : history.push(location);
+    }
   };
-
-  //   const fileUploadHandler = (e) => {
-  //     console.log(e.target.files[0]);
-  //     if(formData.name > 0) {
-  //         e.target.files[0].name = formData.name;
-  //     }
-  //     console.log(e.target.files[0].name);
-  //   };
 
   return (
     <section className="vh-90">

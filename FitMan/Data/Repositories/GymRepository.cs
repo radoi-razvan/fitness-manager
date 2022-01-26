@@ -29,6 +29,11 @@ namespace FitMan.Data.Repositories
             _context.SaveChanges();
         }
 
+        public IEnumerable<GymDTO> GetOwnedGyms(long ownerId)
+        {
+            return _mapper.Map<IEnumerable<GymDTO>>(_context.Gyms.Where(g => g.OwnerId == ownerId));
+        }
+
         public bool CheckIfExists(long id)
         {
             return _context.Gyms.Any(e => e.GymId == id);

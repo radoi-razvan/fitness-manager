@@ -75,6 +75,25 @@ namespace FitMan.Controllers
             return NoContent();
         }
 
+        // GET: gyms/owned
+        [HttpGet("owned")]
+        public ActionResult<IEnumerable<GymDTO>> GetOwnedGyms()
+        {
+
+            var jwt = Request.Cookies["jwt"];
+            var token = _jwtService.Verify(jwt);
+            int userId = int.Parse(token.Issuer);
+
+            var gyms = _gymService.GetOwnedGyms(userId);
+
+            if (gyms == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(gyms);
+        }
+
         // POST: gyms
         [HttpPost]
         public ActionResult<GymDTO> PostGym([FromBody] GymDTO gym)

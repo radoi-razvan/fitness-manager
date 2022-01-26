@@ -10,5 +10,6 @@ namespace FitMan.Services.Interfaces
     public interface IGymService : IService<GymDTO>
     {
         IEnumerable<GymDTO> GetAll();
+        IEnumerable<GymDTO> GetOwnedGyms(long ownerId);
     }
 }

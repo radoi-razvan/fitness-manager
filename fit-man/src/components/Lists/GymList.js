@@ -10,15 +10,9 @@ export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
   const [loggedIn] = useAtom(STATE.LOGGED_IN);
   const [user] = useAtom(STATE.USER);
+  const [ownedGyms] = useAtom(STATE.OWNED_GYMS);
 
   useEffect(() => {
-    // axios
-    //   .get(`http://localhost:5000/api/gyms`)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     setGyms(response.data);
-    //   })
-    //   .catch((e) => console.error(e));
     getGyms();
   }, []);
 

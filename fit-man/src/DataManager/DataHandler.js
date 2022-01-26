@@ -16,6 +16,15 @@ export const dataHandler = {
     return response;
   },
 
+  getOwnedGyms: async function () {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/owned`, {
+        withCredentials: true,
+      })
+      .catch((e) => console.error(e));
+    return response;
+  },
+
   postGym: async function (formData) {
     const response = await axios
       .post(

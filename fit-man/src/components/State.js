@@ -10,4 +10,5 @@ export const STATE = {
   TRAINER_REVIEWS: atom([]),
   USER: atom({}),
   LOGGED_IN: atom(false),
+  OWNED_GYMS: atom([]),
 };

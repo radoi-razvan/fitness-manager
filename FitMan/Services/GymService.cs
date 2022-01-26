@@ -24,6 +24,11 @@ namespace FitMan.Services
             _gymRepository.Add(item);
         }
 
+        public IEnumerable<GymDTO> GetOwnedGyms(long ownerId)
+        {
+            return _gymRepository.GetOwnedGyms(ownerId);
+        }
+
         public bool CheckIfExists(long id)
         {
             return _gymRepository.CheckIfExists(id);
