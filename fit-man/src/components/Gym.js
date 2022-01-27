@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 // import { GymReviewList } from "./GymReviewList";
 import { dataHandler } from "../DataManager/DataHandler";
@@ -6,11 +6,12 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { STATE } from "./State";
 import { useAtom } from "jotai";
+import { ownedGymsSetter } from "./State";
 
 export const Gym = ({ gymId, name, address, description }) => {
   const [loggedIn] = useAtom(STATE.LOGGED_IN);
   const [user] = useAtom(STATE.USER);
-  const [ownedGyms, setOwnedGyms] = useAtom(STATE.OWNED_GYMS);
+  const [ownedGyms, setOwnedGyms] = useAtom(ownedGymsSetter);
 
   const history = useHistory();
 
@@ -18,13 +19,17 @@ export const Gym = ({ gymId, name, address, description }) => {
 
   const deleteEvent = async (e) => {
     e.preventDefault();
-    setOwnedGyms(ownedGyms.filter((g) => g !== gymId));
+    setOwnedGyms();
     const response = await dataHandler.deleteGym(gymId);
 
     typeof response !== "undefined" && response.status === 204
       ? history.go(0)
       : history.push(location);
   };
+
+  useEffect(() => {
+    console.log(ownedGyms);
+  }, []);
 
   return (
     <div className="card-item">

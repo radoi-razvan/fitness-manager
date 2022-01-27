@@ -1,24 +1,28 @@
 import React from "react";
 import { Gym } from "../Gym";
-import { STATE } from "../State";
+import { ownedGymsSetter, STATE } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
 import { NavLink } from "react-router-dom";
+import { atom } from "jotai";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
   const [loggedIn] = useAtom(STATE.LOGGED_IN);
   const [user] = useAtom(STATE.USER);
-  const [ownedGyms] = useAtom(STATE.OWNED_GYMS);
+
+  const [, setOwnedGyms] = useAtom(ownedGymsSetter);
 
   useEffect(() => {
     getGyms();
   }, []);
 
   const getGyms = async () => {
-    const response = await dataHandler.getGyms();
-    setGyms(response.data);
+    dataHandler.getGyms().then((response) => {
+      setGyms(response.data);
+      setOwnedGyms();
+    });
   };
 
   return (

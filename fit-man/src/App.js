@@ -13,13 +13,13 @@ import { GymForm } from "./components/Forms/GymForm";
 import { CourseForm } from "./components/Forms/CourseForm";
 import { ExerciseForm } from "./components/Forms/ExerciseForm";
 import { TrainerForm } from "./components/Forms/TrainerForm";
+import { Provider } from "jotai";
 
 function App() {
   const [logData, setLogData] = useState({
     email: "",
     password: "",
   });
-
 
   const handle = (e) => {
     const newData = { ...logData };

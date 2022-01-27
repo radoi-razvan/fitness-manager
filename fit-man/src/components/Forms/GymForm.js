@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useAtom } from "jotai";
 import { STATE } from "../State";
+import { ownedGymsSetter } from "../State";
 
 export const GymForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ export const GymForm = () => {
     address: "",
     description: "",
   });
-  const [ownedGyms, setOwnedGyms] = useAtom(STATE.OWNED_GYMS);
+  const [ownedGyms, setOwnedGyms] = useAtom(ownedGymsSetter);
 
   const history = useHistory();
 

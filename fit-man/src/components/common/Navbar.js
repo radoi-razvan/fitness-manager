@@ -10,7 +10,6 @@ import { useEffect } from "react";
 export const Navbar = () => {
   const [user, setUser] = useAtom(STATE.USER);
   const [loggedIn, setloggedIn] = useAtom(STATE.LOGGED_IN);
-  const [ownedGyms, setOwnedGyms] = useAtom(STATE.OWNED_GYMS);
 
   useEffect(() => {
     getUser();
@@ -21,12 +20,6 @@ export const Navbar = () => {
     const loggedResponse = await dataHandler.checkIfLoggedIn();
     setUser(userResponse);
     loggedResponse && setloggedIn(true);
-    let owned = await dataHandler.getOwnedGyms();
-
-    setTimeout(() => {
-      setOwnedGyms(owned.data.map((g) => g.GymId));
-      console.log(ownedGyms);
-    }, 500);
   };
 
   const history = useHistory();
