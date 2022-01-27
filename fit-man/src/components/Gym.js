@@ -27,9 +27,9 @@ export const Gym = ({ gymId, name, address, description }) => {
       : history.push(location);
   };
 
-  useEffect(() => {
-    console.log(ownedGyms);
-  }, []);
+//   useEffect(() => {
+//     console.log(ownedGyms);
+//   }, []);
 
   return (
     <div className="card-item">

@@ -13,10 +13,11 @@ export const Course = ({
   description,
   schedule,
   courseId,
+  owned
 }) => {
   const [loggedIn] = useAtom(STATE.LOGGED_IN);
   const [user] = useAtom(STATE.USER);
-
+  
   let params = useParams();
 
   const history = useHistory();
@@ -43,7 +44,7 @@ export const Course = ({
           {name}
           <NavLink
             className={`bi bi-pencil-square ms-3 btn-icon ${
-              loggedIn === false || "Gyms" in user === false
+              loggedIn === false || "Gyms" in user === false || owned === false
                 ? "logout-display"
                 : ""
             }`}
@@ -52,7 +53,7 @@ export const Course = ({
           />
           <i
             className={`delete-icon bi bi-trash-fill ms-3 btn-icon ${
-              loggedIn === false || "Gyms" in user === false
+              loggedIn === false || "Gyms" in user === false || owned === false
                 ? "logout-display"
                 : ""
             }`}

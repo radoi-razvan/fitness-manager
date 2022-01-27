@@ -1,6 +1,6 @@
 import React from "react";
 import { Course } from "../Course";
-import { STATE } from "../State";
+import { STATE, ownedGymsSetter } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
@@ -12,6 +12,8 @@ export const CourseList = () => {
   const [loggedIn] = useAtom(STATE.LOGGED_IN);
   const [user] = useAtom(STATE.USER);
   let params = useParams();
+
+  const [ownedGyms, ] = useAtom(ownedGymsSetter);
 
   useEffect(() => {
     getCourses();
@@ -26,7 +28,7 @@ export const CourseList = () => {
     <div id="trainers">
       <NavLink
         className={`btn-1 btn-fixed-left ${
-          loggedIn === false || "Gyms" in user === false ? "logout-display" : ""
+          loggedIn === false || "Gyms" in user === false || !ownedGyms.includes(parseInt(params.gymId)) ? "logout-display" : ""
         }`}
         exact
         to={`/gyms/${params.gymId}/courses/add`}
@@ -41,6 +43,7 @@ export const CourseList = () => {
           schedule={course.Schedule}
           courseId={course.CourseId}
           key={index}
+          owned={ownedGyms.includes(parseInt(params.gymId))}
         />
       ))}
     </div>
