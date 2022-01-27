@@ -34,12 +34,10 @@ export const ownedGymsSetter = atom(
   async (get, set) => {
     const ownedGyms = await dataHandler.getOwnedGyms();
     if (ownedGyms.data) {
-      console.log(get(OWNED_GYMS));
       set(
         OWNED_GYMS,
         ownedGyms.data.map((g) => g.GymId)
       );
-      console.log(get(OWNED_GYMS));
     } else {
       set(OWNED_GYMS, []);
     }
