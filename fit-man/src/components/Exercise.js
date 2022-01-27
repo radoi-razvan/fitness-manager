@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { STATE } from "./State";
 import { useAtom } from "jotai";
 
-export const Exercise = ({ exerciseId, name, description }) => {
+export const Exercise = ({ exerciseId, name, description, owned }) => {
   const [loggedIn] = useAtom(STATE.LOGGED_IN);
   const [user] = useAtom(STATE.USER);
 
@@ -37,7 +37,7 @@ export const Exercise = ({ exerciseId, name, description }) => {
           {name}
           <NavLink
             className={`bi bi-pencil-square ms-3 btn-icon ${
-              loggedIn === false || "Gyms" in user === false
+              loggedIn === false || "Gyms" in user === false || owned === false
                 ? "logout-display"
                 : ""
             }`}
@@ -46,7 +46,7 @@ export const Exercise = ({ exerciseId, name, description }) => {
           />
           <i
             className={`delete-icon bi bi-trash-fill ms-3 btn-icon ${
-              loggedIn === false || "Gyms" in user === false
+              loggedIn === false || "Gyms" in user === false || owned === false
                 ? "logout-display"
                 : ""
             }`}
