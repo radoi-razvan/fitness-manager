@@ -11,6 +11,7 @@ namespace FitMan.Data.Repositories.Interfaces
         public int GetTotalGymMembers(long gymId);
         public int GetTotalCourseMembers(long courseId);
         public void Add(long courseId, long userId);
+        public IEnumerable<CourseDTO> GetAttendedCourses(long participantId);
 
     }
 }
