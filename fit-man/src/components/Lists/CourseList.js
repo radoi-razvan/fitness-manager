@@ -13,7 +13,7 @@ export const CourseList = () => {
   const [user] = useAtom(STATE.USER);
   let params = useParams();
 
-  const [ownedGyms, ] = useAtom(ownedGymsSetter);
+  const [ownedGyms] = useAtom(ownedGymsSetter);
 
   useEffect(() => {
     getCourses();
@@ -28,7 +28,11 @@ export const CourseList = () => {
     <div id="trainers">
       <NavLink
         className={`btn-1 btn-fixed-left ${
-          loggedIn === false || "Gyms" in user === false || !ownedGyms.includes(parseInt(params.gymId)) ? "logout-display" : ""
+          !loggedIn ||
+          !("Gyms" in user) ||
+          !ownedGyms.includes(parseInt(params.gymId))
+            ? "logout-display"
+            : ""
         }`}
         exact
         to={`/gyms/${params.gymId}/courses/add`}
