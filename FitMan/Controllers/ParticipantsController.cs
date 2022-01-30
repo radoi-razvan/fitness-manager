@@ -50,5 +50,23 @@ namespace FitMan.Controllers
             return NoContent();
         }
 
+        // GET: gyms/courses/participants
+        [HttpGet]
+        [Route("gyms/courses/participants")]
+        public ActionResult GetAttendedCourses()
+        {
+            var jwt = Request.Cookies["jwt"];
+            var token = _jwtService.Verify(jwt);
+            int userId = int.Parse(token.Issuer);
+
+            var courses = _participantService.GetAttendedCourses(userId);
+
+            if (courses == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(courses);
+        }
     }
 }
