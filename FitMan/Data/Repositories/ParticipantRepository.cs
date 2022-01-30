@@ -12,10 +12,12 @@ namespace FitMan.Data.Repositories
     public class ParticipantRepository : IParticipantRepository
     {
         private readonly ApplicationContext _context;
+        private readonly IMapper _mapper;
 
-        public ParticipantRepository(ApplicationContext context)
+        public ParticipantRepository(ApplicationContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public void Add(long courseId, long userId)
@@ -27,6 +29,16 @@ namespace FitMan.Data.Repositories
             };
             _context.CourseParticipants.Add(courseParticipant);
             _context.SaveChanges();
+        }
+
+        public IEnumerable<CourseDTO> GetAttendedCourses(long participantId)
+        {
+            var attendedCoursesIds = _context.CourseParticipants
+               .Where(cp => cp.ParticipantId == participantId)
+               .Select(cp => cp.CourseId);
+            return _mapper.Map<IEnumerable<CourseDTO>>(
+                _context.Courses.Where(c => attendedCoursesIds.Contains(c.CourseId))
+                );
         }
 
         public int GetTotalCourseMembers(long courseId)
