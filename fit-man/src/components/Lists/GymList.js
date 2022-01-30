@@ -21,7 +21,9 @@ export const GymList = () => {
   const getGyms = async () => {
     dataHandler.getGyms().then((response) => {
       setGyms(response.data);
-      setOwnedGyms();
+      if (loggedIn && user) {
+        setOwnedGyms();
+      }
     });
   };
 
@@ -29,7 +31,7 @@ export const GymList = () => {
     <div id="trainers">
       <NavLink
         className={`btn-1 btn-fixed-left ${
-          loggedIn === false || "Gyms" in user === false ? "logout-display" : ""
+          !loggedIn || !("Gyms" in user) ? "logout-display" : ""
         }`}
         exact
         to="/gyms/add"
