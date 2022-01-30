@@ -322,4 +322,44 @@ export const dataHandler = {
       .catch((e) => console.error(e));
     return response.data;
   },
+
+  // Participants
+  postParticipant: async function (gymId, courseId) {
+    const response = await axios
+      .post(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/participants`,
+        "",
+        { withCredentials: true }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getAttendedCourses: async function () {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/courses/participants`, {
+        withCredentials: true,
+      })
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getGymMembers: async function (gymId) {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/participants`, {
+        withCredentials: true,
+      })
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getCourseMembers: async function (gymId, courseId) {
+    const response = await axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/participants`,
+        { withCredentials: true }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
 };
