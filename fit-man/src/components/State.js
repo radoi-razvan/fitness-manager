@@ -29,3 +29,20 @@ export const ownedGymsSetter = atom(
     }
   }
 );
+
+export const ATTENDED_COURSES = atom([]);
+
+export const attendedCoursesSetter = atom(
+  (get) => get(ATTENDED_COURSES),
+  async (get, set) => {
+    const attendedCourses = await dataHandler.getAttendedCourses();
+    if (attendedCourses.data) {
+      set(
+        ATTENDED_COURSES,
+        attendedCourses.data.map((c) => c.CourseId)
+      );
+    } else {
+      set(ATTENDED_COURSES, []);
+    }
+  }
+);
