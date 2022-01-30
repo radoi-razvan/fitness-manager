@@ -1,4 +1,5 @@
 ﻿using FitMan.Data.Repositories.Interfaces;
+using FitMan.DTOs;
 using FitMan.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace FitMan.Services
         public void Add(long courseId, long userId)
         {
             _participantRepository.Add(courseId, userId);
+        }
+
+        public IEnumerable<CourseDTO> GetAttendedCourses(long participantId)
+        {
+            return _participantRepository.GetAttendedCourses(participantId);
         }
 
         public int GetTotalCourseMembers(long courseId)
