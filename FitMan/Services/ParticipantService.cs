@@ -35,5 +35,10 @@ namespace FitMan.Services
         {
             return _participantRepository.GetTotalGymMembers(gymId);
         }
+
+        public void Remove(long courseId, long userId)
+        {
+            return _participantRepository.Remove(courseId, userId);
+        }
     }
 }
