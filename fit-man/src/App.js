@@ -4,7 +4,14 @@ import "./css/App.css";
 import { Navbar } from "./components/common/Navbar";
 import { GymList } from "./components/Lists/GymList";
 import { WelcomePage } from "./components/WelcomePage";
-import { BrowserRouter, Switch, Route, useHistory, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  useLocation,
+  useHistory,
+  withRouter,
+} from "react-router-dom";
 import { CourseList } from "./components/Lists/CourseList";
 import { ExerciseList } from "./components/Lists/ExerciseList";
 import { TrainerList } from "./components/Lists/TrainerList";
@@ -14,15 +21,13 @@ import { CourseForm } from "./components/Forms/CourseForm";
 import { ExerciseForm } from "./components/Forms/ExerciseForm";
 import { TrainerForm } from "./components/Forms/TrainerForm";
 
-function App() {
+const App = () => {
   const [logData, setLogData] = useState({
     email: "",
     password: "",
   });
 
-  // const history = useHistory();
-
-  //const location = useLocation();
+  const history = useHistory();
 
   const handle = (e) => {
     const newData = { ...logData };
@@ -37,9 +42,7 @@ function App() {
 
     const response = await dataHandler.postLogin(logData);
     if (typeof response !== "undefined" && response.status === 200) {
-      window.location.reload(false);
-      // history.go(0);
-      // history.push('/');
+      window.location.reload();
     } else {
       warningIcon.classList.remove("forms-warnings-hide");
       warningText.classList.remove("forms-warnings-hide");
@@ -92,6 +95,7 @@ function App() {
               <Route path="/gyms">
                 <GymList />
               </Route>
+
               <Route path="/register">
                 <RegistrationForm />
               </Route>
@@ -186,6 +190,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;
