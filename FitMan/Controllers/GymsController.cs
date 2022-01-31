@@ -81,6 +81,10 @@ namespace FitMan.Controllers
         {
 
             var jwt = Request.Cookies["jwt"];
+            if (jwt == null)
+            {
+                return NoContent();
+            }
             var token = _jwtService.Verify(jwt);
             int userId = int.Parse(token.Issuer);
 
