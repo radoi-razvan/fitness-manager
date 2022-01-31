@@ -335,6 +335,18 @@ export const dataHandler = {
     return response;
   },
 
+  // Participants
+  deleteParticipant: async function (gymId, courseId) {
+    const response = await axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/participants`,
+        "",
+        { withCredentials: true }
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
   getAttendedCourses: async function () {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/gyms/courses/participants`, {
