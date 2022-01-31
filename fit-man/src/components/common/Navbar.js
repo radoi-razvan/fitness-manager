@@ -1,24 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
-import { useHistory } from "react-router-dom/";
-import { useLocation } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom/";
 import { userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
-import { useEffect } from "react";
 
 export const Navbar = () => {
   const [user, setUser] = useAtom(userSetter);
   const [loggedIn, setloggedIn] = useAtom(loggedInSetter);
-  
-  useEffect(() => {
-    getUser();
-  }, []);
 
-  const getUser = async () => {
+  useEffect(() => {
     setloggedIn();
-    loggedIn && setUser();
-  };
+    setUser();
+  }, []);
 
   const history = useHistory();
 
@@ -27,8 +20,6 @@ export const Navbar = () => {
   const logoutEvent = async (e) => {
     e.preventDefault();
     const response = await dataHandler.postLogout();
-    setUser();
-    setloggedIn();
 
     typeof response !== "undefined" && response.status === 200
       ? history.go(0)

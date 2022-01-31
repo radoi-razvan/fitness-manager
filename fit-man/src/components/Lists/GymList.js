@@ -1,29 +1,18 @@
 import React from "react";
 import { Gym } from "../Gym";
-import { ownedGymsSetter, STATE, userSetter, loggedInSetter } from "../State";
+import { STATE, userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { dataHandler } from "../../DataManager/DataHandler";
 import { NavLink } from "react-router-dom";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
-  const [user, ] = useAtom(userSetter);
-  const [loggedIn, ] = useAtom(loggedInSetter);
-  const [, setOwnedGyms] = useAtom(ownedGymsSetter);
+  const [user] = useAtom(userSetter);
+  const [loggedIn] = useAtom(loggedInSetter);
 
   useEffect(() => {
-    getGyms();
+    setGyms();
   }, []);
-
-  const getGyms = async () => {
-    dataHandler.getGyms().then((response) => {
-      setGyms(response.data);
-      if (loggedIn && user) {
-        setOwnedGyms();
-      }
-    });
-  };
 
   return (
     <div id="trainers">
@@ -34,7 +23,7 @@ export const GymList = () => {
         exact
         to="/gyms/add"
       >
-        Add Gym
+        Add <em>Gym</em>
       </NavLink>
       {gyms.map((gym, index) => (
         <Gym

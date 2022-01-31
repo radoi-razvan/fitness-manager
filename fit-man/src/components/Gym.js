@@ -1,29 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { ownedGymsSetter, userSetter, loggedInSetter } from "./State";
-import { useAtom } from "jotai";
+import {
+  ownedGymsSetter,
+  userSetter,
+  loggedInSetter,
+  attendedCoursesSetter,
+} from "./State";
+import { useUpdateAtom, useAtomValue } from "jotai/utils";
+import { STATE } from "./State.js";
 
 export const Gym = ({ gymId, name, address, description }) => {
-  const [user, ] = useAtom(userSetter);
-  const [loggedIn, ] = useAtom(loggedInSetter);
-  const [ownedGyms, setOwnedGyms] = useAtom(ownedGymsSetter);
+  const user = useAtomValue(userSetter);
+  const loggedIn = useAtomValue(loggedInSetter);
+  const ownedGyms = useAtomValue(ownedGymsSetter);
+  const attendedCourses = useAtomValue(attendedCoursesSetter);
+  const setGyms = useUpdateAtom(STATE.GYMS);
 
-  const history = useHistory();
-
-  const location = useLocation();
-
-  const deleteEvent = async (e) => {
+  const deleteEvent = (e) => {
     e.preventDefault();
-    setOwnedGyms();
-    const response = await dataHandler.deleteGym(gymId);
-
-    typeof response !== "undefined" && response.status === 204
-      ? history.go(0)
-      : history.push(location);
+    dataHandler.deleteGym(gymId).then(() => setGyms());
   };
+
+
 
   return (
     <div className="card-item">
@@ -42,9 +41,7 @@ export const Gym = ({ gymId, name, address, description }) => {
                 }`}
                 exact
                 to={`/gyms/${gymId}/edit`}
-              >
-                <i />
-              </NavLink>
+              />
               <i
                 className={`delete-icon bi bi-trash-fill ms-3 btn-icon ${
                   !loggedIn || !("Gyms" in user) ? "logout-display" : ""
@@ -74,6 +71,7 @@ export const Gym = ({ gymId, name, address, description }) => {
             </a>
           </li>
         </ul>
+        
       </div>
     </div>
   );
