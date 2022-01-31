@@ -35,7 +35,17 @@ export const Navbar = () => {
               <NavLink exact to="/" className="logo">
                 FITNESS<em>MANAGER</em>
               </NavLink>
+
               <ul className="nav">
+                <li>
+                  <input
+                    className="search-input"
+                    name="search"
+                    type="text"
+                    placeholder="Look for gyms in your city"
+                    hidden
+                  />
+                </li>
                 <li>
                   <NavLink exact to="/gyms">
                     Gyms
