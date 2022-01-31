@@ -57,6 +57,13 @@ namespace FitMan.Data.Repositories
                                      .Count();
         }
 
+        public void Remove(long courseId, long userId)
+        {
+            var courseParticipant = _context.CourseParticipants
+                .Where( cp => cp.CourseId == courseId && cp.ParticipantId == userId).First();
 
+            _context.CourseParticipants.Remove(courseParticipant);
+            _context.SaveChanges();
+        }
     }
 }
