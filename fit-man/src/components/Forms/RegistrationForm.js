@@ -24,14 +24,12 @@ export const RegistrationForm = () => {
     const warningIcon = document.getElementById("warningIcon");
     const warningText = document.getElementById("warningText");
 
-    if (regData.password === regData.repeatedPassword)
-    {
+    if (regData.password === regData.repeatedPassword) {
       const response = await dataHandler.postRegister(regData);
-      typeof response !== "undefined" && response.status === 201 
-      ? history.push("/")
-      : history.go(0);
-    } 
-    else {
+      typeof response !== "undefined" && response.status === 201
+        ? history.push("/")
+        : history.go(0);
+    } else {
       warningIcon.classList.remove("forms-warnings-hide");
       warningText.classList.remove("forms-warnings-hide");
     }
@@ -42,7 +40,7 @@ export const RegistrationForm = () => {
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
-            <div className="trainer-item backdrop-item text-black">
+            <div className="trainer-item backdrop-item text-black card mt-5 pt-5">
               <div className="card-body  p-md-5" id="register-body">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -138,9 +136,17 @@ export const RegistrationForm = () => {
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="bi bi-exclamation-triangle-fill fa-lg me-3 fa-fw label-icons-signin text-danger forms-warnings-hide" id="warningIcon"></i>
-                        <div className="form-outline flex-fill mb-0 forms-warnings-hide" id="warningText">
-                          <span className="form-control text-danger">Passwords don't match!</span>
+                        <i
+                          className="bi bi-exclamation-triangle-fill fa-lg me-3 fa-fw label-icons-signin text-danger forms-warnings-hide"
+                          id="warningIcon"
+                        ></i>
+                        <div
+                          className="form-outline flex-fill mb-0 forms-warnings-hide"
+                          id="warningText"
+                        >
+                          <span className="form-control text-danger">
+                            Passwords don't match!
+                          </span>
                         </div>
                       </div>
 
