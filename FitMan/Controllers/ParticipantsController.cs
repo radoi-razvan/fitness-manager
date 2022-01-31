@@ -50,12 +50,27 @@ namespace FitMan.Controllers
             return NoContent();
         }
 
+        //// DELETE: gyms/5/courses/5/participants
+        [HttpDelete]
+        [Route("gyms/{gymId}/courses/{courseId}/participants")]
+        public ActionResult DeleteParticipant(long courseId)
+        {
+            var jwt = Request.Cookies["jwt"];
+            var token = _jwtService.Verify(jwt);
+            int userId = int.Parse(token.Issuer);
+
+            _participantService.Add(courseId, userId);
+
+            return NoContent();
+        }
+
         // GET: gyms/courses/participants
         [HttpGet]
         [Route("gyms/courses/participants")]
         public ActionResult GetAttendedCourses()
         {
             var jwt = Request.Cookies["jwt"];
+            if  (jwt == null) return NoContent();
             var token = _jwtService.Verify(jwt);
             int userId = int.Parse(token.Issuer);
 
