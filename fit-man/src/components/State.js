@@ -2,15 +2,19 @@ import { atom } from "jotai";
 import { dataHandler } from "../DataManager/DataHandler";
 
 export const STATE = {
-  GYMS: atom([]),
+  GYM_LIST: atom([]),
+  GYMS: atom(
+    (get) => get(STATE.GYM_LIST),
+    async (get, set) => {
+      const gyms = await dataHandler.getGyms();
+      set(STATE.GYM_LIST, gyms.data);
+      set(ownedGymsSetter);
+      set(attendedCoursesSetter);
+    }
+  ),
   COURSES: atom([]),
   EXERCISES: atom([]),
   TRAINERS: atom([]),
-  GYM_REVIEWS: atom([]),
-  COURSE_REVIEWS: atom([]),
-  TRAINER_REVIEWS: atom([]),
-  // USER: atom({}),
-  // LOGGED_IN: atom(false),
 };
 
 export const OWNED_GYMS = atom([]);
@@ -53,10 +57,8 @@ export const userSetter = atom(
   (get) => get(USER),
   async (get, set) => {
     const user = await dataHandler.getUser();
-    //console.log(get(user));
     if (user) {
       set(USER, user);
-      //console.log(get(user));
     } else {
       set(USER, {});
     }
@@ -69,10 +71,8 @@ export const loggedInSetter = atom(
   (get) => get(LOGGED_IN),
   async (get, set) => {
     const loggedIn = await dataHandler.checkIfLoggedIn();
-    //console.log(get(loggedIn));
     if (loggedIn) {
       set(LOGGED_IN, loggedIn);
-      //console.log(get(loggedIn));
     } else {
       set(LOGGED_IN, false);
     }
