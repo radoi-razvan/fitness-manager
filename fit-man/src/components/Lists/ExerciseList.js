@@ -1,6 +1,6 @@
 import React from "react";
 import { Exercise } from "../Exercise";
-import { STATE, ownedGymsSetter} from "../State";
+import { STATE, ownedGymsSetter, userSetter, loggedInSetter} from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
@@ -9,8 +9,8 @@ import { NavLink } from "react-router-dom";
 
 export const ExerciseList = () => {
   const [exercises, setExercises] = useAtom(STATE.EXERCISES);
-  const [loggedIn] = useAtom(STATE.LOGGED_IN);
-  const [user] = useAtom(STATE.USER);
+  const [user, ] = useAtom(userSetter);
+  const [loggedIn, ] = useAtom(loggedInSetter);
   const [ownedGyms, ] = useAtom(ownedGymsSetter);
   let params = useParams();
 
@@ -30,7 +30,7 @@ export const ExerciseList = () => {
     <div id="trainers">
       <NavLink
         className={`btn-1 btn-fixed-left ${
-          loggedIn === false || "Gyms" in user === false || !ownedGyms.includes(parseInt(params.gymId)) ? "logout-display" : ""
+          !loggedIn || !("Gyms" in user) || !ownedGyms.includes(parseInt(params.gymId)) ? "logout-display" : ""
         }`}
         exact
         to={`/gyms/${params.gymId}/courses/${params.courseId}/exercises/add`}

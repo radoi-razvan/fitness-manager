@@ -9,8 +9,8 @@ export const STATE = {
   GYM_REVIEWS: atom([]),
   COURSE_REVIEWS: atom([]),
   TRAINER_REVIEWS: atom([]),
-  USER: atom({}),
-  LOGGED_IN: atom(false),
+  // USER: atom({}),
+  // LOGGED_IN: atom(false),
 };
 
 export const OWNED_GYMS = atom([]);
@@ -43,6 +43,38 @@ export const attendedCoursesSetter = atom(
       );
     } else {
       set(ATTENDED_COURSES, []);
+    }
+  }
+);
+
+export const USER = atom({});
+
+export const userSetter = atom(
+  (get) => get(USER),
+  async (get, set) => {
+    const user = await dataHandler.getUser();
+    //console.log(get(user));
+    if (user) {
+      set(USER, user);
+      //console.log(get(user));
+    } else {
+      set(USER, {});
+    }
+  }
+);
+
+export const LOGGED_IN = atom(false);
+
+export const loggedInSetter = atom(
+  (get) => get(LOGGED_IN),
+  async (get, set) => {
+    const loggedIn = await dataHandler.checkIfLoggedIn();
+    //console.log(get(loggedIn));
+    if (loggedIn) {
+      set(LOGGED_IN, loggedIn);
+      //console.log(get(loggedIn));
+    } else {
+      set(LOGGED_IN, false);
     }
   }
 );

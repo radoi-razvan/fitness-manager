@@ -1,17 +1,15 @@
 import React from "react";
 import { Gym } from "../Gym";
-import { ownedGymsSetter, STATE } from "../State";
+import { ownedGymsSetter, STATE, userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
 import { NavLink } from "react-router-dom";
-import { atom } from "jotai";
 
 export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
-  const [loggedIn] = useAtom(STATE.LOGGED_IN);
-  const [user] = useAtom(STATE.USER);
-
+  const [user, ] = useAtom(userSetter);
+  const [loggedIn, ] = useAtom(loggedInSetter);
   const [, setOwnedGyms] = useAtom(ownedGymsSetter);
 
   useEffect(() => {

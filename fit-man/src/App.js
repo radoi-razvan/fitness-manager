@@ -4,7 +4,7 @@ import "./css/App.css";
 import { Navbar } from "./components/common/Navbar";
 import { GymList } from "./components/Lists/GymList";
 import { WelcomePage } from "./components/WelcomePage";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { CourseList } from "./components/Lists/CourseList";
 import { ExerciseList } from "./components/Lists/ExerciseList";
 import { TrainerList } from "./components/Lists/TrainerList";
@@ -13,13 +13,16 @@ import { GymForm } from "./components/Forms/GymForm";
 import { CourseForm } from "./components/Forms/CourseForm";
 import { ExerciseForm } from "./components/Forms/ExerciseForm";
 import { TrainerForm } from "./components/Forms/TrainerForm";
-import { Provider } from "jotai";
 
 function App() {
   const [logData, setLogData] = useState({
     email: "",
     password: "",
   });
+
+  // const history = useHistory();
+
+  //const location = useLocation();
 
   const handle = (e) => {
     const newData = { ...logData };
@@ -35,6 +38,8 @@ function App() {
     const response = await dataHandler.postLogin(logData);
     if (typeof response !== "undefined" && response.status === 200) {
       window.location.reload(false);
+      // history.go(0);
+      // history.push('/');
     } else {
       warningIcon.classList.remove("forms-warnings-hide");
       warningText.classList.remove("forms-warnings-hide");

@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { STATE } from "./State";
+import { userSetter, loggedInSetter } from "./State";
 import { useAtom } from "jotai";
 
 export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth, owned }) => {
-  const [loggedIn] = useAtom(STATE.LOGGED_IN);
-  const [user] = useAtom(STATE.USER);
+  const [user, ] = useAtom(userSetter);
+  const [loggedIn, ] = useAtom(loggedInSetter);
 
   let params = useParams();
 

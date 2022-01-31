@@ -3,13 +3,12 @@ import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { STATE } from "./State";
+import { ownedGymsSetter, userSetter, loggedInSetter } from "./State";
 import { useAtom } from "jotai";
-import { ownedGymsSetter } from "./State";
 
 export const Gym = ({ gymId, name, address, description }) => {
-  const [loggedIn] = useAtom(STATE.LOGGED_IN);
-  const [user] = useAtom(STATE.USER);
+  const [user, ] = useAtom(userSetter);
+  const [loggedIn, ] = useAtom(loggedInSetter);
   const [ownedGyms, setOwnedGyms] = useAtom(ownedGymsSetter);
 
   const history = useHistory();

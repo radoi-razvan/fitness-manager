@@ -3,23 +3,21 @@ import { NavLink } from "react-router-dom";
 import { dataHandler } from "../../DataManager/DataHandler";
 import { useHistory } from "react-router-dom/";
 import { useLocation } from "react-router-dom";
-import { STATE } from "../State";
+import { userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 
 export const Navbar = () => {
-  const [user, setUser] = useAtom(STATE.USER);
-  const [loggedIn, setloggedIn] = useAtom(STATE.LOGGED_IN);
-
+  const [user, setUser] = useAtom(userSetter);
+  const [loggedIn, setloggedIn] = useAtom(loggedInSetter);
+  
   useEffect(() => {
     getUser();
   }, []);
 
   const getUser = async () => {
-    const userResponse = await dataHandler.getUser();
-    const loggedResponse = await dataHandler.checkIfLoggedIn();
-    setUser(userResponse);
-    loggedResponse && setloggedIn(true);
+    setloggedIn();
+    loggedIn && setUser();
   };
 
   const history = useHistory();
@@ -29,8 +27,8 @@ export const Navbar = () => {
   const logoutEvent = async (e) => {
     e.preventDefault();
     const response = await dataHandler.postLogout();
-    setUser({});
-    setloggedIn(false);
+    setUser();
+    setloggedIn();
 
     typeof response !== "undefined" && response.status === 200
       ? history.go(0)

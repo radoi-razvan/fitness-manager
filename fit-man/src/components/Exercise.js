@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { STATE } from "./State";
+import { userSetter, loggedInSetter } from "./State";
 import { useAtom } from "jotai";
 
 export const Exercise = ({ exerciseId, name, description, owned }) => {
-  const [loggedIn] = useAtom(STATE.LOGGED_IN);
-  const [user] = useAtom(STATE.USER);
+  const [user, ] = useAtom(userSetter);
+  const [loggedIn, ] = useAtom(loggedInSetter);
 
   let params = useParams();
 
@@ -37,7 +37,7 @@ export const Exercise = ({ exerciseId, name, description, owned }) => {
           {name}
           <NavLink
             className={`bi bi-pencil-square ms-3 btn-icon ${
-              loggedIn === false || "Gyms" in user === false || owned === false
+              !loggedIn || !("Gyms" in user) || !owned 
                 ? "logout-display"
                 : ""
             }`}
@@ -46,7 +46,7 @@ export const Exercise = ({ exerciseId, name, description, owned }) => {
           />
           <i
             className={`delete-icon bi bi-trash-fill ms-3 btn-icon ${
-              loggedIn === false || "Gyms" in user === false || owned === false
+              !loggedIn || !("Gyms" in user) || !owned
                 ? "logout-display"
                 : ""
             }`}
