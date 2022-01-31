@@ -59,11 +59,11 @@ namespace FitMan.Controllers
             var token = _jwtService.Verify(jwt);
             int userId = int.Parse(token.Issuer);
 
-            _participantService.Add(courseId, userId);
+            _participantService.Remove(courseId, userId);
 
             return NoContent();
         }
-
+    
         // GET: gyms/courses/participants
         [HttpGet]
         [Route("gyms/courses/participants")]
