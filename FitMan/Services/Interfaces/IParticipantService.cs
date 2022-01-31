@@ -12,5 +12,6 @@ namespace FitMan.Services.Interfaces
         public int GetTotalCourseMembers(long courseId);
         public void Add(long courseId, long userId);
         public IEnumerable<CourseDTO> GetAttendedCourses(long participantId);
+        public void Remove(long courseId, long userId);
     }
 }
