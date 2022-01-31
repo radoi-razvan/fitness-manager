@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useAtom } from "jotai";
 import { STATE } from "../State";
-import { ownedGymsSetter } from "../State";
 
 export const GymForm = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +12,7 @@ export const GymForm = () => {
     address: "",
     description: "",
   });
-  const [ownedGyms, setOwnedGyms] = useAtom(ownedGymsSetter);
+  const [, setGyms] = useAtom(STATE.GYMS);
 
   const history = useHistory();
 
@@ -30,20 +29,15 @@ export const GymForm = () => {
   const submit = async (e) => {
     e.preventDefault();
     if (location.pathname === "/gyms/add") {
-      console.log(ownedGyms);
-      dataHandler.postGym(formData).then((response) => {
-        console.log(response);
-        setOwnedGyms([...ownedGyms, response.data.GymId]);
-        typeof response !== "undefined" &&
-        (response.status === 201 || response.status === 204)
-          ? history.push("/gyms")
-          : history.push(location);
-      });
-
-      console.log(ownedGyms);
+      const response = await dataHandler.postGym(formData);
+      setGyms();
+      typeof response !== "undefined" &&
+      (response.status === 201 || response.status === 204)
+        ? history.push("/gyms")
+        : history.push(location);
     } else {
       const response = await dataHandler.putGym(params.gymId, formData);
-      setOwnedGyms([...new Set([...ownedGyms, params.gymId])]);
+      setGyms();
       typeof response !== "undefined" &&
       (response.status === 201 || response.status === 204)
         ? history.push("/gyms")
@@ -56,7 +50,7 @@ export const GymForm = () => {
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
-            <div className="trainer-item backdrop-item text-black">
+            <div className="trainer-item backdrop-item text-black card mt-5 pt-5">
               <div className="card-body  p-md-5" id="register-body">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
