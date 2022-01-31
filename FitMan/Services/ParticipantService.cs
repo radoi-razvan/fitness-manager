@@ -38,7 +38,7 @@ namespace FitMan.Services
 
         public void Remove(long courseId, long userId)
         {
-            return _participantRepository.Remove(courseId, userId);
+            _participantRepository.Remove(courseId, userId);
         }
     }
 }

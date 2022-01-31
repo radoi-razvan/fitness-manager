@@ -4,9 +4,14 @@ import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { userSetter, loggedInSetter, attendedCoursesSetter } from "./State";
+import {
+  userSetter,
+  loggedInSetter,
+  attendedCoursesSetter,
+  STATE,
+} from "./State";
 import { useAtom } from "jotai";
-import { useAtomValue } from "jotai/utils";
+import { useAtomValue, useUpdateAtom } from "jotai/utils";
 
 export const Course = ({
   name,
@@ -19,30 +24,29 @@ export const Course = ({
   const user = useAtomValue(userSetter);
   const loggedIn = useAtomValue(loggedInSetter);
   const attendedCourses = useAtomValue(attendedCoursesSetter);
+  const setCourses = useUpdateAtom(STATE.COURSES);
 
   let params = useParams();
 
-  const history = useHistory();
-
-  const location = useLocation();
-
   const deleteEvent = async (e) => {
     e.preventDefault();
-    const response = await dataHandler.deleteCourse(params.gymId, courseId);
-
-    typeof response !== "undefined" && response.status === 204
-      ? history.go(0)
-      : history.push(location);
+    dataHandler
+      .deleteCourse(params.gymId, courseId)
+      .then(() => setCourses(params.gymId));
   };
 
   const joinCourse = (e) => {
     e.preventDefault();
-    dataHandler.postParticipant(params.gymId, courseId);
+    dataHandler
+      .postParticipant(params.gymId, courseId)
+      .then(() => setCourses(params.gymId));
   };
 
   const leaveCourse = (e) => {
     e.preventDefault();
-    dataHandler.deleteParticipant(params.gymId, courseId);
+    dataHandler
+      .deleteParticipant(params.gymId, courseId)
+      .then(() => setCourses(params.gymId));
   };
 
   return (

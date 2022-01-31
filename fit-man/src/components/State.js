@@ -9,10 +9,18 @@ export const STATE = {
       const gyms = await dataHandler.getGyms();
       set(STATE.GYM_LIST, gyms.data);
       set(ownedGymsSetter);
+    }
+  ),
+  COURSE_LIST: atom([]),
+  COURSES: atom(
+    (get) => get(STATE.COURSE_LIST),
+    async (get, set, value) => {
+      const courses = await dataHandler.getCourses(value);
+      console.log(courses);
+      set(STATE.COURSE_LIST, courses.data);
       set(attendedCoursesSetter);
     }
   ),
-  COURSES: atom([]),
   EXERCISES: atom([]),
   TRAINERS: atom([]),
 };

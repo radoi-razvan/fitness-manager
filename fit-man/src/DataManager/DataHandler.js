@@ -340,7 +340,6 @@ export const dataHandler = {
     const response = await axios
       .delete(
         `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/participants`,
-        "",
         { withCredentials: true }
       )
       .catch((e) => console.error(e));

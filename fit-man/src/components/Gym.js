@@ -14,15 +14,12 @@ export const Gym = ({ gymId, name, address, description }) => {
   const user = useAtomValue(userSetter);
   const loggedIn = useAtomValue(loggedInSetter);
   const ownedGyms = useAtomValue(ownedGymsSetter);
-  const attendedCourses = useAtomValue(attendedCoursesSetter);
   const setGyms = useUpdateAtom(STATE.GYMS);
 
   const deleteEvent = (e) => {
     e.preventDefault();
     dataHandler.deleteGym(gymId).then(() => setGyms());
   };
-
-
 
   return (
     <div className="card-item">
@@ -71,7 +68,6 @@ export const Gym = ({ gymId, name, address, description }) => {
             </a>
           </li>
         </ul>
-        
       </div>
     </div>
   );
