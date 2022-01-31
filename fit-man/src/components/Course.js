@@ -2,15 +2,12 @@ import React from "react";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {
   userSetter,
   loggedInSetter,
   attendedCoursesSetter,
   STATE,
 } from "./State";
-import { useAtom } from "jotai";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
 
 export const Course = ({
@@ -28,7 +25,7 @@ export const Course = ({
 
   let params = useParams();
 
-  const deleteEvent = async (e) => {
+  const deleteEvent = (e) => {
     e.preventDefault();
     dataHandler
       .deleteCourse(params.gymId, courseId)

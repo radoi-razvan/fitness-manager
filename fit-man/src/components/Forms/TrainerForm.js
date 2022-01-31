@@ -3,6 +3,8 @@ import { dataHandler } from "../../DataManager/DataHandler";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useUpdateAtom } from "jotai/utils";
+import { STATE } from "../State";
 
 export const TrainerForm = () => {
   const [formData, setFormData] = useState({
@@ -28,17 +30,27 @@ export const TrainerForm = () => {
     e.target.type = "date";
   };
 
+  const setTrainers = useUpdateAtom(STATE.TRAINERS);
+
   const submit = async (e) => {
     e.preventDefault();
-    const response =
-      splitPath[splitPath.length - 1] === "add"
-        ? await dataHandler.postTrainer(params.gymId, params.courseId, formData)
-        : await dataHandler.putTrainer(
-            params.gymId,
-            params.courseId,
-            params.trainerId,
-            formData
-          );
+    let response = null;
+    if (splitPath[splitPath.length - 1] === "add") {
+      response = await dataHandler.postTrainer(
+        params.gymId,
+        params.courseId,
+        formData
+      );
+      setTrainers(params);
+    } else {
+      response = await dataHandler.putTrainer(
+        params.gymId,
+        params.courseId,
+        params.trainerId,
+        formData
+      );
+      setTrainers(params);
+    }
 
     typeof response !== "undefined" &&
     (response.status === 201 || response.status === 204)
@@ -47,14 +59,6 @@ export const TrainerForm = () => {
         )
       : history.push(location);
   };
-
-  //   const fileUploadHandler = (e) => {
-  //     console.log(e.target.files[0]);
-  //     if(formData.name > 0) {
-  //         e.target.files[0].name = formData.name;
-  //     }
-  //     console.log(e.target.files[0].name);
-  //   };
 
   return (
     <section className="vh-90">

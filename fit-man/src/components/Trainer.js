@@ -2,32 +2,27 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { dataHandler } from "../DataManager/DataHandler";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { userSetter, loggedInSetter } from "./State";
-import { useAtom } from "jotai";
+import { userSetter, loggedInSetter, STATE } from "./State";
+import { useAtomValue, useUpdateAtom } from "jotai/utils";
 
-export const Trainer = ({ trainerId, name, experienceYears, dateOfBirth, owned }) => {
-  const [user, ] = useAtom(userSetter);
-  const [loggedIn, ] = useAtom(loggedInSetter);
+export const Trainer = ({
+  trainerId,
+  name,
+  experienceYears,
+  dateOfBirth,
+  owned,
+}) => {
+  const user = useAtomValue(userSetter);
+  const loggedIn = useAtomValue(loggedInSetter);
+  const setTrainers = useUpdateAtom(STATE.TRAINERS);
 
   let params = useParams();
 
-  const history = useHistory();
-
-  const location = useLocation();
-
-  const deleteEvent = async (e) => {
+  const deleteEvent = (e) => {
     e.preventDefault();
-    const response = await dataHandler.deleteTrainer(
-      params.gymId,
-      params.courseId,
-      trainerId
-    );
-
-    typeof response !== "undefined" && response.status === 204
-      ? history.go(0)
-      : history.push(location);
+    dataHandler
+      .deleteTrainer(params.gymId, params.courseId, trainerId)
+      .then(() => setTrainers(params));
   };
 
   return (

@@ -1,12 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
-import {
-  ownedGymsSetter,
-  userSetter,
-  loggedInSetter,
-  attendedCoursesSetter,
-} from "./State";
+import { ownedGymsSetter, userSetter, loggedInSetter } from "./State";
 import { useUpdateAtom, useAtomValue } from "jotai/utils";
 import { STATE } from "./State.js";
 

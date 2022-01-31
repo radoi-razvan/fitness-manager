@@ -32,7 +32,7 @@ export const CourseList = () => {
         exact
         to={`/gyms/${params.gymId}/courses/add`}
       >
-        Add Course
+        Add <em>Course</em>
       </NavLink>
       {courses.map((course, index) => (
         <Course

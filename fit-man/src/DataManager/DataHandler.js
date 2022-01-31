@@ -294,7 +294,6 @@ export const dataHandler = {
         { withCredentials: true }
       )
       .catch((e) => console.error(e));
-    console.log(logData);
     return response;
   },
 

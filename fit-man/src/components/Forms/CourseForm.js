@@ -3,6 +3,8 @@ import { dataHandler } from "../../DataManager/DataHandler";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useUpdateAtom } from "jotai/utils";
+import { STATE } from "../State";
 
 export const CourseForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +18,7 @@ export const CourseForm = () => {
 
   const location = useLocation();
   const splitPath = location.pathname.split("/");
-
+  const setCourses = useUpdateAtom(STATE.COURSES);
   let params = useParams();
 
   const handle = (e) => {
@@ -27,24 +29,24 @@ export const CourseForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const response =
-      splitPath[splitPath.length - 1] === "add"
-        ? await dataHandler.postCourse(params.gymId, formData)
-        : await dataHandler.putCourse(params.gymId, params.courseId, formData);
+    let response = null;
+    if (splitPath[splitPath.length - 1] === "add") {
+      response = await dataHandler.postCourse(params.gymId, formData);
+      setCourses(params.gymId);
+    } else {
+      response = await dataHandler.putCourse(
+        params.gymId,
+        params.courseId,
+        formData
+      );
+      setCourses(params.gymId);
+    }
 
     typeof response !== "undefined" &&
     (response.status === 201 || response.status === 204)
       ? history.push(`/gyms/${params.gymId}/courses`)
       : history.push(location);
   };
-
-  //   const fileUploadHandler = (e) => {
-  //     console.log(e.target.files[0]);
-  //     if(formData.name > 0) {
-  //         e.target.files[0].name = formData.name;
-  //     }
-  //     console.log(e.target.files[0].name);
-  //   };
 
   return (
     <section className="vh-90">

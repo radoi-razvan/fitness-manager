@@ -1,16 +1,9 @@
 import React from "react";
 import { Trainer } from "../Trainer";
-import {
-  STATE,
-  ownedGymsSetter,
-  userSetter,
-  loggedInSetter,
-  attendedCoursesSetter,
-} from "../State";
+import { STATE, ownedGymsSetter, userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
 import { useAtomValue } from "jotai/utils";
 import { useEffect } from "react";
-import { dataHandler } from "../../DataManager/DataHandler";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 
@@ -20,19 +13,10 @@ export const TrainerList = () => {
   const loggedIn = useAtomValue(loggedInSetter);
   let params = useParams();
   const ownedGyms = useAtomValue(ownedGymsSetter);
-  const attendedCourses = useAtomValue(attendedCoursesSetter);
 
   useEffect(() => {
-    getTrainers();
+    setTrainers(params);
   }, []);
-
-  const getTrainers = async () => {
-    const response = await dataHandler.getTrainers(
-      params.gymId,
-      params.courseId
-    );
-    setTrainers(response.data);
-  };
 
   return (
     <div id="trainers">
@@ -47,7 +31,7 @@ export const TrainerList = () => {
         exact
         to={`/gyms/${params.gymId}/courses/${params.courseId}/trainers/add`}
       >
-        Add Trainer
+        Add <em>Trainer</em>
       </NavLink>
       {trainers.map((trainer, index) => (
         <Trainer

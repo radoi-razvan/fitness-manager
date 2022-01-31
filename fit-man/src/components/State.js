@@ -21,8 +21,30 @@ export const STATE = {
       set(attendedCoursesSetter);
     }
   ),
-  EXERCISES: atom([]),
-  TRAINERS: atom([]),
+  EXERCISE_LIST: atom([]),
+  EXERCISES: atom(
+    (get) => get(STATE.EXERCISE_LIST),
+    async (get, set, value) => {
+      console.log(value);
+      const exercises = await dataHandler.getExercises(
+        parseInt(value.gymId),
+        parseInt(value.courseId)
+      );
+      set(STATE.EXERCISE_LIST, exercises.data);
+    }
+  ),
+  TRAINER_LIST: atom([]),
+  TRAINERS: atom(
+    (get) => get(STATE.TRAINER_LIST),
+    async (get, set, value) => {
+      console.log(value);
+      const trainers = await dataHandler.getTrainers(
+        parseInt(value.gymId),
+        parseInt(value.courseId)
+      );
+      set(STATE.TRAINER_LIST, trainers.data);
+    }
+  ),
 };
 
 export const OWNED_GYMS = atom([]);

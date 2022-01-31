@@ -19,20 +19,11 @@ export const ExerciseList = () => {
   const user = useAtomValue(userSetter);
   const loggedIn = useAtomValue(loggedInSetter);
   const ownedGyms = useAtomValue(ownedGymsSetter);
-  const attendedCourses = useAtomValue(attendedCoursesSetter);
   let params = useParams();
 
   useEffect(() => {
-    getExercises();
+    setExercises(params);
   }, []);
-
-  const getExercises = async () => {
-    const response = await dataHandler.getExercises(
-      params.gymId,
-      params.courseId
-    );
-    setExercises(response.data);
-  };
 
   return (
     <div id="trainers">
@@ -47,7 +38,7 @@ export const ExerciseList = () => {
         exact
         to={`/gyms/${params.gymId}/courses/${params.courseId}/exercises/add`}
       >
-        Add Exercise
+        Add <em>Exercise</em>
       </NavLink>
       {exercises.map((exercise, index) => (
         <Exercise

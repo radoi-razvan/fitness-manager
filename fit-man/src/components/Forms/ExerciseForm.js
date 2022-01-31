@@ -3,12 +3,16 @@ import { dataHandler } from "../../DataManager/DataHandler";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useUpdateAtom } from "jotai/utils";
+import { STATE } from "../State";
 
 export const ExerciseForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
   });
+
+  const setExercises = useUpdateAtom(STATE.EXERCISES);
 
   const history = useHistory();
 
@@ -25,19 +29,23 @@ export const ExerciseForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const response =
-      splitPath[splitPath.length - 1] === "add"
-        ? await dataHandler.postExercise(
-            params.gymId,
-            params.courseId,
-            formData
-          )
-        : await dataHandler.putExercise(
-            params.gymId,
-            params.courseId,
-            params.exerciseId,
-            formData
-          );
+    let response = null;
+    if (splitPath[splitPath.length - 1] === "add") {
+      response = await dataHandler.postExercise(
+        params.gymId,
+        params.courseId,
+        formData
+      );
+      setExercises(params);
+    } else {
+      response = await dataHandler.putExercise(
+        params.gymId,
+        params.courseId,
+        params.exerciseId,
+        formData
+      );
+      setExercises(params);
+    }
 
     typeof response !== "undefined" &&
     (response.status === 201 || response.status === 204)
@@ -46,14 +54,6 @@ export const ExerciseForm = () => {
         )
       : history.push(location);
   };
-
-  //   const fileUploadHandler = (e) => {
-  //     console.log(e.target.files[0]);
-  //     if(formData.name > 0) {
-  //         e.target.files[0].name = formData.name;
-  //     }
-  //     console.log(e.target.files[0].name);
-  //   };
 
   return (
     <section className="vh-90">
