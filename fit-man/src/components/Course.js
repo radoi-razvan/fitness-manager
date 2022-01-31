@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { userSetter, loggedInSetter } from "./State";
+import { userSetter, loggedInSetter, attendedCoursesSetter } from "./State";
 import { useAtom } from "jotai";
+import { useAtomValue } from "jotai/utils";
 
 export const Course = ({
   name,
@@ -15,8 +16,9 @@ export const Course = ({
   courseId,
   owned,
 }) => {
-  const [user, ] = useAtom(userSetter);
-  const [loggedIn, ] = useAtom(loggedInSetter);
+  const user = useAtomValue(userSetter);
+  const loggedIn = useAtomValue(loggedInSetter);
+  const attendedCourses = useAtomValue(attendedCoursesSetter);
 
   let params = useParams();
 
@@ -31,6 +33,16 @@ export const Course = ({
     typeof response !== "undefined" && response.status === 204
       ? history.go(0)
       : history.push(location);
+  };
+
+  const joinCourse = (e) => {
+    e.preventDefault();
+    dataHandler.postParticipant(params.gymId, courseId);
+  };
+
+  const leaveCourse = (e) => {
+    e.preventDefault();
+    dataHandler.deleteParticipant(params.gymId, courseId);
   };
 
   return (
@@ -69,6 +81,20 @@ export const Course = ({
             Trainers
           </NavLink>
         </p>
+
+        {"CourseParticipants" in user ? (
+          !attendedCourses.includes(courseId) ? (
+            <div className="btn-2" onClick={(e) => joinCourse(e)}>
+              <em>JOIN</em> this course
+            </div>
+          ) : (
+            <div className="btn-2" onClick={(e) => leaveCourse(e)}>
+              <em>LEAVE</em> this course
+            </div>
+          )
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

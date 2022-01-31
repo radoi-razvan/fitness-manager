@@ -1,7 +1,14 @@
 import React from "react";
 import { Course } from "../Course";
-import { STATE, ownedGymsSetter, userSetter, loggedInSetter } from "../State";
+import {
+  STATE,
+  ownedGymsSetter,
+  userSetter,
+  loggedInSetter,
+  attendedCoursesSetter,
+} from "../State";
 import { useAtom } from "jotai";
+import { useAtomValue } from "jotai/utils";
 import { useEffect } from "react";
 import { dataHandler } from "../../DataManager/DataHandler";
 import { useParams } from "react-router";
@@ -9,14 +16,17 @@ import { NavLink } from "react-router-dom";
 
 export const CourseList = () => {
   const [courses, setCourses] = useAtom(STATE.COURSES);
-  const [user, ] = useAtom(userSetter);
-  const [loggedIn, ] = useAtom(loggedInSetter);
+  const user = useAtomValue(userSetter);
+  const loggedIn = useAtomValue(loggedInSetter);
   let params = useParams();
 
-  const [ownedGyms] = useAtom(ownedGymsSetter);
+  const ownedGyms = useAtomValue(ownedGymsSetter);
+  const attendedCourses = useAtomValue(attendedCoursesSetter);
 
   useEffect(() => {
     getCourses();
+    console.log(user);
+    console.log(attendedCourses);
   }, []);
 
   const getCourses = async () => {
