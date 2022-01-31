@@ -144,7 +144,7 @@ html,
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  background-color: #fff;
+  background-color: tomato;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -182,7 +182,7 @@ global styles
 */
 html,
 body {
-  background: #fff;
+  background: tomato;
   font-family: "Poppins", sans-serif;
   height: 100%;
 }
@@ -1074,7 +1074,7 @@ trainers
   display: flex;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
   padding: 40px;
   margin: 0px 5em 5em 5em;
 }
@@ -1425,15 +1425,38 @@ Forms design
 }
 
 .btn-1 {
-  background-color: #ed563b;
-  color: #fff !important;
+  background-color: rgb(0, 0, 0);
+  color: #ed563b !important;
   text-transform: uppercase;
   text-align: center;
   padding: 1em;
   border-radius: 1.5em;
+  cursor: pointer;
+}
+
+.btn-1 em {
+  color: white !important;
 }
 
 .btn-1:hover {
+  background-color: rgb(48, 48, 48) /*#f9735b*/;
+}
+
+.btn-2 {
+  background-color: #ed563b;
+  color: black !important;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1.5em;
+  cursor: pointer;
+}
+
+.btn-2 em {
+  color: white !important;
+}
+
+.btn-2:hover {
   background-color: #f9735b;
 }
 
