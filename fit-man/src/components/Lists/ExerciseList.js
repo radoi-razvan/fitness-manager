@@ -26,7 +26,7 @@ export const ExerciseList = () => {
   }, []);
 
   return (
-    <div id="trainers">
+    <div id="trainers" className="grid">
       <NavLink
         className={`btn-1 btn-fixed-left ${
           !loggedIn ||

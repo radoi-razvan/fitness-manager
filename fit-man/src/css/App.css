@@ -1070,6 +1070,13 @@ trainers
   margin-top: 7em;
 }
 
+#trainers.grid {
+  display: grid;
+  /* grid-template-columns: repeat(auto, minmax(1fr, 250px)); */
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
 .card-item {
   display: flex;
   background-color: #fff;
@@ -1416,8 +1423,8 @@ Forms design
 --------------------------------------------- 
 */
 
-#register-body {
-  margin-top: 6em;
+.input-form {
+  padding-top: 6em;
 }
 
 #login-body {
