@@ -46,6 +46,21 @@ namespace FitMan.Controllers
             return Ok(gym);
         }
 
+
+        // GET: gyms/last
+        [HttpGet("last")]
+        public ActionResult<long> GetLastGymId()
+        {
+            var gymId = _gymService.GetLastId();
+
+            if (gymId == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(gymId);
+        }
+
         // PUT: gyms/5
         [HttpPut("{id}")]
         public IActionResult PutGym(long id, [FromBody] GymDTO gym)

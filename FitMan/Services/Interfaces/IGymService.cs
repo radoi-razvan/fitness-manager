@@ -11,5 +11,7 @@ namespace FitMan.Services.Interfaces
     {
         IEnumerable<GymDTO> GetAll();
         IEnumerable<GymDTO> GetOwnedGyms(long ownerId);
+
+        long GetLastId();
     }
 }

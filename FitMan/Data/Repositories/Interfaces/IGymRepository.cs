@@ -12,5 +12,7 @@ namespace FitMan.Data.Repositories.Interfaces
     {
         IEnumerable<GymDTO> GetAll();
         IEnumerable<GymDTO> GetOwnedGyms(long ownerId);
+
+        long GetLastId();
     }
 }

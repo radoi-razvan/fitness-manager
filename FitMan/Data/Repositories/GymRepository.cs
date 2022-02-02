@@ -39,6 +39,12 @@ namespace FitMan.Data.Repositories
             return _context.Gyms.Any(e => e.GymId == id);
         }
 
+        public long GetLastId()
+        {
+            var id = _context.Gyms.Where(g => g.GymId == _context.Gyms.Max(gym => gym.GymId)).First().GymId;
+            return id;
+        }
+
         public GymDTO Get(long id)
         {
             var model = _context.Gyms.Find(id);
@@ -144,7 +150,5 @@ namespace FitMan.Data.Repositories
 
             }
         }
-
-
     }
 }
