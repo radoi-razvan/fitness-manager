@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { dataHandler } from "../DataManager/DataHandler";
 import { userSetter, loggedInSetter, STATE } from "./State";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
+import { FitManStorage, getDownloadURL, ref } from "../Firebase/firebaseConfig";
 
 export const Trainer = ({
   trainerId,
@@ -18,6 +19,10 @@ export const Trainer = ({
 
   let params = useParams();
 
+  useEffect(() => {
+    getImage();
+  }, []);
+
   const deleteEvent = (e) => {
     e.preventDefault();
     dataHandler
@@ -25,12 +30,17 @@ export const Trainer = ({
       .then(() => setTrainers(params));
   };
 
+  const getImage = () => {
+    let storageRef = ref(FitManStorage, "/images/trainer" + trainerId + ".png");
+    getDownloadURL(storageRef).then((response) => {
+      const imgElement = document.getElementById("trainerImage" + trainerId);
+      imgElement.setAttribute("src", response);
+    });
+  };
+
   return (
     <div className="card-item">
-      <img
-        src={`${process.env.REACT_APP_BASEIMGURL}${process.env.REACT_APP_TRAINERIMG}/${name}.png`}
-        alt={name}
-      />
+      <img id={`trainerImage${trainerId}`} alt={name} />
       <div className="card-text">
         <span>
           {name},{" "}
