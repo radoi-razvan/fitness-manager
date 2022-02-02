@@ -5,6 +5,12 @@ import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useAtom } from "jotai";
 import { STATE } from "../State";
+import {
+  FitManStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "../../Firebase/firebaseConfig";
 
 export const GymForm = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +37,14 @@ export const GymForm = () => {
     if (location.pathname === "/gyms/add") {
       const response = await dataHandler.postGym(formData);
       setGyms();
+
+      const storageRef = ref(
+        FitManStorage,
+        "/images/" + e.target.avatar.files[0].name
+      );
+      uploadBytes(storageRef, e.target.avatar.files[0]).then((snapshot) =>
+        console.log("success")
+      );
       typeof response !== "undefined" &&
       (response.status === 201 || response.status === 204)
         ? history.push("/gyms")
@@ -82,22 +96,22 @@ export const GymForm = () => {
                         </div>
                       </div>
 
-                      {/* <div className="d-flex flex-row align-items-center mb-4">
+                      <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-image fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
-                          <label htmlFor="avatar">Choose a picture (.png):</label>
+                          <label htmlFor="avatar">
+                            Choose a picture (.png/.jpeg):
+                          </label>
                           <input
-                          onChange={(e) => fileUploadHandler(e)}
                             type="file"
                             id="avatar"
                             name="avatar"
-                            accept="image/png"
-                            //accept="image/png, image/jpeg"
+                            accept="image/png, image/jpeg"
                             className="form-control"
                             required
                           />
                         </div>
-                      </div> */}
+                      </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-geo-alt-fill fa-lg me-3 fa-fw label-icons-signin"></i>

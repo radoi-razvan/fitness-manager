@@ -25,12 +25,13 @@ const firebaseConfig = {
   measurementId: "G-F02DPZS2SY",
 };
 
-initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-const projectStorage = getStorage();
+const FitManStorage = getStorage();
 
 export {
-  projectStorage,
+  firebaseApp,
+  FitManStorage,
   ref,
   uploadBytesResumable,
   uploadBytes,
