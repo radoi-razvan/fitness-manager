@@ -5,6 +5,11 @@ import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useUpdateAtom } from "jotai/utils";
 import { STATE } from "../State";
+import {
+  uploadBytes,
+  ref,
+  FitManStorage,
+} from "../../Firebase/firebaseConfig.js";
 
 export const CourseForm = () => {
   const [formData, setFormData] = useState({
@@ -29,23 +34,39 @@ export const CourseForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    let response = null;
     if (splitPath[splitPath.length - 1] === "add") {
-      response = await dataHandler.postCourse(params.gymId, formData);
-      setCourses(params.gymId);
+      dataHandler.postCourse(params.gymId, formData).then((response) => {
+        dataHandler.getLastCourseId(params.gymId).then((idResponse) => {
+          const storageRef = ref(
+            FitManStorage,
+            "/images/course" + idResponse.data + ".png"
+          );
+          uploadBytes(storageRef, e.target.avatar.files[0]).then(() => {
+            setCourses(params.gymId);
+            typeof response !== "undefined" &&
+            (response.status === 201 || response.status === 204)
+              ? history.push(`/gyms/${params.gymId}/courses`)
+              : history.push(location);
+          });
+        });
+      });
     } else {
-      response = await dataHandler.putCourse(
-        params.gymId,
-        params.courseId,
-        formData
-      );
-      setCourses(params.gymId);
+      dataHandler
+        .putCourse(params.gymId, params.courseId, formData)
+        .then((response) => {
+          const storageRef = ref(
+            FitManStorage,
+            "/images/course" + params.courseId + ".png"
+          );
+          uploadBytes(storageRef, e.target.avatar.files[0]).then(() => {
+            setCourses(params.gymId);
+            typeof response !== "undefined" &&
+            (response.status === 201 || response.status === 204)
+              ? history.push(`/gyms/${params.gymId}/courses`)
+              : history.push(location);
+          });
+        });
     }
-
-    typeof response !== "undefined" &&
-    (response.status === 201 || response.status === 204)
-      ? history.push(`/gyms/${params.gymId}/courses`)
-      : history.push(location);
   };
 
   return (
@@ -90,22 +111,22 @@ export const CourseForm = () => {
                         </div>
                       </div>
 
-                      {/* <div className="d-flex flex-row align-items-center mb-4">
+                      <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-image fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
-                          <label htmlFor="avatar">Choose a picture (.png):</label>
+                          <label htmlFor="avatar">
+                            Choose a picture (.png):
+                          </label>
                           <input
-                          onChange={(e) => fileUploadHandler(e)}
                             type="file"
                             id="avatar"
                             name="avatar"
                             accept="image/png"
-                            //accept="image/png, image/jpeg"
                             className="form-control"
                             required
                           />
                         </div>
-                      </div> */}
+                      </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="bi bi-currency-dollar fa-lg me-3 fa-fw label-icons-signin"></i>
