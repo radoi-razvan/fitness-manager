@@ -16,7 +16,6 @@ export const STATE = {
     (get) => get(STATE.COURSE_LIST),
     async (get, set, value) => {
       const courses = await dataHandler.getCourses(value);
-      console.log(courses);
       set(STATE.COURSE_LIST, courses.data);
       set(attendedCoursesSetter);
     }
@@ -25,7 +24,6 @@ export const STATE = {
   EXERCISES: atom(
     (get) => get(STATE.EXERCISE_LIST),
     async (get, set, value) => {
-      console.log(value);
       const exercises = await dataHandler.getExercises(
         parseInt(value.gymId),
         parseInt(value.courseId)
@@ -43,6 +41,22 @@ export const STATE = {
         parseInt(value.courseId)
       );
       set(STATE.TRAINER_LIST, trainers.data);
+    }
+  ),
+  TOTAL_GYMS_MEMBERS: atom([]),
+  GYMS_MEMBERS: atom(
+    (get) => get(STATE.TOTAL_GYMS_MEMBERS),
+    async (get, set) => {
+      const gyms_members = await dataHandler.getGymsMembers();
+      set(STATE.TOTAL_GYMS_MEMBERS, gyms_members.data);
+    }
+  ),
+  TOTAL_COURSES_MEMBERS: atom([]),
+  COURSES_MEMBERS: atom(
+    (get) => get(STATE.TOTAL_COURSES_MEMBERS),
+    async (get, set) => {
+      const courses_members = await dataHandler.getCoursesMembers();
+      set(STATE.TOTAL_COURSES_MEMBERS, courses_members.data);
     }
   ),
 };

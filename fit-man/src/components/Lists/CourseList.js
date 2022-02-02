@@ -2,7 +2,7 @@ import React from "react";
 import { Course } from "../Course";
 import { STATE, ownedGymsSetter, userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
-import { useAtomValue } from "jotai/utils";
+import { useAtomValue,useUpdateAtom } from "jotai/utils";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
@@ -11,12 +11,14 @@ export const CourseList = () => {
   const [courses, setCourses] = useAtom(STATE.COURSES);
   const user = useAtomValue(userSetter);
   const loggedIn = useAtomValue(loggedInSetter);
+  const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
   let params = useParams();
 
   const ownedGyms = useAtomValue(ownedGymsSetter);
 
   useEffect(() => {
     setCourses(params.gymId);
+    setTotalCoursesMembers();
   }, []);
 
   return (

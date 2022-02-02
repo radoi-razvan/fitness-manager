@@ -22,28 +22,37 @@ export const Course = ({
   const loggedIn = useAtomValue(loggedInSetter);
   const attendedCourses = useAtomValue(attendedCoursesSetter);
   const setCourses = useUpdateAtom(STATE.COURSES);
-
+  const setTotalGymMembers = useUpdateAtom(STATE.GYMS_MEMBERS);
+  const totalCoursesMembers = useAtomValue(STATE.COURSES_MEMBERS);
+  const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
+  
   let params = useParams();
 
   const deleteEvent = (e) => {
     e.preventDefault();
-    dataHandler
-      .deleteCourse(params.gymId, courseId)
-      .then(() => setCourses(params.gymId));
+    dataHandler.deleteCourse(params.gymId, courseId).then(() => {
+      setCourses(params.gymId);
+      setTotalGymMembers();
+      setTotalCoursesMembers();
+    });
   };
 
   const joinCourse = (e) => {
     e.preventDefault();
-    dataHandler
-      .postParticipant(params.gymId, courseId)
-      .then(() => setCourses(params.gymId));
+    dataHandler.postParticipant(params.gymId, courseId).then(() => {
+      setCourses(params.gymId);
+      setTotalGymMembers();
+      setTotalCoursesMembers();
+    });
   };
 
   const leaveCourse = (e) => {
     e.preventDefault();
-    dataHandler
-      .deleteParticipant(params.gymId, courseId)
-      .then(() => setCourses(params.gymId));
+    dataHandler.deleteParticipant(params.gymId, courseId).then(() => {
+      setCourses(params.gymId);
+      setTotalGymMembers();
+      setTotalCoursesMembers();
+    });
   };
 
   return (
@@ -69,6 +78,11 @@ export const Course = ({
             onClick={(e) => deleteEvent(e)}
           />
         </span>
+        <p className="address">
+          <span>
+           <i className="bi bi-people-fill"></i> {totalCoursesMembers.map((o) => o.CourseId === courseId && o.TotalCourseMembers)}
+           </span> 
+          </p>
         <p>$ {defaultPrice}/month</p>
         <h4>{description}</h4>
         <p>Monday to Sunday: {schedule}</p>

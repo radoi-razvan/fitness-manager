@@ -26,14 +26,14 @@ namespace FitMan.Services
             return _participantRepository.GetAttendedCourses(participantId);
         }
 
-        public int GetTotalCourseMembers(long courseId)
+        public List<object> GetTotalCoursesMembers()
         {
-            return _participantRepository.GetTotalCourseMembers(courseId);
+            return _participantRepository.GetTotalCoursesMembers();
         }
 
-        public int GetTotalGymMembers(long gymId)
+        public List<object> GetTotalGymsMembers()
         {
-            return _participantRepository.GetTotalGymMembers(gymId);
+            return _participantRepository.GetTotalGymsMembers();
         }
 
         public void Remove(long courseId, long userId)

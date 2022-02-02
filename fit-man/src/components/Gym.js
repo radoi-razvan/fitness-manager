@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
 import { ownedGymsSetter, userSetter, loggedInSetter } from "./State";
@@ -10,6 +10,7 @@ export const Gym = ({ gymId, name, address, description }) => {
   const loggedIn = useAtomValue(loggedInSetter);
   const ownedGyms = useAtomValue(ownedGymsSetter);
   const setGyms = useUpdateAtom(STATE.GYMS);
+  const totalGymsMembers = useAtomValue(STATE.GYMS_MEMBERS);
 
   const deleteEvent = (e) => {
     e.preventDefault();
@@ -43,7 +44,15 @@ export const Gym = ({ gymId, name, address, description }) => {
             </>
           )}
         </span>
-        <p>{address}</p>
+        <p className="address">
+          <span>
+            <i className="bi bi-people-fill"></i>{" "}
+            {totalGymsMembers.map(
+              (o) => o.GymId === gymId && o.TotalGymMembers
+            )}
+          </span>
+          {address}
+        </p>
         <h4>{description}</h4>
 
         <ul className="social-icons">

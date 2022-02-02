@@ -20,20 +20,20 @@ namespace FitMan.Controllers
             _jwtService = jwtService;
         }
 
-        // GET: gyms/5/participants
+        // GET: gyms/total/participants
         [HttpGet]
-        [Route("gyms/{gymId}/participants")]
-        public ActionResult<int> GetGymMembers(long gymId)
+        [Route("gyms/total/participants")]
+        public ActionResult<List<object>> GetGymMembers()
         {
-            return Ok(_participantService.GetTotalGymMembers(gymId));
+            return Ok(_participantService.GetTotalGymsMembers());
         }
 
-        // GET: gyms/5/courses/5/participants
+        // GET: courses/total/participants
         [HttpGet]
-        [Route("gyms/{gymId}/courses/{courseId}/participants")]
-        public ActionResult<int> GetCourseMembers(long courseId)
+        [Route("courses/total/participants")]
+        public ActionResult<List<object>> GetCourseMembers()
         {
-            return Ok(_participantService.GetTotalCourseMembers(courseId));
+            return Ok(_participantService.GetTotalCoursesMembers());
         }
 
         // POST: gyms/5/courses/5/participants

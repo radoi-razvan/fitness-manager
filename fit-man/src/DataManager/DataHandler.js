@@ -354,21 +354,20 @@ export const dataHandler = {
     return response;
   },
 
-  getGymMembers: async function (gymId) {
+  getGymsMembers: async function () {
     const response = await axios
-      .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/participants`, {
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/total/participants`, {
         withCredentials: true,
       })
       .catch((e) => console.error(e));
     return response;
   },
 
-  getCourseMembers: async function (gymId, courseId) {
+  getCoursesMembers: async function () {
     const response = await axios
-      .get(
-        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/participants`,
-        { withCredentials: true }
-      )
+      .get(`${process.env.REACT_APP_BACKEND}/courses/total/participants`, {
+        withCredentials: true,
+      })
       .catch((e) => console.error(e));
     return response;
   },

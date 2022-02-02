@@ -2,6 +2,7 @@ import React from "react";
 import { Gym } from "../Gym";
 import { STATE, userSetter, loggedInSetter } from "../State";
 import { useAtom } from "jotai";
+import { useUpdateAtom } from "jotai/utils";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -9,9 +10,11 @@ export const GymList = () => {
   const [gyms, setGyms] = useAtom(STATE.GYMS);
   const [user] = useAtom(userSetter);
   const [loggedIn] = useAtom(loggedInSetter);
+  const setTotalGymsMembers = useUpdateAtom(STATE.GYMS_MEMBERS);
 
   useEffect(() => {
     setGyms();
+    setTotalGymsMembers();
   }, []);
 
   return (

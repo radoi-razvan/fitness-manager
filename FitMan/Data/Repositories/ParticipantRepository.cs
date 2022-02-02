@@ -41,20 +41,35 @@ namespace FitMan.Data.Repositories
                 );
         }
 
-        public int GetTotalCourseMembers(long courseId)
+        public List<object> GetTotalCoursesMembers()
         {
-            return _context.CourseParticipants.Count(cp => cp.CourseId == courseId);
+            List<object> totalCoursesMembersList = new List<object>() { };
+            foreach (var course in _context.Courses)
+            {
+                var totalCourseMembers = _context.CourseParticipants
+                    .Count(cp => cp.CourseId == course.CourseId);
+                totalCoursesMembersList.Add(new { CourseId = course.CourseId, 
+                    TotalCourseMembers = totalCourseMembers });
+            }
+            return totalCoursesMembersList;
         }
 
-        public int GetTotalGymMembers(long gymId)
+        public List<object> GetTotalGymsMembers()
         {
-            var gymCoursesIds = _context.Courses.Where(c => c.GymId == gymId)
+            List<object> totalGymsMembersList = new List<object>() { };
+            foreach (var gym in _context.Gyms)
+            {
+                var gymCoursesIds = _context.Courses.Where(c => c.GymId == gym.GymId)
                                                 .Select(c => c.CourseId);
-            var courseParticipants = _context.CourseParticipants.Where(cp => gymCoursesIds
-                                                                .Contains(cp.CourseId));
-            return courseParticipants.Select(cp => cp.ParticipantId)
+                var courseParticipants = _context.CourseParticipants.Where(cp => gymCoursesIds
+                                                                    .Contains(cp.CourseId));
+                var totalGymMembers = courseParticipants.Select(cp => cp.ParticipantId)
                                      .Distinct()
                                      .Count();
+                totalGymsMembersList.Add(new { GymId = gym.GymId, TotalGymMembers = totalGymMembers });
+
+            }
+            return totalGymsMembersList;
         }
 
         public void Remove(long courseId, long userId)
