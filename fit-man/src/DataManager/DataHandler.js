@@ -9,6 +9,13 @@ export const dataHandler = {
     return response;
   },
 
+  getLastGymId: async function () {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/last`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
   getGym: async function (gymId) {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}`)
@@ -75,6 +82,13 @@ export const dataHandler = {
   getCourse: async function (gymId, courseId) {
     const response = await axios
       .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}`)
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getLastCourseId: async function (gymId) {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/last`)
       .catch((e) => console.error(e));
     return response;
   },
@@ -183,6 +197,15 @@ export const dataHandler = {
     const response = await axios
       .get(
         `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers`
+      )
+      .catch((e) => console.error(e));
+    return response;
+  },
+
+  getLastTrainerId: async function (gymId, courseId) {
+    const response = await axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/gyms/${gymId}/courses/${courseId}/trainers/last`
       )
       .catch((e) => console.error(e));
     return response;
