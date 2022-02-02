@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 import { dataHandler } from "../DataManager/DataHandler";
@@ -9,6 +9,7 @@ import {
   STATE,
 } from "./State";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
+import { FitManStorage, getDownloadURL, ref } from "../Firebase/firebaseConfig";
 
 export const Course = ({
   name,
@@ -25,8 +26,12 @@ export const Course = ({
   const setTotalGymMembers = useUpdateAtom(STATE.GYMS_MEMBERS);
   const totalCoursesMembers = useAtomValue(STATE.COURSES_MEMBERS);
   const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
-  
+
   let params = useParams();
+
+  useEffect(() => {
+    getImage();
+  }, []);
 
   const deleteEvent = (e) => {
     e.preventDefault();
@@ -55,12 +60,17 @@ export const Course = ({
     });
   };
 
+  const getImage = () => {
+    let storageRef = ref(FitManStorage, "/images/course" + courseId + ".png");
+    getDownloadURL(storageRef).then((response) => {
+      const imgElement = document.getElementById("courseImage" + courseId);
+      imgElement.setAttribute("src", response);
+    });
+  };
+
   return (
     <div className="card-item course">
-      <img
-        src={`${process.env.REACT_APP_BASEIMGURL}${process.env.REACT_APP_COURSEIMG}/${name}.png`}
-        alt={name}
-      />
+      <img id={`courseImage${courseId}`} alt={name} />
       <div className="card-text">
         <span>
           {name}
@@ -80,9 +90,12 @@ export const Course = ({
         </span>
         <p className="address">
           <span>
-           <i className="bi bi-people-fill"></i> {totalCoursesMembers.map((o) => o.CourseId === courseId && o.TotalCourseMembers)}
-           </span> 
-          </p>
+            <i className="bi bi-people-fill"></i>{" "}
+            {totalCoursesMembers.map(
+              (o) => o.CourseId === courseId && o.TotalCourseMembers
+            )}
+          </span>
+        </p>
         <p>$ {defaultPrice}/month</p>
         <h4>{description}</h4>
         <p>Monday to Sunday: {schedule}</p>
