@@ -5,12 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useAtom } from "jotai";
 import { STATE } from "../State";
-import {
-  FitManStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "../../Firebase/firebaseConfig";
+import { FitManStorage, ref, uploadBytes } from "../../Firebase/firebaseConfig";
 
 export const GymForm = () => {
   const [formData, setFormData] = useState({
@@ -35,27 +30,36 @@ export const GymForm = () => {
   const submit = async (e) => {
     e.preventDefault();
     if (location.pathname === "/gyms/add") {
-      const response = await dataHandler.postGym(formData);
-      setGyms();
-
-      const storageRef = ref(
-        FitManStorage,
-        "/images/" + e.target.avatar.files[0].name
-      );
-      uploadBytes(storageRef, e.target.avatar.files[0]).then((snapshot) =>
-        console.log("success")
-      );
-      typeof response !== "undefined" &&
-      (response.status === 201 || response.status === 204)
-        ? history.push("/gyms")
-        : history.push(location);
+      dataHandler.postGym(formData).then((response) => {
+        dataHandler.getLastGymId().then((idResponse) => {
+          const storageRef = ref(
+            FitManStorage,
+            "/images/gym" + idResponse.data + ".png"
+          );
+          uploadBytes(storageRef, e.target.avatar.files[0]).then(() => {
+            setGyms();
+            typeof response !== "undefined" &&
+            (response.status === 201 || response.status === 204)
+              ? history.push("/gyms")
+              : history.push(location);
+          });
+        });
+      });
     } else {
-      const response = await dataHandler.putGym(params.gymId, formData);
-      setGyms();
-      typeof response !== "undefined" &&
-      (response.status === 201 || response.status === 204)
-        ? history.push("/gyms")
-        : history.push(location);
+      dataHandler.putGym(params.gymId, formData).then((response) => {
+        const storageRef = ref(
+          FitManStorage,
+          "/images/gym" + params.gymId.data + ".png"
+        );
+        uploadBytes(storageRef, e.target.avatar.files[0]).then(() => {
+          setGyms();
+
+          typeof response !== "undefined" &&
+          (response.status === 201 || response.status === 204)
+            ? history.push("/gyms")
+            : history.push(location);
+        });
+      });
     }
   };
 
@@ -100,13 +104,13 @@ export const GymForm = () => {
                         <i className="bi bi-image fa-lg me-3 fa-fw label-icons-signin"></i>
                         <div className="form-outline flex-fill mb-0">
                           <label htmlFor="avatar">
-                            Choose a picture (.png/.jpeg):
+                            Choose a picture (.png):
                           </label>
                           <input
                             type="file"
                             id="avatar"
                             name="avatar"
-                            accept="image/png, image/jpeg"
+                            accept="image/png"
                             className="form-control"
                             required
                           />
