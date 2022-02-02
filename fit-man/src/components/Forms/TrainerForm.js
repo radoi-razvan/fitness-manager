@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useUpdateAtom } from "jotai/utils";
 import { STATE } from "../State";
+import { FitManStorage, ref, uploadBytes } from "../../Firebase/firebaseConfig";
 
 export const TrainerForm = () => {
   const [formData, setFormData] = useState({
@@ -36,28 +37,46 @@ export const TrainerForm = () => {
     e.preventDefault();
     let response = null;
     if (splitPath[splitPath.length - 1] === "add") {
-      response = await dataHandler.postTrainer(
-        params.gymId,
-        params.courseId,
-        formData
-      );
-      setTrainers(params);
+      dataHandler
+        .postTrainer(params.gymId, params.courseId, formData)
+        .then((response) => {
+          dataHandler
+            .getLastTrainerId(params.gymId, params.courseId)
+            .then((idResponse) => {
+              const storageRef = ref(
+                FitManStorage,
+                "/images/trainer" + idResponse.data + ".png"
+              );
+              uploadBytes(storageRef, e.target.avatar.files[0]).then(() => {
+                setTrainers(params);
+                typeof response !== "undefined" &&
+                (response.status === 201 || response.status === 204)
+                  ? history.push(
+                      `/gyms/${params.gymId}/courses/${params.courseId}/trainers`
+                    )
+                  : history.push(location);
+              });
+            });
+        });
     } else {
-      response = await dataHandler.putTrainer(
-        params.gymId,
-        params.courseId,
-        params.trainerId,
-        formData
-      );
-      setTrainers(params);
+      dataHandler
+        .putTrainer(params.gymId, params.courseId, params.trainerId, formData)
+        .then((response) => {
+          const storageRef = ref(
+            FitManStorage,
+            "/images/trainer" + params.trainerId + ".png"
+          );
+          uploadBytes(storageRef, e.target.avatar.files[0]).then(() => {
+            setTrainers(params);
+            typeof response !== "undefined" &&
+            (response.status === 201 || response.status === 204)
+              ? history.push(
+                  `/gyms/${params.gymId}/courses/${params.courseId}/trainers`
+                )
+              : history.push(location);
+          });
+        });
     }
-
-    typeof response !== "undefined" &&
-    (response.status === 201 || response.status === 204)
-      ? history.push(
-          `/gyms/${params.gymId}/courses/${params.courseId}/trainers`
-        )
-      : history.push(location);
   };
 
   return (
@@ -97,6 +116,23 @@ export const TrainerForm = () => {
                             className="form-control"
                             placeholder="Trainer Name"
                             name="name"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="bi bi-image fa-lg me-3 fa-fw label-icons-signin"></i>
+                        <div className="form-outline flex-fill mb-0">
+                          <label htmlFor="avatar">
+                            Choose a picture (.png):
+                          </label>
+                          <input
+                            type="file"
+                            id="avatar"
+                            name="avatar"
+                            accept="image/png"
+                            className="form-control"
                             required
                           />
                         </div>
