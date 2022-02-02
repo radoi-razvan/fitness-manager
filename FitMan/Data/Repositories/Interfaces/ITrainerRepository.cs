@@ -11,6 +11,8 @@ namespace FitMan.Data.Repositories.Interfaces
         void Add(TrainerDTO item);
         void Remove(long id);
         TrainerDTO Get(long id);
+
+        long GetLastId(long courseId);
         bool CheckIfExists(long id);
         bool Update(long firstId, long secondId, TrainerDTO item);
         IEnumerable<TrainerDTO> GetAll(long courseId);

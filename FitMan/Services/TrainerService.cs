@@ -31,6 +31,11 @@ namespace FitMan.Services
             return _trainerRepository.Get(id);
         }
 
+        public long GetLastId(long courseId)
+        {
+            return _trainerRepository.GetLastId(courseId);
+        }
+
         public IEnumerable<TrainerDTO> GetAll(long courseId)
         {
             return _trainerRepository.GetAll(courseId);

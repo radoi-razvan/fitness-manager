@@ -40,6 +40,14 @@ namespace FitMan.Data.Repositories
             return dto;
         }
 
+        public long GetLastId(long courseId)
+        {
+            var trainerId = _context.Trainers.Where(trainer => trainer.CourseId == courseId)
+                .Where(t => t.TrainerId == _context.Trainers.Max(tr => tr.TrainerId))
+                .First().TrainerId;
+            return trainerId;
+        }
+
         public IEnumerable<TrainerDTO> GetAll(long courseId)
         {
             return _mapper.Map<IEnumerable<TrainerDTO>>(_context.Trainers.Where(t => t.CourseId == courseId));
