@@ -4,6 +4,12 @@ import { dataHandler } from "../DataManager/DataHandler";
 import { ownedGymsSetter, userSetter, loggedInSetter } from "./State";
 import { useUpdateAtom, useAtomValue } from "jotai/utils";
 import { STATE } from "./State.js";
+import {
+  firebaseApp,
+  FitManStorage,
+  getDownloadURL,
+  ref,
+} from "../Firebase/firebaseConfig.js";
 
 export const Gym = ({ gymId, name, address, description }) => {
   const user = useAtomValue(userSetter);
@@ -17,10 +23,22 @@ export const Gym = ({ gymId, name, address, description }) => {
     dataHandler.deleteGym(gymId).then(() => setGyms());
   };
 
+  useEffect(() => {
+    getImage();
+  }, []);
+
+  const getImage = () => {
+    let storageRef = ref(FitManStorage, "/images/gym" + gymId + ".png");
+    getDownloadURL(storageRef).then((response) => {
+      const imgElement = document.getElementById("gymImage" + gymId);
+      imgElement.setAttribute("src", response);
+    });
+  };
+
   return (
     <div className="card-item">
       <img
-        src={`${process.env.REACT_APP_BASEIMGURL}${process.env.REACT_APP_GYMIMG}/${name}.png`}
+        id={`gymImage${gymId}`}
         alt={name}
       />
       <div className="card-text">
