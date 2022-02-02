@@ -35,7 +35,6 @@ export const STATE = {
   TRAINERS: atom(
     (get) => get(STATE.TRAINER_LIST),
     async (get, set, value) => {
-      console.log(value);
       const trainers = await dataHandler.getTrainers(
         parseInt(value.gymId),
         parseInt(value.courseId)
