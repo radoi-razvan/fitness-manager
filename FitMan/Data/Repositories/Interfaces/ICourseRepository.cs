@@ -9,5 +9,6 @@ namespace FitMan.Data.Repositories.Interfaces
     public interface ICourseRepository : IRepository<CourseDTO>
     {
         IEnumerable<CourseDTO> GetAll(long gymId);
+        long GetLastId(long gymId);
     }
 }

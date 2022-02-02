@@ -35,6 +35,21 @@ namespace FitMan.Controllers
             return Ok(course);
         }
 
+
+        // GET: gyms/5/courses/last
+        [HttpGet("{gymId}/courses/last")]
+        public ActionResult<long> GetLastCourseId(long gymId)
+        {
+            var courseId = _courseService.GetLastId(gymId);
+
+            if (courseId == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(courseId);
+        }
+
         // PUT: gyms/5/courses/5
         [HttpPut("{gymId}/courses/{courseId}")]
         public IActionResult PutCourse(long gymId, long courseId, [FromBody] CourseDTO course)

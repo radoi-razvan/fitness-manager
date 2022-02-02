@@ -9,5 +9,6 @@ namespace FitMan.Services.Interfaces
     public interface ICourseService : IService<CourseDTO>
     {
         IEnumerable<CourseDTO> GetAll(long gymId);
+        long GetLastId(long gymId);
     }
 }
