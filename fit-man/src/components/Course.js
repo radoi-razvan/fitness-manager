@@ -29,10 +29,6 @@ export const Course = ({
 
   let params = useParams();
 
-  useEffect(() => {
-    getImage();
-  }, []);
-
   const deleteEvent = (e) => {
     e.preventDefault();
     dataHandler.deleteCourse(params.gymId, courseId).then(() => {
@@ -64,13 +60,17 @@ export const Course = ({
     let storageRef = ref(FitManStorage, "/images/course" + courseId + ".png");
     getDownloadURL(storageRef).then((response) => {
       const imgElement = document.getElementById("courseImage" + courseId);
-      imgElement.setAttribute("src", response);
+      try {
+        imgElement.setAttribute("src", response);
+      } catch (error) {
+        getImage();
+      }
     });
   };
 
   return (
     <div className="card-item course">
-      <img id={`courseImage${courseId}`} alt={name} />
+      <img id={`courseImage${courseId}`} alt={name} onLoad={getImage()} />
       <div className="card-text">
         <span>
           {name}

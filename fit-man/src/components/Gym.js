@@ -23,24 +23,21 @@ export const Gym = ({ gymId, name, address, description }) => {
     dataHandler.deleteGym(gymId).then(() => setGyms());
   };
 
-  useEffect(() => {
-    getImage();
-  }, []);
-
   const getImage = () => {
     let storageRef = ref(FitManStorage, "/images/gym" + gymId + ".png");
     getDownloadURL(storageRef).then((response) => {
       const imgElement = document.getElementById("gymImage" + gymId);
-      imgElement.setAttribute("src", response);
+      try {
+        imgElement.setAttribute("src", response);
+      } catch (error) {
+        getImage();
+      }
     });
   };
 
   return (
     <div className="card-item">
-      <img
-        id={`gymImage${gymId}`}
-        alt={name}
-      />
+      <img id={`gymImage${gymId}`} alt={name} onLoad={getImage()} />
       <div className="card-text">
         <span>
           <NavLink to={`/gyms/${gymId}/courses`}>{name}</NavLink>

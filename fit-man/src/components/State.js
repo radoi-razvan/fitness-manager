@@ -69,6 +69,7 @@ export const STATE = {
   ),
 };
 
+
 export const OWNED_GYMS = atom([]);
 
 export const ownedGymsSetter = atom(

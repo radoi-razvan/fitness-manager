@@ -34,7 +34,11 @@ export const Trainer = ({
     let storageRef = ref(FitManStorage, "/images/trainer" + trainerId + ".png");
     getDownloadURL(storageRef).then((response) => {
       const imgElement = document.getElementById("trainerImage" + trainerId);
-      imgElement.setAttribute("src", response);
+      try {
+        imgElement.setAttribute("src", response);
+      } catch (error) {
+        getImage();
+      }
     });
   };
 
