@@ -11,6 +11,15 @@ export const STATE = {
       set(ownedGymsSetter);
     }
   ),
+
+  MY_GYMS_CHECK: atom(false),
+  GYMS_CHECKER: atom(
+    (get) => get(STATE.MY_GYMS_CHECK),
+    (get, set, value) => {
+      set(STATE.MY_GYMS_CHECK, value);
+    }
+  ),
+
   COURSE_LIST: atom([]),
   COURSES: atom(
     (get) => get(STATE.COURSE_LIST),
