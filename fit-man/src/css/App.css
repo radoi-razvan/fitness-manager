@@ -1487,6 +1487,52 @@ Forms design
   right: 2em;
 }
 
+.area-fixed-right {
+  position: fixed;
+  right: 2em;
+}
+
+label.styled-outline-btn {
+  border-color: #1e1e1e !important;
+  color: #eee !important;
+  box-shadow: none !important;
+  border-radius: 1.5em;
+  border-width: 2px;
+  text-transform: uppercase;
+  padding: 0.8em;
+}
+
+label.styled-outline-btn:hover {
+  background-color: #232d39;
+}
+
+label.styled-outline-btn:hover em {
+  color: #ed563b !important;
+}
+
+.btn-check:active + label.styled-outline-btn em,
+.btn-check:checked + label.styled-outline-btn em,
+label.styled-outline-btn:active em {
+  color: #ed563b !important;
+}
+
+label.styled-outline-btn em {
+  color: #1e1e1e !important;
+}
+
+.btn-check:active + .btn-outline-primary,
+.btn-check:checked + .btn-outline-primary,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show,
+.btn-outline-primary:active {
+  background-color: #1e1e1e !important;
+}
+
+.btn-check:hover + .btn-outline-primary,
+.btn-outline-primary.hover {
+  background-color: #232d39 !important;
+}
+
 .btn-main-color {
   color: #fff;
   background-color: #ed563b;
@@ -1518,8 +1564,8 @@ Forms design
   display: none;
 }
 
-p.address span{
-  color:#ed563b;
+p.address span {
+  color: #ed563b;
   margin: 0 0.5em 0 0;
-  font-size: 18px!important;
+  font-size: 18px !important;
 }
