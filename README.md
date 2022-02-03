@@ -1,93 +1,237 @@
-# El Proyecte Grande - Sprint 5
+<div id="top"></div>
 
-## Story
+# FitMan
 
-As your Codecool Journey comes closer to its conclusion, the time has come for a final Teamwork Project that will put to test all of the programming skills you've obtained so far (and some new ones you will learn on the way)!
-
-You have the freedom of choosing your teammates (assemble a team of 3-4 students) and the project's topic this time. Think of an app that you would find useful in your daily activities, a tool that an employee of a certain industry might crave, a fun game or something completely out of the box.
-
-This project is meant for 4 sprints at least, but it may keep you company until the end of the course, or even much longer. Who knows? Although we will not give you any direct tasks to fulfill, there will be some technical requirements for each sprint. You are expected to make incremental changes in a Scrum way, developing the project further and further, adding new features, technologies, etc.
-
-***¡Comience El Proyecte Grande!***
-
-## What are you going to learn?
-
-- Work in a Scrum team on a real project.
-- Grow your project iteratively.
-- Deliver increments each sprint.
-
-## Tasks
-
-1. Create a Product backlog (on Github) with user stories that cover at least the feature set you aim to complete next. Break down the user stories into smaller tasks, prioritize them, estimate them, and taking your capacities into account, determine how far you'll be able to get during this sprint.
-    - There is a Product backlog for the project.
-    - The backlog items are broken down into smaller tasks or subtasks.
-    - The backlog items are in priority order in the backlog.
-    - Each backlog item (at least those that are relevant for the actual sprint) has an estimation value.
-    - The top priority part of the backlog is marked as the Sprint backlog, in accordance with the estimation values and the foreseeable team resources.
-    - The backlog and the project plan has been checked and accepted by a mentor on the first day of the sprint (before any implementation).
-    - By the end of the sprint, there is less than 30% deviation from the plan (70% - 130% is completed according to the original plan)
-
-2. You need to use technologies that help achieve agile workflow, defined below.
-    - Every item in the backlog should appear as an `Issue` on GitHub.
-    - The repository has a `Project` defined on GitHub for every sprint. The `project board` shall contain every issue related to the sprint.
-    - With every feature branch, a `Pull request` shall be opened and maintained. The `Pull request` shall contain the `Issue` linked with it. The `Pull request` shall contain the assignee, who is responsible for the given `Issue`. The `Pull request` shall contain at least one `Reviewer`, who is responsible for checking on their peers' work.
-
-3. You need to fulfill a couple of technical requirements defined below.
-    - A user can register into the application by setting at least their username, e-mail address, and password.
-    - A user can log in to the application.
-    - The user can log out from the application.
-    - There are at least two different roles defined in the application.
-    - There are at least 3 endpoints, that are only available for authenticated users.
-    - There are at least 5 endpoints, that are only available for authenticated users.
-    - There is an admin page, which lists all users of the application, available only with the `admin` role.
-
-4. [OPTIONAL] After a successful registration (username not taken, etc.) send a welcome e-mail to your new users!
-    - After successful registration, the user receives an email welcoming them to the page.
-
-5. [OPTIONAL] Create a `Forgot your password` button on the login page, that can help restore the password by email.
-    - There is a `Forgot your password` button on the login page.
-    - After clicking on the `Forgot your password` button the user can give their email.
-    - After the email given for recovering the password, the email is validated. If no such email can be found in the database, an error is shown.
-    - After choosing `Forgot your password` with a registered account, an email is received.
-    - The `Forgot your password` email contains a link, that redirects to a page, where the user can set a new password. The password belonging to the email address is overwritten to the new one given.
-
-6. [OPTIONAL] Add a possibility to log in with `Google Id` using guide provided in resources
-    - New project in Google's credential page is added. It has an `OAuth 2.0 Client IDs` record.
-    - User secrets are used to store Google's `ClientSecret`. Ensure this data is not saved in the repo!
-    - Google authentication is enabled. Users can successfully authenticate via `GoogleId`.
-
-7. You need to fulfill a couple of technical requirements defined below.
-    - There is a registration page, where a user can register by setting at least their username, e-mail address, and password.
-    - There is a login page, where a user can log in to the application, by giving their username and password.
-    - The username of the logged-in user is shown on the page's header.
-    - There is a logout button on the page. After hitting the logout button, the user is redirected to the login page.
-
-8. Implement the features and tasks from the sprint backlog.
-    - By the end of the sprint, at least 50% of the sprint plan is completed (measured in estimation points)
-    - By the end of the sprint, at least 60% of the sprint plan is completed (measured in estimation points)
-    - By the end of the sprint, at least 70% of the sprint plan is completed (measured in estimation points)
-    - By the end of the sprint, at least 80% of the sprint plan is completed (measured in estimation points)
-    - By the end of the sprint, at least 90% of the sprint plan is completed (measured in estimation points)
-    - By the end of the sprint, 100% of the sprint plan is completed
-
-9. Use Scrum with your team throughout your project
-    - A Daily Scrum was organized by the Scrum Master (no longer than 15 minutes).
-    - Any necessary corrections in the sprint plan have been introduced to the backlog and validated by a mentor.
-    - After the demo, the Scrum Master organized a Sprint Review meeting, during which the team investigates how much of the planned Sprint Backlog was fulfilled - and whether it was well thought out and balanced for the team to handle.
-    - Each Sprint Review produces an Increment Document - a changelog of sorts, listing out all the changes to the product that are the result of this sprint.
-    - After the Sprint Review, the Scrum Master organizes a Sprint Retrospective meeting, during which the team recalls on how the work went during this sprint, which practices were good, which should be improved, and which should be stopped (and also what to introduce).
-
-## General requirements
-
-None
-
-## Hints
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#main-features">Main Features</a></li>
+        <li><a href="#integrated-services">Integrated Services</a></li>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#visuals">Visuals</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#development-team">Development Team</a></li>
+  </ol>
+</details>
 
 
 
-## Background materials
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-- <i class="far fa-exclamation"></i> [Definition of Done](project/curriculum/materials/pages/methodology/definition-of-done.md)
-- <i class="far fa-exclamation"></i> [Agile Project Management](project/curriculum/materials/pages/methodology/agile-project-management.md)
-- [Quickstart on GitHub Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/quickstart)
-- [Creating a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+![main_page.jpg][main-page]
+
+A management application where owners can manage their own gyms (post gyms, add courses to gyms, add exercises and trainers to courses) and clients can apply for different types of gyms memberships. Used technologies: ASP.NET Core, C#, SQL Server, HTML, CSS, Bootstrap, JavaScript, React, Firebase.
+
+- The user can be a gym owner or a gym member/client
+- The user can register and login
+- If the user is a gym owner he can add a gym and perform actions like update and delete on gyms, courses, exercises and trainers only if he owns the current gym  
+- If the user is a gym member/client he can apply for different types of gyms memberships/courses or he can cancel memberships/courses
+- If the user is a gym owner he can choose to display only his owned gyms
+- If the user is a gym owner he can upload images of gyms, courses and trainers
+- Both the owner and the client can see the total gym members and total course members
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### Main Features
+
+- Gyms, gym courses, exercises and trainers display
+- Register
+- Login/Logout
+- There are two types of accounts, gym owner and gym member/client
+- The gym owner can perform CRUD (Create, Read, Update, Delete) operations on gyms, gym courses, exercises and trainers 
+- The gym owner can perform CRUD operations only on his owned gyms, not on gyms of other owners
+- The gym owner can display only his owned gyms
+- The gym owner can upload images of gyms, courses and trainers
+- A gym member/client can apply for gym memberships/courses
+- A gym member/client can cancel gym memberships/courses
+- Total gym members and total course members display
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Built With
+
+Back End:
+* [ASP .NET Core][asp-net-core]
+* [C#][c#]
+
+Front End:
+* [HTML][html]
+* [CSS][css]
+* [JavaScript][js]
+* [React.js][react]
+* [Bootstrap][bootstrap]
+
+Database Management:
+* [Microsoft SQL Server][msql-server]
+* [Microsoft SQL Server Management Studio][ssms]
+
+IDE:
+* [Microsoft Visual Studio][visual-studio]
+* [Microsoft Visual Studio Code][visual-studio-code]
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Integrated Services
+Firebase:
+* [Firebase][firebase]
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Visuals
+
+Swagger page:
+
+![swagger_view.jpg][swagger-view]
+
+Register Page:
+
+![register.jpg][register]
+
+Login Page:
+
+![login.jpg][login]
+
+Client Gyms Page:
+
+![client_gyms_view.jpg][client-gyms-view]
+
+Client Courses Page:
+
+![client_courses_view.jpg][client-courses-view]
+
+Owner Gyms Page:
+
+![owned_gym.jpg][owned-gym]
+
+Owner Owned Gyms:
+
+![owned_gyms_only.jpg][owned-gyms-only]
+
+Add Gym Form:
+
+![add_gym_form.jpg][add-gym-form]
+
+Edit Gym Form:
+
+![edit_gym_form.jpg][edit-gym-form]
+
+Owner Courses Page:
+
+![owned_courses.jpg][owned-courses]
+
+Add Course Form:
+
+![add_course_form.jpg][add-course-form]
+
+Edit Course Form:
+
+![edit_course_form.jpg][edit-course-form]
+
+Owner Exercises Page:
+
+![owned_exercises.jpg][owned-exercises]
+
+Add Exercise Form:
+
+![add_exercise_form.jpg][add-exercise-form]
+
+Edit Exercise Form:
+
+![edit_exercise_form.jpg][edit-exercise-form]
+
+Owner Trainers Page:
+
+![owned_trainers.jpg][owned-trainers]
+
+Add Trainer Form:
+
+![add_trainer_form.jpg][add-trainer-form]
+
+Edit Trainer Form:
+
+![edit_trainer_form.jpg][edit-trainer-form]
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Installation
+
+- Create a database.
+- In Visual Studio update the database from the Package Manager Console.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+- In Visual Studio run the backend project with IIS Express.
+- In Visual Studio Code type the following command in terminal: `npm install react-scripts --save` then run the frontend project by typing the following command: `npm start`.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+## Development Team
+
+* [Radoi Razvan's GitHub][radoi-razvan]
+* [Alex Moraru's GitHub][AlexMoraru97]
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[asp-net-core]: https://dotnet.microsoft.com/en-us/learn/aspnet/what-is-aspnet-core
+[ef-core]: https://docs.microsoft.com/en-us/ef/core/
+[c#]: https://docs.microsoft.com/en-us/dotnet/csharp/
+[html]: https://html.com/
+[css]: https://www.w3.org/Style/CSS/Overview.en.html
+[js]: https://www.javascript.com/
+[react]: https://reactjs.org/
+[bootstrap]: https://getbootstrap.com
+[msql-server]: https://www.microsoft.com/en-us/sql-server/sql-server-2019
+[ssms]: https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
+[visual-studio]: https://visualstudio.microsoft.com/
+[visual-studio-code]: https://code.visualstudio.com/
+
+[radoi-razvan]: https://github.com/radoi-razvan
+[AlexMoraru97]: https://github.com/AlexMoraru97
+
+[firebase]: https://firebase.google.com/
+
+[swagger-view]: project_photos/swagger_view.jpg
+[main-page]: project_photos/main_page.jpg
+[register]: project_photos/register.jpg
+[login]: project_photos/login.jpg
+[client-gyms-view]: project_photos/client_gyms_view.jpg
+[client-courses-view]: project_photos/client_courses_view.jpg
+[owned-gym]: project_photos/owned_gym.jpg
+[owned-gyms-only]: project_photos/owned_gyms_only.jpg
+[add-gym-form]: project_photos/add_gym_form.jpg
+[edit-gym-form]: project_photos/edit_gym_form.jpg
+[owned-courses]: project_photos/owned_courses.jpg
+[add-course-form]: project_photos/add_course_form.jpg
+[edit-course-form]: project_photos/edit_course_form.jpg
+[owned-exercises]: project_photos/owned_exercises.jpg
+[add-exercise-form]: project_photos/add_exercise_form.jpg
+[edit-exercise-form]: project_photos/edit_exercise_form.jpg
+[owned-trainers]: project_photos/owned_trainers.jpg
+[add-trainer-form]: project_photos/add_trainer_form.jpg
+[edit-trainer-form]: project_photos/edit_trainer_form.jpg
