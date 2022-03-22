@@ -49,8 +49,7 @@ A management application where owners can manage their own gyms (post gyms, add 
 ### Main Features
 
 - Gyms, gym courses, exercises and trainers display
-- Register
-- Login/Logout
+- User authentication with JWT
 - There are two types of accounts, gym owner and gym member/client
 - The gym owner can perform CRUD (Create, Read, Update, Delete) operations on gyms, gym courses, exercises and trainers 
 - The gym owner can perform CRUD operations only on his owned gyms, not on gyms of other owners
