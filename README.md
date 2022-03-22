@@ -35,14 +35,6 @@
 
 A management application where owners can manage their own gyms (post gyms, add courses to gyms, add exercises and trainers to courses) and clients can apply for different types of gyms memberships. Used technologies: ASP.NET Core, C#, SQL Server, HTML, CSS, Bootstrap, JavaScript, React, Firebase.
 
-- The user can be a gym owner or a gym member/client
-- The user can register and login
-- If the user is a gym owner he can add a gym and perform actions like update and delete on gyms, courses, exercises and trainers only if he owns the current gym  
-- If the user is a gym member/client he can apply for different types of gyms memberships/courses or he can cancel memberships/courses
-- If the user is a gym owner he can choose to display only his owned gyms
-- If the user is a gym owner he can upload images of gyms, courses and trainers
-- Both the owner and the client can see the total gym members and total course members
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -50,13 +42,12 @@ A management application where owners can manage their own gyms (post gyms, add 
 
 - Gyms, gym courses, exercises and trainers display
 - User authentication with JWT
-- There are two types of accounts, gym owner and gym member/client
+- Role based accounts, gym owner and gym member/client
 - The gym owner can perform CRUD (Create, Read, Update, Delete) operations on gyms, gym courses, exercises and trainers 
-- The gym owner can perform CRUD operations only on his owned gyms, not on gyms of other owners
-- The gym owner can display only his owned gyms
+- The gym owner can perform CRUD operations on his owned gyms only
+- The gym owner can display his owned gyms only
 - The gym owner can upload images of gyms, courses and trainers
-- A gym member/client can apply for gym memberships/courses
-- A gym member/client can cancel gym memberships/courses
+- The member/client can enroll to a gym or cancel his membership 
 - Total gym members and total course members display
 
 <p align="right">(<a href="#top">back to top</a>)</p>
